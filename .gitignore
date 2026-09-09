@@ -12,4 +12,3 @@ __pycache__/
 # Large merchant originals stay in local assets and Cloud Storage.
 # The image mapping and small system preset images are versioned.
 /data/assets/shop_pic/
-/不忍了-MVP研发交接包/shop_pic/

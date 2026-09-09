@@ -1,7 +1,7 @@
 /**
  * 米饭等值换算 —— 领域规则单一真源(source of truth)。
  *
- * 交接包硬性规则(见 docs/UI视觉设计.md、docs/数据库设计.md):
+ * 产品规则(见 docs/最终需求基线.md、docs/数据库设计.md):
  *  - riceBowlEquivalent = round(estimatedCaloriesKcal / riceBowlKcalBasis, 1)
  *  - MVP 基准 basis = 200 kcal/碗,可配置且带版本,不写死在页面。
  *  - 热量缺失(null)时返回 null,UI 显示"暂无热量估算",不显示 0 碗。

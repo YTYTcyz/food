@@ -10,6 +10,6 @@
 
 ## Git断点备份范围
 
-data/assets/shop_pic/的550张商家原图及交接包内的重复原图不入Git，原件仍留本机、云路径仍为shop_pic/。shop_pic.manifest.json记录每张图片的相对路径、字节数与SHA-256，fileID映射在cloudfunctions/seed/data/images.json。新克隆重新生成图片映射前需恢复原件；正常使用已部署云端图片不要求重新上传。data/source/菜品列表.xlsx为入Git的商品源文件。
+data/assets/shop_pic/的550张商家原图不入Git，原件统一留在此目录，云路径仍为shop_pic/。shop_pic.manifest.json记录每张图片的相对路径、字节数与SHA-256，fileID映射在cloudfunctions/seed/data/images.json。新克隆重新生成图片映射前需恢复原件；正常使用已部署云端图片不要求重新上传。data/source/菜品列表.xlsx为入Git的商品源文件。
 
-6张系统拼图与其真实fileID配置入Git；小程序音频/图标运行副本继续随包。最新系统图上传完成记录为0909_3_4。Git不备份云数据库或用户私人文件。
+6张系统拼图与其真实fileID配置入Git；小程序音频/图标运行副本继续随包。当前配置状态见../../docs/实施状态.md。Git不备份云数据库或用户私人文件。

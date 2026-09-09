@@ -1,7 +1,7 @@
 /**
  * 解析菜品 Excel -> 生成 seed 数据 cloudfunctions/seed/data/menu.json
  *
- * 交接包规则(docs/数据库设计.md 第 6 节 / docs/开发计划.md M3):
+ * 数据规则(docs/数据库设计.md / docs/最终需求基线.md):
  *  - 校验 50 家商家、500 个菜品;
  *  - 每个菜品热量为正整数 kcal/份(允许范围 10–920);
  *  - 生成稳定 ID(m001.. / mi_m001_01..),供云函数幂等 upsert;

@@ -1,5 +1,5 @@
 // 菜品热量 + 米饭等值展示组件
-// 交接包:统一文案「约 N kcal · ≈ X.X 碗饭」;热量缺失显示「暂无热量估算」,不显示 0 碗。
+// 统一文案「约 N kcal · ≈ X.X 碗饭」;热量缺失显示「暂无热量估算」,不显示 0 碗。
 Component({
   properties: {
     kcal: { type: null, value: null }, // number | null

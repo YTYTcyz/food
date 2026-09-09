@@ -1,6 +1,6 @@
 // seed 云函数:把本地 parse-menu.js 生成的 data/menu.json 幂等写入云数据库。
 // 幂等实现:用稳定 _id(m001 / mi_m001_01 / nr_cooked_rice_bowl_v1)执行 doc().set(),
-// 重复执行只覆盖同一文档,不产生重复记录(交接包 M3 验收:可重复 seed,数量不累加)。
+// 重复执行只覆盖同一文档,不产生重复记录(重复 seed 时数量不累加)。
 //
 // 由于云函数有执行时长限制,支持分批调用:
 //   event.part = "all"(默认) | "reference" | "merchants" | "menu"

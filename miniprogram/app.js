@@ -38,7 +38,7 @@ App({
     }
   },
 
-  // 用微信 OPENID 换取内部 userId(交接包:身份分离,业务一律用内部 userId)
+  // 用微信 OPENID 换取内部 userId(身份分离,业务一律用内部 userId)
   ensureLogin: function () {
     if (this._loginPromise) return this._loginPromise;
     const cached = wx.getStorageSync("userId");

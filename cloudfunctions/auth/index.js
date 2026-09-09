@@ -1,5 +1,5 @@
 // auth 云函数:用微信 OPENID 创建/关联内部 userId。
-// 交接包规则:OPENID 只用于登录关联,不入业务主键;业务表一律关联内部 userId。
+// 身份规则:OPENID 只用于登录关联,不入业务主键;业务表一律关联内部 userId。
 // 为隐私,auth_identities 只保存 OPENID 的 sha256 摘要(providerSubjectHash),不存明文。
 const cloud = require("wx-server-sdk");
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });

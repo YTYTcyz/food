@@ -8,7 +8,7 @@
  * 用法:
  *   node build-images-map.js "<prefix>"
  *   node build-images-map.js "<prefix>" --base shop_pic
- *   <prefix> 为 storageProbe 云函数返回的 data.prefix,形如 cloud://xxx.yyy/
+ *   <prefix> 为 控制台已有商家文件的真实 fileID 中截取的目录前缀,形如 cloud://xxx.yyy/
  *
  * 说明:
  *   - 自动遍历 shop_pic 下每个商家文件夹(含 _已确认 之类嵌套子目录),按文件的本地相对路径
@@ -46,7 +46,7 @@ function main() {
   const { prefix, base } = parseArgs();
   if (!prefix || !prefix.startsWith("cloud://")) {
     console.error("缺少前缀。用法: node build-images-map.js \"cloud://xxx.yyy/\" [--base shop_pic]");
-    console.error("前缀来自 storageProbe 云函数返回的 data.prefix");
+    console.error("前缀来自 控制台已有商家文件的真实 fileID 中截取的目录前缀");
     process.exitCode = 1;
     return;
   }
