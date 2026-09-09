@@ -1,0 +1,10 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "微信 OPENID 关联内部 userId",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

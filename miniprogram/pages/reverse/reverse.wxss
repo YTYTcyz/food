@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.comparison { margin-top: 24rpx; padding: 20rpx; text-align: center; }.preview-wrap { position: relative; width: 100%; padding-bottom: 100%; }.preview { position: absolute; inset: 0; width: 100%; height: 100%; background: white; border-radius: 20rpx; }
+

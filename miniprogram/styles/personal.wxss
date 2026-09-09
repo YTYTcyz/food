@@ -1,0 +1,22 @@
+.screen { padding: 32rpx 32rpx 64rpx; max-width: 960rpx; margin: auto; }
+.heading { font-size: 46rpx; font-weight: 700; margin: 12rpx 0; }
+.subtitle, .muted { color: var(--text-sub); font-size: 26rpx; line-height: 1.7; }
+.subtitle { margin-bottom: 32rpx; }
+.section { margin-bottom: 28rpx; padding: 32rpx; background: var(--surface); border-radius: 32rpx; box-shadow: var(--shadow-card); }
+.section-title { font-size: 32rpx; font-weight: 600; margin-bottom: 22rpx; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
+.stack { margin-top: 24rpx; }
+.action { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 88rpx; padding: 16rpx 24rpx; box-sizing: border-box; border-radius: 26rpx; line-height: 1.5; font-size: 30rpx; color: white; background: var(--brand-gradient); }
+.action::after, .soft-button::after { border: 0; }
+.soft-button { width: auto; margin: 0; padding: 12rpx 24rpx; min-height: 68rpx; font-size: 26rpx; line-height: 1.6; background: var(--surface-warm); color: #a64c30; border-radius: 24rpx; }
+.field { box-sizing: border-box; width: 100%; min-height: 90rpx; padding: 20rpx 24rpx; margin: 16rpx 0 28rpx; background: #fff7f2; border-radius: 20rpx; font-size: 32rpx; }
+.error-box { padding: 24rpx; margin-bottom: 24rpx; color: #aa483e; background: #fff0e8; border-radius: 24rpx; font-size: 28rpx; }
+.empty { padding: 70rpx 28rpx; text-align: center; color: var(--text-sub); line-height: 1.8; }
+.list-item { padding: 26rpx 0; border-bottom: 1rpx solid var(--divider); }
+.list-item:last-child { border-bottom: 0; }
+.value { font-size: 42rpx; font-weight: 700; }
+.grid-two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24rpx; }
+.link { color: #c75766; font-size: 28rpx; }
+.progress { height: 14rpx; border-radius: 20rpx; background: #fff0e8; overflow: hidden; margin: 18rpx 0; }
+.progress-fill { height: 100%; background: var(--brand-gradient); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }

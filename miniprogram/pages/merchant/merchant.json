@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "calorie-tag": "/components/calorie-tag/index"
+  },
+  "backgroundColor": "#FFF7F2",
+  "navigationBarTitleText": "商家详情"
+}

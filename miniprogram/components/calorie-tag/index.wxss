@@ -1,0 +1,14 @@
+.calorie-tag {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  background: var(--surface-warm, #fff0e8);
+  color: var(--brand-orange, #ff7a3d);
+  font-size: var(--fs-tag, 24rpx);
+  font-weight: 500;
+}
+.calorie-tag--muted {
+  background: transparent;
+  color: var(--text-sub, #777178);
+  padding-left: 0;
+}

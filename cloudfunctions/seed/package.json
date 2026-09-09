@@ -1,0 +1,10 @@
+{
+  "name": "seed",
+  "version": "1.0.0",
+  "description": "幂等导入商家/菜品/热量基准到云数据库",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

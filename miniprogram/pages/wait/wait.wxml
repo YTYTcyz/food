@@ -1,0 +1,49 @@
+<view class="page wait">
+  <view wx:if="{{status === 'loading'}}" class="state">
+    <view class="state__title">正在读取挑战…</view>
+  </view>
+
+  <view wx:elif="{{status === 'error'}}" class="state">
+    <view class="state__title">读取失败</view>
+    <button class="btn-ghost state__btn" bindtap="retry">重试</button>
+  </view>
+
+  <block wx:else>
+    <view class="hero">
+      <view class="hero__hint">模拟配送中 · 给自己一点选择时间</view>
+      <view class="ring">
+        <view class="ring__time">{{mmss}}</view>
+        <view class="ring__sub">{{status === 'submitting' ? '正在确认结果…' : '冷静期剩余时间'}}</view>
+      </view>
+      <view class="bar">
+        <view class="bar__fill" style="width: {{progress}}%;"></view>
+      </view>
+    </view>
+
+    <view class="card order-brief" wx:if="{{order}}">
+      <view class="order-brief__name">{{order.merchantName}}</view>
+      <view class="order-brief__row">
+        <text>共 {{order.items.length}} 样</text>
+        <text>成功后计入 ¥{{order.totalCents / 100}}</text>
+      </view>
+      <view class="order-brief__row order-brief__kcal" wx:if="{{order.estimatedCaloriesKcal > 0}}">
+        本单预估热量 {{order.estimatedCaloriesKcal}} kcal
+      </view>
+    </view>
+
+    <view class="tools">
+      <view class="tools__title">转移一下注意力</view>
+      <view class="tools__grid">
+        <view class="tool" wx:for="{{tools}}" wx:key="key" data-key="{{item.key}}" bindtap="onTool">
+          <view class="tool__emoji">{{item.emoji}}</view>
+          <view class="tool__label">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{status === 'pending'}}" class="card">结果待同步，尚未确认入账。<button bindtap="retry">联网后重试</button></view>
+    <button class="btn-primary" disabled="{{status !== 'waiting'}}" bindtap="onSuccess">我已不想吃了，取消订单</button>
+    <view class="cancel" bindtap="onGiveUp">还是吃了</view>
+    <view class="sim-tip">模拟订单，不会真实配送或扣款</view>
+  </block>
+</view>

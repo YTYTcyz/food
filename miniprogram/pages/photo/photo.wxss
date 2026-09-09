@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.crop { width: 100%; height: 686rpx; background: #f0e8e1; border-radius: 28rpx; }
+.preview { display: flex; justify-content: center; background: #f0e8e1; border-radius: 24rpx; overflow: hidden; }

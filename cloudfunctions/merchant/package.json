@@ -1,0 +1,10 @@
+{
+  "name": "merchant",
+  "version": "1.0.0",
+  "description": "商家列表与详情(含米饭等值)",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

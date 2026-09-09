@@ -1,0 +1,1 @@
+<view wx:if="{{order || failed}}" class="notice" bindtap="open">{{failed ? '挑战状态待同步 · 点此重试' : label}}</view>

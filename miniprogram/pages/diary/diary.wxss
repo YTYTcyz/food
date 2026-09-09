@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.diary-preview { margin-top: 24rpx; white-space: pre-wrap; word-break: break-all; font-size: 30rpx; line-height: 1.9; }
+

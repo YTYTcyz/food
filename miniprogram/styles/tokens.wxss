@@ -1,0 +1,57 @@
+/* 设计令牌(来自 docs/UI视觉设计.md「暖感轻游戏」)
+   约定:1px ≈ 2rpx。颜色、圆角、间距、字号集中在此,页面不写死具体值。 */
+page {
+  /* 颜色 */
+  --brand-orange: #ff7a3d;
+  --achv-pink: #ef3f86;
+  --calm-teal: #4ba89a;
+  --bg-warm: #fff7f2;
+  --surface: #ffffff;
+  --surface-warm: #fff0e8;
+  --text-main: #27252a;
+  --text-sub: #777178;
+  --success: #1f9b68;
+  --error: #d94b4b;
+
+  /* 主渐变:只用于主按钮、英雄区、完成反馈、纪念卡翻块 */
+  --brand-gradient: linear-gradient(135deg, #ff7a3d 0%, #ef3f86 100%);
+
+  /* 圆角 */
+  --radius-hero: 48rpx;
+  --radius-card: 40rpx;
+  --radius-btn: 32rpx;
+  --radius-tag: 999rpx;
+
+  /* 间距(4/8/12/16/20/24/32 px) */
+  --sp-1: 8rpx;
+  --sp-2: 16rpx;
+  --sp-3: 24rpx;
+  --sp-4: 32rpx;
+  --sp-5: 40rpx;
+  --sp-6: 48rpx;
+  --sp-8: 64rpx;
+
+  /* 字号 */
+  --fs-hero: 64rpx;
+  --fs-title: 48rpx;
+  --fs-card-title: 36rpx;
+  --fs-body: 32rpx;
+  --fs-aux: 28rpx;
+  --fs-tag: 24rpx;
+
+  /* 扩展令牌(核心闭环:购物车/订单/等待/结果) */
+  --brand-green: #1f9b68; /* 热量/健康正向反馈 */
+  --divider: #f2e9e2; /* 列表分隔线 */
+  --radius-md: 24rpx;
+  --sp-7: 56rpx;
+  --fs-headline: 56rpx;
+  --fs-caption: 24rpx;
+
+  /* 阴影(轻暖灰) */
+  --shadow-card: 0 6rpx 24rpx rgba(120, 90, 70, 0.08);
+
+  background: var(--bg-warm);
+  color: var(--text-main);
+  font-family: -apple-system, "PingFang SC", "HarmonyOS Sans SC",
+    "Microsoft YaHei", sans-serif;
+}

@@ -1,0 +1,73 @@
+<view class="page merchant">
+  <!-- 加载中 -->
+  <view wx:if="{{status === 'loading'}}" class="state">
+    <view class="state__title">正在加载菜单…</view>
+  </view>
+
+  <!-- 错误 -->
+  <view wx:elif="{{status === 'error'}}" class="state">
+    <view class="state__title">加载失败了</view>
+    <view>检查网络后再试一次</view>
+    <button class="btn-ghost state__btn" bindtap="retry">重新加载</button>
+  </view>
+
+  <!-- 空 -->
+  <view wx:elif="{{status === 'empty'}}" class="state">
+    <view class="state__title">该商家暂无在售菜品</view>
+    <button class="btn-ghost state__btn" bindtap="retry">重新加载</button>
+  </view>
+
+  <!-- 内容 -->
+  <block wx:else>
+    <view class="m-header card">
+      <view class="m-header__name">{{merchant.name}}</view>
+      <view class="m-header__comment">{{merchant.comment}}</view>
+    </view>
+
+    <view wx:if="{{disclaimer}}" class="disclaimer">{{disclaimer}}</view>
+
+    <view class="menu-list">
+      <view id="dish-{{item.id}}" class="menu-item card" wx:for="{{menu}}" wx:key="id">
+        <image
+          class="menu-item__img"
+          src="{{item.imageFileID || defaultImg}}"
+          mode="aspectFill"
+        />
+        <view class="menu-item__info">
+          <view class="menu-item__name">{{item.name}}</view>
+          <view class="menu-item__meta">
+            <calorie-tag
+              kcal="{{item.estimatedCaloriesKcal}}"
+              equivalent="{{item.riceBowlEquivalent}}"
+            />
+          </view>
+          <view class="menu-item__bottom">
+            <view class="menu-item__price" wx:if="{{item.priceCents !== null}}">¥{{item.priceCents / 100}}</view>
+            <view class="stepper">
+              <view
+                wx:if="{{cartMap[item.id]}}"
+                class="stepper__btn"
+                data-id="{{item.id}}"
+                bindtap="onDec"
+              >−</view>
+              <text wx:if="{{cartMap[item.id]}}" class="stepper__qty">{{cartMap[item.id]}}</text>
+              <view class="stepper__btn stepper__btn--add" data-item="{{item}}" bindtap="onAdd">＋</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="sim-note">模拟点单,不会真实配送,也不会扣款</view>
+    <view style="height: 140rpx;"></view>
+  </block>
+
+  <!-- 购物车栏 -->
+  <view wx:if="{{cartCount > 0}}" class="cart-bar">
+    <view class="cart-bar__info">
+      <text class="cart-bar__count">{{cartCount}} 件</text>
+      <text class="cart-bar__total">商品 ¥{{cartGoodsYuan}}</text>
+    </view>
+    <view class="cart-bar__btn" bindtap="goOrder">去结算</view>
+  </view>
+</view>

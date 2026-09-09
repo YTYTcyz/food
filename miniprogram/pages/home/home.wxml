@@ -1,0 +1,22 @@
+<view class="page home">
+  <view class="hero"><view class="hero__title">不忍了</view><view class="hero__subtitle">想吃的时候，先陪自己等一会儿</view><view class="hero__note">模拟点单，不会真实配送或扣款</view></view>
+  <view wx:if="{{active}}" class="active-card" bindtap="goActive"><view><view class="active-card__name">{{active.merchantName}}</view><view class="active-card__hint">{{active.status === 'completed' ? '挑战已成功，查看本次成果' : '有一次挑战正在进行，点击继续'}}</view></view><text>›</text></view>
+  <view wx:if="{{challengeError}}" class="card" bindtap="loadActive">挑战状态待同步 · 点击重试</view>
+  <view class="search-row"><input placeholder="搜索商家或商品" value="{{keyword}}" bindinput="onKeyword" bindconfirm="search" maxlength="50" confirm-type="search"/><button size="mini" bindtap="search">搜索</button></view>
+  <scroll-view scroll-x class="categories"><view wx:for="{{categories}}" wx:key="id" class="category {{category === item.id ? 'selected' : ''}}" data-id="{{item.id}}" bindtap="selectCategory">{{item.name}}</view></scroll-view>
+  <view class="list-heading"><text>虚拟商家</text><picker range="{{sorts}}" value="{{sortIndex}}" bindchange="selectSort">{{sorts[sortIndex]}} ▾</picker></view>
+  <view class="hero__note">评分、月售为模拟展示数据</view>
+  <view wx:if="{{status === 'loading'}}" class="state">正在加载商家…</view>
+  <view wx:elif="{{status === 'error'}}" class="state">加载失败，请检查网络<button bindtap="retry">重试</button></view>
+  <view wx:elif="{{status === 'empty'}}" class="state">没有找到相关商家或商品，换个关键词试试</view>
+  <view wx:else class="merchant-list">
+    <view class="card" wx:for="{{merchants}}" wx:key="id" wx:for-item="merchant">
+      <view class="merchant-card" data-id="{{merchant.id}}" bindtap="goMerchant"><image class="merchant-card__cover" src="{{merchant.coverFileID || defaultCover}}" mode="aspectFill"/><view class="merchant-card__info"><view class="merchant-card__name">{{merchant.name}}</view><view class="merchant-card__comment">评分 {{merchant.rating}} · 月售 {{merchant.monthlySales}}</view><view class="merchant-card__comment">{{merchant.comment}}</view><text class="tag" wx:for="{{merchant.tags}}" wx:key="*this">{{item}}</text></view></view>
+      <scroll-view scroll-x class="product-row"><view class="product" wx:for="{{merchant.products}}" wx:key="id" data-merchant="{{merchant.id}}" data-id="{{item.id}}" bindtap="goProduct"><image src="{{item.imageFileID || defaultCover}}" mode="aspectFill"/><view>{{item.name}}</view><text>¥{{item.priceCents / 100}}</text></view></scroll-view>
+    </view>
+    <view wx:if="{{loadingMore}}" class="state">加载更多…</view>
+    <button wx:elif="{{moreError}}" bindtap="more">加载失败，重试下一页</button>
+    <button wx:elif="{{hasMore}}" bindtap="more">加载更多</button>
+    <view wx:else class="state">已展示全部结果</view>
+  </view>
+</view>

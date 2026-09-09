@@ -1,0 +1,7 @@
+{
+  "name": "burenle-personal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": { "wx-server-sdk": "~2.6.3" }
+}

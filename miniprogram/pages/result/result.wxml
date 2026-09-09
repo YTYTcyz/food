@@ -1,0 +1,38 @@
+<view class="page result">
+  <view wx:if="{{status === 'loading'}}" class="state">正在确认成果…</view>
+  <view wx:elif="{{status === 'error'}}" class="state">暂未取得成功结果<button bindtap="load">重试</button></view>
+  <block wx:else>
+  <view class="celebrate">
+    <view class="celebrate__emoji">🎉</view>
+    <view class="celebrate__title">挑战成功!</view>
+    <view class="celebrate__sub">你又一次战胜了嘴馋<block wx:if="{{merchantName}}">·{{merchantName}}</block></view>
+  </view>
+
+  <view class="stats">
+    <view class="stat card">
+      <view class="stat__num">{{kcal}}</view>
+      <view class="stat__label">模拟避免热量 (kcal)</view>
+    </view>
+    <view class="stat card">
+      <view class="stat__num">¥{{savedYuan}}</view>
+      <view class="stat__label">已计入成就钱包</view>
+    </view>
+    <view class="stat card">
+      <view class="stat__num">{{minutes}}</view>
+      <view class="stat__label">坚持 (分钟)</view>
+    </view>
+    <view class="stat card">
+      <view class="stat__num">Lv.{{level}}</view>
+      <view class="stat__label">本次结算后等级</view>
+    </view>
+  </view>
+
+  <view class="total card">累计已完成 {{totalCompleted}} 次挑战</view>
+  <view class="total card">本张拼图 {{cardStep}} / 7 次 · 每次成功推进一次</view>
+
+  <view class="actions">
+    <button class="btn-primary actions__main" bindtap="again">再来一次</button>
+    <view class="actions__ghost" bindtap="goHistory">查看我的成果</view>
+  </view>
+  </block>
+</view>

@@ -1,0 +1,15 @@
+# 本地静态素材
+
+此目录保存源素材。小程序的公共图片仍使用云文件路径，本地路径不能直接交给手机端读取。
+
+- shop_pic/：已上传商家/菜品的本地原件，保留内部结构；云路径shop_pic/不变。
+- memorial-presets/v1/：6张系统拼图，比例不限；云路径memorial-presets/v1/。
+- audio/、icons/：需要集中保存时可放音频/图标原件；当前小程序内置音频和导航图标的运行副本仍随包提供。
+
+图库尺寸模板生成：在项目根目录运行node scripts/build-memorial-presets.js。脚本不上传、不修改图片。具体云端操作与权限见../../docs/图片上传手册.md及../../docs/用户协同操作清单.md。
+
+## Git断点备份范围
+
+data/assets/shop_pic/的550张商家原图及交接包内的重复原图不入Git，原件仍留本机、云路径仍为shop_pic/。shop_pic.manifest.json记录每张图片的相对路径、字节数与SHA-256，fileID映射在cloudfunctions/seed/data/images.json。新克隆重新生成图片映射前需恢复原件；正常使用已部署云端图片不要求重新上传。data/source/菜品列表.xlsx为入Git的商品源文件。
+
+6张系统拼图与其真实fileID配置入Git；小程序音频/图标运行副本继续随包。最新系统图上传完成记录为0909_3_4。Git不备份云数据库或用户私人文件。

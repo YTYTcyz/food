@@ -1,0 +1,120 @@
+.wait {
+  padding: var(--sp-4);
+}
+.wait > .btn-primary { display: flex; width: 100%; height: auto; min-height: 96rpx; margin: 32rpx 0 0; padding: 20rpx 24rpx; line-height: 1.5; box-sizing: border-box; }
+.wait > .btn-primary::after { border: none; }
+.sim-tip { text-align: center; font-size: 24rpx; color: var(--text-sub); padding-bottom: env(safe-area-inset-bottom); }
+
+.state {
+  padding: 160rpx var(--sp-4);
+  text-align: center;
+  color: var(--text-sub);
+}
+.state__title {
+  font-size: var(--fs-title);
+  color: var(--text-main);
+  margin-bottom: var(--sp-4);
+}
+.state__btn {
+  display: inline-block;
+}
+
+.hero {
+  padding: var(--sp-6) var(--sp-4) var(--sp-5);
+  text-align: center;
+}
+.hero__hint {
+  font-size: var(--fs-body);
+  color: var(--text-sub);
+  margin-bottom: var(--sp-5);
+}
+.ring {
+  width: 360rpx;
+  height: 360rpx;
+  margin: 0 auto var(--sp-5);
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+.ring__time {
+  font-size: 96rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+.ring__sub {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-aux);
+  opacity: 0.9;
+}
+.bar {
+  width: 100%;
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: var(--surface-warm);
+  overflow: hidden;
+}
+.bar__fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: var(--brand-gradient);
+  transition: width 0.4s ease;
+}
+
+.order-brief__name {
+  font-size: var(--fs-title);
+  font-weight: 600;
+  color: var(--text-main);
+}
+.order-brief__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-aux);
+  color: var(--text-sub);
+  margin-top: var(--sp-2);
+}
+.order-brief__kcal {
+  color: var(--brand-green);
+}
+
+.tools {
+  margin-top: var(--sp-5);
+}
+.tools__title {
+  font-size: var(--fs-aux);
+  color: var(--text-sub);
+  margin: 0 var(--sp-1) var(--sp-3);
+}
+.tools__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+.tool {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.tool__emoji {
+  font-size: 40rpx;
+}
+.tool__label {
+  font-size: var(--fs-body);
+  color: var(--text-main);
+}
+
+.cancel {
+  margin: var(--sp-6) auto var(--sp-5);
+  text-align: center;
+  font-size: var(--fs-aux);
+  color: var(--text-sub);
+  text-decoration: underline;
+}

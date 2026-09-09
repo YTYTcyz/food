@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.month { margin-bottom: 28rpx; }.calendar-grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 10rpx; text-align: center; }.weekday { font-size: 24rpx; color: #999; padding-bottom: 20rpx; }.day { min-height: 86rpx; padding: 12rpx 0 4rpx; border-radius: 16rpx; font-size: 28rpx; }.today { background: #fff0e8; color: #c96944; }.selected { outline: 2rpx solid #ec7d91; }.marks { height: 22rpx; display: flex; justify-content: center; gap: 5rpx; font-size: 19rpx; }.check { color: #37a286; }.success { color: #e77393; }
+

@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.moods { display: flex; flex-wrap: wrap; gap: 16rpx; margin-bottom: 28rpx; }.mood { padding: 14rpx 24rpx; border-radius: 30rpx; background: #fff; color: #777178; font-size: 26rpx; }.selected { color: #b34861; background: #ffe1e9; }.editor { width: 100%; min-height: 480rpx; font-size: 32rpx; line-height: 1.9; }.counter { text-align: right; }.encouragement { margin: 28rpx 0; padding: 32rpx; border-radius: 28rpx; background: #fce8ed; color: #a65069; line-height: 1.8; }
+

@@ -1,0 +1,2 @@
+<view class="screen"><view class="heading">我的徽章</view><view class="subtitle">已经获得的成长，会一直陪着你。</view><view wx:if="{{status === 'error'}}" class="error-box" bindtap="load">徽章加载失败 · 重试</view><view class="grid-two"><view class="section badge {{item.unlocked ? 'unlocked' : ''}}" wx:for="{{badges}}" wx:key="code"><view class="seal">{{item.symbol}}</view><view class="section-title">{{item.name}}</view><view class="muted">{{item.unlocked ? item.date + ' 解锁' : item.progress + ' / ' + item.threshold}}</view></view></view></view>
+

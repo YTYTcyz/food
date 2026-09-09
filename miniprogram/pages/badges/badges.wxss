@@ -1,0 +1,3 @@
+@import '../../styles/personal.wxss';
+.badge { text-align: center; padding: 30rpx 14rpx; }.seal { margin: 0 auto 24rpx; height: 100rpx; width: 100rpx; border-radius: 50%; line-height: 100rpx; font-size: 40rpx; background: #eee8e4; color: #a99f9a; }.unlocked .seal { color: white; background: var(--brand-gradient); box-shadow: 0 8rpx 20rpx #ef3f8622; }
+

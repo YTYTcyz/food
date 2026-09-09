@@ -1,0 +1,2760 @@
+{
+  "recordedAt": "2026-09-09",
+  "localDirectory": "data/assets/shop_pic",
+  "cloudDirectory": "shop_pic/",
+  "fileIDMapping": "cloudfunctions/seed/data/images.json",
+  "fileCount": 550,
+  "totalBytes": 1277147165,
+  "files": [
+    {
+      "path": "东北铁锅饭店/main.png",
+      "bytes": 2464206,
+      "sha256": "c2d71b3348379e2b4786eb428e61231aa1bd7554c21426f85478c56e349eafd3"
+    },
+    {
+      "path": "东北铁锅饭店/东北大拉皮.png",
+      "bytes": 2377485,
+      "sha256": "57eaf34b3eba8cfb781282a993ca0ae497ff34dce6744d67dbb364a3b99bd1fd"
+    },
+    {
+      "path": "东北铁锅饭店/地三鲜.png",
+      "bytes": 2766503,
+      "sha256": "8195bcfee8d2488f33c01879c1e719d5028eb477c172b4034989c11ef90ade7b"
+    },
+    {
+      "path": "东北铁锅饭店/小鸡炖蘑菇.png",
+      "bytes": 2858387,
+      "sha256": "97796739e120a21ab30490ccb471edce9d1fcce51b301aa00d7c55614d555a73"
+    },
+    {
+      "path": "东北铁锅饭店/尖椒干豆腐.png",
+      "bytes": 2713971,
+      "sha256": "405bfe5528a55c91fa18632d36fcee26cfe324656900cd1d4d844c89dc1522f8"
+    },
+    {
+      "path": "东北铁锅饭店/杀猪菜.png",
+      "bytes": 2642917,
+      "sha256": "204dcf54a69601a99f9a401e0c2a0f0ece3036a4e26b1f441ad2264d0de67db0"
+    },
+    {
+      "path": "东北铁锅饭店/猪肉白菜炖粉条.png",
+      "bytes": 2455256,
+      "sha256": "916c7c879207e1573d10e6d278b184970bea56a4c0ddf6e2aeec29e72e82f0b3"
+    },
+    {
+      "path": "东北铁锅饭店/老式锅包肉饭.png",
+      "bytes": 2526556,
+      "sha256": "70eb240c9cfb6f94faed12254e3e58490b16345f12cd230998c4fd3e221c907e"
+    },
+    {
+      "path": "东北铁锅饭店/酸菜白肉.png",
+      "bytes": 2573522,
+      "sha256": "098d43bf2e5cf4c64b1260217bf65a4fc6e0bdd28a6f1c19276736562c837a47"
+    },
+    {
+      "path": "东北铁锅饭店/铁锅炖大鹅.png",
+      "bytes": 2844842,
+      "sha256": "06a9f7eeb27a2367b425f087cba3b4a2e1cf285b0ea3ebe63077faf22290f449"
+    },
+    {
+      "path": "东北铁锅饭店/锅包肉.png",
+      "bytes": 2439529,
+      "sha256": "78c809de259a9df3393f273829f63cd1327dcc1ab9c682c4a1d1da21c3d756d3"
+    },
+    {
+      "path": "云南米线小站/main.png",
+      "bytes": 2556961,
+      "sha256": "21f82ae3e1b6a3a976a88506ba1091da54efd420073687614ed87b395dae24c4"
+    },
+    {
+      "path": "云南米线小站/凉拌米线.png",
+      "bytes": 1960580,
+      "sha256": "7bfc076161fa3219890a7b186d4b4f0d12fa365579dae640acf6cf8c004384ca"
+    },
+    {
+      "path": "云南米线小站/卤肉米线.png",
+      "bytes": 2134319,
+      "sha256": "fdd40e2ee732d8dbda2c7dc628e9b88b1fcdf566e6c2b31ee6af70b61a9cb246"
+    },
+    {
+      "path": "云南米线小站/小锅米线.png",
+      "bytes": 2061314,
+      "sha256": "468ac3dfc3a3cb3a99f134174185f59a74bac592d6e7bd78df982a0e523f84d5"
+    },
+    {
+      "path": "云南米线小站/炸酥肉.png",
+      "bytes": 2075712,
+      "sha256": "89ac2ff184de551e0294512241e6a1604cca8124ef93d00053be921b3e3d79c1"
+    },
+    {
+      "path": "云南米线小站/番茄肥牛米线.png",
+      "bytes": 2079424,
+      "sha256": "cf669d44b7997cd73cda2900af2d66dd47e7a4822b47584730adeb82621d5dae"
+    },
+    {
+      "path": "云南米线小站/菌汤鸡丝米线.png",
+      "bytes": 1989012,
+      "sha256": "f5b80d876c1f8d407595ac8850629181feb79a1fb53145b414ee38cdf970d20b"
+    },
+    {
+      "path": "云南米线小站/过桥米线.png",
+      "bytes": 2124030,
+      "sha256": "cc148fee30538576b89d112abeec8c5dcdca33c4e70ce6e52e82906aa759d65f"
+    },
+    {
+      "path": "云南米线小站/酸汤肥牛米线.png",
+      "bytes": 2073443,
+      "sha256": "fb80ea64e45ef64b976848b4d2969e30b2ca8e9d4e697d20a1c31b9ee85f612a"
+    },
+    {
+      "path": "云南米线小站/酸辣土豆米线.png",
+      "bytes": 2067886,
+      "sha256": "1f44b6a9732a4a9264e82e20ab416449e9dea8180aba58a1c9da5d82d98aa866"
+    },
+    {
+      "path": "云南米线小站/麻辣牛肉米线.png",
+      "bytes": 2286592,
+      "sha256": "3e4c1fdaad93e087de4bf53da85f904af6438024374dfa5322b4eb84f65b340e"
+    },
+    {
+      "path": "关东煮便利食堂/main.png",
+      "bytes": 2318307,
+      "sha256": "b86b2c94c12c073ffd59bb631026ef28a8652d91c96c6fcc6621b776418f08d7"
+    },
+    {
+      "path": "关东煮便利食堂/关东煮拼拼杯.png",
+      "bytes": 1935280,
+      "sha256": "ff92694216285c2c1c6d090f220b73283b184a411b91900f1b252736af90c2ad"
+    },
+    {
+      "path": "关东煮便利食堂/关东煮汤面.png",
+      "bytes": 2153198,
+      "sha256": "bc41dd7f887957fd8c706a064ce58ba48a41074e7c0a9284bb6644130b91f19b"
+    },
+    {
+      "path": "关东煮便利食堂/冰镇青梅饮.png",
+      "bytes": 1878674,
+      "sha256": "5c2b8e850f6a9ad8bd2c2f2571ab3ecb90f4eb5b2eb6d62d4cc8dd2eaee3bf71"
+    },
+    {
+      "path": "关东煮便利食堂/卤蛋魔芋拼.png",
+      "bytes": 2142090,
+      "sha256": "0e797e30025a110d8fee51bf573005a553dbfb087afda38348235b93b7ddc528"
+    },
+    {
+      "path": "关东煮便利食堂/海带结豆腐拼.png",
+      "bytes": 2005234,
+      "sha256": "f033ea0c29fefc20f29e73c9653251f6c1bcf4907cff0ccef92a1e624f903744"
+    },
+    {
+      "path": "关东煮便利食堂/照烧鸡肉串.png",
+      "bytes": 1868738,
+      "sha256": "316e62db9e37057fe0ce0becb61abfcff5371df964e59d41638b50fe6c4d58a5"
+    },
+    {
+      "path": "关东煮便利食堂/玉米热狗棒.png",
+      "bytes": 1959519,
+      "sha256": "61422055d18181fd3fad947256f8065fba2bc4a6e9594d30053b2b0668b4b2a2"
+    },
+    {
+      "path": "关东煮便利食堂/芝士年糕串.png",
+      "bytes": 2080304,
+      "sha256": "5a759e95fe36b009a027e3af15e411d9728b29c573191ff9a3c30f74f4523e2f"
+    },
+    {
+      "path": "关东煮便利食堂/萝卜鱼蛋拼.png",
+      "bytes": 1855943,
+      "sha256": "7399bc0bb3b21f69ab69f28f403ec3ede55025db9d1d778cf3cd4ffefdb5a496"
+    },
+    {
+      "path": "关东煮便利食堂/蟹柳甜不辣杯.png",
+      "bytes": 1992173,
+      "sha256": "d05d70c5064f647d66ea6e423fb4b0b5dbd31b63a0250ec62cf11cffc710c528"
+    },
+    {
+      "path": "卤味熟食局/main.png",
+      "bytes": 3123876,
+      "sha256": "d119ac276bd203e915ef5531f85804ad49c6084d3f2f2dde505795f43dfe656d"
+    },
+    {
+      "path": "卤味熟食局/卤牛腱.png",
+      "bytes": 2893862,
+      "sha256": "050a56770a9013dbcff69c1360e793eb352c0db9e0e02a29c4d152f3ee76c266"
+    },
+    {
+      "path": "卤味熟食局/卤肥肠.png",
+      "bytes": 2594368,
+      "sha256": "4e80fab35a3b78ba09c3268a6403ab102ba526a8fd312e53e28e80c7126735b4"
+    },
+    {
+      "path": "卤味熟食局/卤豆干.png",
+      "bytes": 2639235,
+      "sha256": "a45bb3dd835c6fb8516da0dded3e79f19d2e71d5943956f8e6c29a4dcd33ea7e"
+    },
+    {
+      "path": "卤味熟食局/卤鸡爪.png",
+      "bytes": 2599905,
+      "sha256": "1369c682e15f097727c7a4b8dc313988ce18b15e6c00503f74c96288249270ba"
+    },
+    {
+      "path": "卤味熟食局/招牌卤味拼盘.png",
+      "bytes": 2664823,
+      "sha256": "e830bc9a52ecd38a6069f5af736b83e4baaa38b164e284464504f8ae12ab2539"
+    },
+    {
+      "path": "卤味熟食局/海带结.png",
+      "bytes": 2372429,
+      "sha256": "ade15dd0b83a81cca8b8d8d54991655232fd0018367a00ac7d1422b8552554cf"
+    },
+    {
+      "path": "卤味熟食局/甜辣鸭脖.png",
+      "bytes": 2675474,
+      "sha256": "8735465fc90c92ca03bc2b8e92384a6b5c6d73e208d8e17563c2d22cf26c1924"
+    },
+    {
+      "path": "卤味熟食局/秘制卤鸭掌.png",
+      "bytes": 3080220,
+      "sha256": "7beda058f5260a497c1c2eb1958c40f36db56895c1ba82c4861ea7d19644749c"
+    },
+    {
+      "path": "卤味熟食局/藕片.png",
+      "bytes": 2411739,
+      "sha256": "4d0bd81c3f260738166ebe34d49714987d866bdd2121ba85aacd0e23b6878ca5"
+    },
+    {
+      "path": "卤味熟食局/虎皮凤爪.png",
+      "bytes": 2571067,
+      "sha256": "d0a1e45f3462b8a94d74b2bd0d0a135cf365f354ed7454d690ddd607e0f6db86"
+    },
+    {
+      "path": "印度风味厨房/main.png",
+      "bytes": 2829363,
+      "sha256": "cff5827467dbc45a09515aee19b572c2519e9b2ead993bb48a5e8cf0907fa053"
+    },
+    {
+      "path": "印度风味厨房/印度香米饭.png",
+      "bytes": 2329099,
+      "sha256": "48bea25ae39741ae13a2d8e45cb8dee6274c8625e921361656f7694c23a40ce9"
+    },
+    {
+      "path": "印度风味厨房/咖喱羊肉.png",
+      "bytes": 2584313,
+      "sha256": "ff172b140c1b5ecbaf09ce0f985835b1b1e32b9df450924889f98c8fee0f4211"
+    },
+    {
+      "path": "印度风味厨房/咖喱蔬菜.png",
+      "bytes": 2272962,
+      "sha256": "c43dae5a2a509397e55a01272dd640e9e768cd86b2898e20097aeb6e7b2531e2"
+    },
+    {
+      "path": "印度风味厨房/玛莎拉鸡肉.png",
+      "bytes": 2361335,
+      "sha256": "25cd733db4d18ede5e493edb13c922fb6e65f47ada3e87e31dbd0dac41ccf794"
+    },
+    {
+      "path": "印度风味厨房/芒果拉昔.png",
+      "bytes": 2084273,
+      "sha256": "655fa555504b415441b320cb1d4459410ab24ec655fd0b132df814b36f9a5781"
+    },
+    {
+      "path": "印度风味厨房/芝士烤饼.png",
+      "bytes": 2418927,
+      "sha256": "55953c5f0cf830e89f5471ac09f53f3882077519d621e3a1f44a475629742b30"
+    },
+    {
+      "path": "印度风味厨房/蒜香烤饼.png",
+      "bytes": 2581613,
+      "sha256": "f1c2249f8f13a153f2676856c36454ad0870831a0bd3a07a1f25892dd7fdde9a"
+    },
+    {
+      "path": "印度风味厨房/酸奶薄荷酱小食.png",
+      "bytes": 2401135,
+      "sha256": "247e30b2f8e07fe4210aba8810acc6d2535ed64a61b6680cee4e2cd8682b8c90"
+    },
+    {
+      "path": "印度风味厨房/香料烤鸡.png",
+      "bytes": 2684053,
+      "sha256": "10422d383e7476625621a745ea3ba1a9bfe8f4ca1739d06370313c9074862134"
+    },
+    {
+      "path": "印度风味厨房/黄油鸡咖喱.png",
+      "bytes": 2426607,
+      "sha256": "4caee875ecb27522fd180c13f31bb4234b20b9b1e928d817e977fa00d463c3a5"
+    },
+    {
+      "path": "咖啡甜点研究社/main.png",
+      "bytes": 2320754,
+      "sha256": "48e055de6f3850cc91ecdf3aefb16cc4966a976480ffa6e6866fce7c765628ae"
+    },
+    {
+      "path": "咖啡甜点研究社/冰美式.png",
+      "bytes": 1777722,
+      "sha256": "696939dfc7a48cddaafbd491e44370bdc1b145011f2f41e7e0c007ea845b5da3"
+    },
+    {
+      "path": "咖啡甜点研究社/巧克力曲奇.png",
+      "bytes": 2286009,
+      "sha256": "483ad57637a85168686cfb933f9f87bf29845206f4403e12da10cfe3fb2525c6"
+    },
+    {
+      "path": "咖啡甜点研究社/巴斯克蛋糕.png",
+      "bytes": 2153961,
+      "sha256": "74d8a6ed35963c5a24c05e95356a89d875456c9f4a74a5922ffbfe7933b8ab90"
+    },
+    {
+      "path": "咖啡甜点研究社/抹茶芝士卷.png",
+      "bytes": 2085458,
+      "sha256": "abf5d2083d17241e24018442510608abf74f4b90f43f34149cdbd46b67b748ca"
+    },
+    {
+      "path": "咖啡甜点研究社/拿铁.png",
+      "bytes": 1883325,
+      "sha256": "93708eff331237ade7a932259a9e9ac6d29f0fb84ff105da311a32d91259c45e"
+    },
+    {
+      "path": "咖啡甜点研究社/提拉米苏杯.png",
+      "bytes": 2126421,
+      "sha256": "09b0eed489f2f9beec4b7e3cb011faa65d1d4c53c685aa1a57ffbc1faf702850"
+    },
+    {
+      "path": "咖啡甜点研究社/海盐冷萃.png",
+      "bytes": 2016704,
+      "sha256": "18aa0308018bbb2bd1fd587482545237dcc771c322169ef1f07172f59a142ffe"
+    },
+    {
+      "path": "咖啡甜点研究社/燕麦坚果杯.png",
+      "bytes": 1883675,
+      "sha256": "b2ea92e8151e16705930242e0416ab1ee3c5e54cb98633d09af93ec0bad2021c"
+    },
+    {
+      "path": "咖啡甜点研究社/生椰拿铁.png",
+      "bytes": 1993515,
+      "sha256": "f9bf33ef50ac1e836b7fb35a85b11974a466d3feba0557f138594e02e10832f4"
+    },
+    {
+      "path": "咖啡甜点研究社/黄油可颂.png",
+      "bytes": 2127976,
+      "sha256": "f975a1af763f16733e911dcca15d50f38903ad2129513828fa14939d6982f44c"
+    },
+    {
+      "path": "咖喱满分食堂/main.png",
+      "bytes": 2735306,
+      "sha256": "6295fa82b9ed8c088325249244636bb7c550bf7d3970068927e132ddaa99f3ad"
+    },
+    {
+      "path": "咖喱满分食堂/厚蛋土豆沙拉.png",
+      "bytes": 2002747,
+      "sha256": "ef42d0207adb1198fed957b41543679308025812c97a6676eb6942720aa8fc5e"
+    },
+    {
+      "path": "咖喱满分食堂/双拼炸鸡咖喱饭.png",
+      "bytes": 2154267,
+      "sha256": "c6af456e4b64da76462eaf4a068b510ab44a575fe3771eff81814a390cc5113a"
+    },
+    {
+      "path": "咖喱满分食堂/咖喱可乐饼.png",
+      "bytes": 2061047,
+      "sha256": "3b7c7737ce4d3b400a27ce8aadd7ac24e26928e4127ed0b14f20bb60844ebb22"
+    },
+    {
+      "path": "咖喱满分食堂/嫩滑鸡腿咖喱饭.png",
+      "bytes": 2018263,
+      "sha256": "208cb73ea57c6e33f072851a35b1b096f685e6bef730aae854a7eb9b766a6859"
+    },
+    {
+      "path": "咖喱满分食堂/日式炸猪排咖喱饭.png",
+      "bytes": 2109539,
+      "sha256": "d0585c7a67ee8e07fade3ee8bd28dd891ccd03f17e27f4bd4a6022931781cc15"
+    },
+    {
+      "path": "咖喱满分食堂/照烧鸡排咖喱饭.png",
+      "bytes": 2034905,
+      "sha256": "59650f6ac42930d51a420967f6ee8f477c81ce2354f0f4e7882fc52b137f1217"
+    },
+    {
+      "path": "咖喱满分食堂/牛肉土豆咖喱饭.png",
+      "bytes": 1939549,
+      "sha256": "24959019f5b2c87ca9a24e9014bc104cd3af2944abf9a9ea1ae44e915d641fdb"
+    },
+    {
+      "path": "咖喱满分食堂/芝士欧姆蛋咖喱饭.png",
+      "bytes": 1968096,
+      "sha256": "dbb5adda0182a4e43aceaada1452a42ba5856eff2d03b9f1afb86116240aafb1"
+    },
+    {
+      "path": "咖喱满分食堂/蘑菇奶油咖喱饭.png",
+      "bytes": 2016089,
+      "sha256": "6f0bc2fcc725c666cc03a544e1245092c0d4bcea7793db0ee7692a1d0728d06a"
+    },
+    {
+      "path": "咖喱满分食堂/香肠炸虾双拼咖喱.png",
+      "bytes": 2147227,
+      "sha256": "9c5cca8a525046a85cbe850fd92dc0ded1c556e42f612bafab4df7cefd2492b6"
+    },
+    {
+      "path": "堡堡能量站/main.png",
+      "bytes": 2428995,
+      "sha256": "128d4eed6aedb93ed9b0a9c201ba8eec31c9def509fa8b1642557818f3fd1110"
+    },
+    {
+      "path": "堡堡能量站/冰镇可乐.png",
+      "bytes": 2035141,
+      "sha256": "6f36a8bcd17323cefcb4872ae918c14d9ddda22d103b5a4334811ae0aeb0e32e"
+    },
+    {
+      "path": "堡堡能量站/双层牛肉芝士汉堡.png",
+      "bytes": 2085533,
+      "sha256": "dbb2fe05b1d5f2b598460c0076c989160121756f982173bc38e02f2643cbfbd8"
+    },
+    {
+      "path": "堡堡能量站/培根鸡蛋汉堡.png",
+      "bytes": 1962006,
+      "sha256": "948144f381a68b98804e9a06c8fb8e07aa2ff886a258bb3025eaa1c752a838e4"
+    },
+    {
+      "path": "堡堡能量站/洋葱圈.png",
+      "bytes": 2022406,
+      "sha256": "6f3a1638c33668ea2ae1a4b56c9575ca5f0e37a19ced2eade30afb26f7d7e246"
+    },
+    {
+      "path": "堡堡能量站/牛油果鸡肉堡.png",
+      "bytes": 2000164,
+      "sha256": "0f91016c05f955bfc401ca010f3b8ad1f0b5d68c5f230f812cf860a22b6f7ee0"
+    },
+    {
+      "path": "堡堡能量站/经典美式芝士堡.png",
+      "bytes": 1958091,
+      "sha256": "5affb57b328bf584b7908e31cd3b521fdd35731b5929e0043075eba436128fc9"
+    },
+    {
+      "path": "堡堡能量站/脆薯拼盘.png",
+      "bytes": 1903434,
+      "sha256": "7da6d5d468da1230a5c61c0065e4f6885e7cccdb4cbae93435802db1b35a83af"
+    },
+    {
+      "path": "堡堡能量站/香辣鸡腿堡.png",
+      "bytes": 2080498,
+      "sha256": "acbd7758ceef550528157984800ac9a52afc3c44a91cc79da51464d7f1fd81bf"
+    },
+    {
+      "path": "堡堡能量站/鳕鱼塔塔堡.png",
+      "bytes": 1917108,
+      "sha256": "a8026da710428b91a4dfdfbce6191ac415b2cbd20085ecefbfa6232c987e8557"
+    },
+    {
+      "path": "堡堡能量站/黑椒牛肉热狗.png",
+      "bytes": 2006278,
+      "sha256": "e753a11be854a93f4179037574b7ac03968bdace7218ac9239b57f82d3a7cefc"
+    },
+    {
+      "path": "墨西哥卷饼吧/main.png",
+      "bytes": 2214519,
+      "sha256": "87eec1c13a925d992ff0bf5d3246fc55011421cd394b71afbabfdbfbdfc509e9"
+    },
+    {
+      "path": "墨西哥卷饼吧/墨西哥炒饭.png",
+      "bytes": 2260089,
+      "sha256": "e53214ab1db271906c093ff92056bdfcd1c8ca13f16e2e916b67a0fc557c5e4d"
+    },
+    {
+      "path": "墨西哥卷饼吧/烟熏鸡肉塔可.png",
+      "bytes": 2391136,
+      "sha256": "177fc4456f0df6d086f77c255e9dc549f11a3dce64be2d165bd17b4e3f23e54d"
+    },
+    {
+      "path": "墨西哥卷饼吧/牛油果鸡肉沙拉.png",
+      "bytes": 2307731,
+      "sha256": "631423f9eeaf5aae0b7ca5298ce8e4cde99cadfc5faec1307e61a36e21e4528f"
+    },
+    {
+      "path": "墨西哥卷饼吧/牛肉卷饼.png",
+      "bytes": 2241063,
+      "sha256": "b6bcc9d11370aecae1276beb44cac8d5cf0d4d2966fc30e7d81eb031cfe70073"
+    },
+    {
+      "path": "墨西哥卷饼吧/玉米片拼盘.png",
+      "bytes": 2434535,
+      "sha256": "28f3856ae9e95ee23c5bed949d33b0df0707a654e6666b6e0a3f1b69ba7e69e4"
+    },
+    {
+      "path": "墨西哥卷饼吧/芝士玉米杯.png",
+      "bytes": 2027393,
+      "sha256": "5ee4236542ccc832c47d8b08750385a2d2b20d9478a7090f92e0573fac37eef2"
+    },
+    {
+      "path": "墨西哥卷饼吧/芝士鸡肉薄饼.png",
+      "bytes": 2299261,
+      "sha256": "bc19b703dcf41b213d67cfdb516987ecf5890e3c63842b7b03ceeaa8f0d4326e"
+    },
+    {
+      "path": "墨西哥卷饼吧/辣味牛肉塔可.png",
+      "bytes": 2410669,
+      "sha256": "db1fed4dde53f094a9b02e575b902ff144fd481b944125f086670d7c70deb540"
+    },
+    {
+      "path": "墨西哥卷饼吧/青柠气泡水.png",
+      "bytes": 1992380,
+      "sha256": "cbd3a4771625fc8a5300eba1e58ae8ee2e6c27146bf82f70af82f22826df1f4f"
+    },
+    {
+      "path": "墨西哥卷饼吧/鸡肉法士达卷.png",
+      "bytes": 2050618,
+      "sha256": "78435a66cbb764470ca4e4312e0c8b5a5e062a21079be2d9ab888144aa6f8eed"
+    },
+    {
+      "path": "大阪小吃站/main.png",
+      "bytes": 2282996,
+      "sha256": "b8f05dc9a927591f8d40905e9f38fe2bd12c0df9e5b3d918fad2bd0149c1ebf7"
+    },
+    {
+      "path": "大阪小吃站/乳酸菌饮料.png",
+      "bytes": 1597061,
+      "sha256": "6916430e339221f39db22a9352fb2da04640a7f00c257554d6e55b3c0e25df2d"
+    },
+    {
+      "path": "大阪小吃站/可乐饼.png",
+      "bytes": 1868939,
+      "sha256": "3394372e2481a5c59d9aaf026e9dcbc068d919446f3923be2179d62729d02842"
+    },
+    {
+      "path": "大阪小吃站/大阪烧.png",
+      "bytes": 2392893,
+      "sha256": "af4c2ddc73e95d23bc3cdc481180f392e6af6558523aac6b82565f00766de877"
+    },
+    {
+      "path": "大阪小吃站/抹茶大福.png",
+      "bytes": 2024803,
+      "sha256": "b01bde4ccaebea7dd252bc4292cc9c1ca40e9475609dc40b3f580277e20ea3e7"
+    },
+    {
+      "path": "大阪小吃站/日式炒面.png",
+      "bytes": 2081305,
+      "sha256": "44b835e5f89e497b1175ac30ded6496fcfb8a002bcd26fdf190f132caa4272b4"
+    },
+    {
+      "path": "大阪小吃站/海苔薯条.png",
+      "bytes": 2129785,
+      "sha256": "6debe62f49c645631f1e54eb1a7263a497933b2b06c512a33d973c885bacfe94"
+    },
+    {
+      "path": "大阪小吃站/炸虾天妇罗.png",
+      "bytes": 1915543,
+      "sha256": "aaf20531c1ffd9caa52c133bc5af2d4bd8f064025b4917ca3f0dc23fa582a169"
+    },
+    {
+      "path": "大阪小吃站/照烧鸡排.png",
+      "bytes": 2209778,
+      "sha256": "a495ad14149971811432f1ad563458d232bea0d7a2a86342647c0fb25c31c77a"
+    },
+    {
+      "path": "大阪小吃站/章鱼小丸子.png",
+      "bytes": 1862508,
+      "sha256": "77143345e798ae332a69aa887e3022725ff15223bb66816c78c12ca79300e6ee"
+    },
+    {
+      "path": "大阪小吃站/芝士玉子烧.png",
+      "bytes": 1871581,
+      "sha256": "9f8d71706a434169d93df2dbe7792b9646862b6b2c3f4f73689638dfac164b61"
+    },
+    {
+      "path": "奶油蛋糕研究所/main.png",
+      "bytes": 2543709,
+      "sha256": "afa00940a42c98e3a4de915cacd09126eb9c288360e3fe20b2f8ae66be94362d"
+    },
+    {
+      "path": "奶油蛋糕研究所/伯爵茶蛋糕卷.png",
+      "bytes": 2108590,
+      "sha256": "5a11a0676f6963faa447f5e252b6f8f74f4cb5d556d9810a87c364fbf66dd485"
+    },
+    {
+      "path": "奶油蛋糕研究所/可颂布蕾.png",
+      "bytes": 2275433,
+      "sha256": "ecca08c1cf3d076802ad8538dd27cf16335fc54f27630cdbef05055b55424ef3"
+    },
+    {
+      "path": "奶油蛋糕研究所/巴斯克芝士蛋糕.png",
+      "bytes": 2092286,
+      "sha256": "9f732417620e0b3bddd26831b5decdf23093132229ff660bb05ca98475a6bf7c"
+    },
+    {
+      "path": "奶油蛋糕研究所/抹茶千层蛋糕.png",
+      "bytes": 2335463,
+      "sha256": "abbc3fe5ae6b6694b48725ea74037710878874af253306d17a6f264fe3d88305"
+    },
+    {
+      "path": "奶油蛋糕研究所/提拉米苏.png",
+      "bytes": 2098521,
+      "sha256": "43375d672eda18b90968ce72831635baf4a353ab4c80f474b10bbc2b8dbce7ca"
+    },
+    {
+      "path": "奶油蛋糕研究所/海盐可可蛋糕.png",
+      "bytes": 2157883,
+      "sha256": "ae64d8847abfb9c77990e889d4641dd8e7d201791930bde21efb245cbcc1951a"
+    },
+    {
+      "path": "奶油蛋糕研究所/焦糖布丁杯.png",
+      "bytes": 1819450,
+      "sha256": "bb65ac1bcaa668d4ac9d793b9dc2961f7e42d15e03cf88d3f2b2c700716ba080"
+    },
+    {
+      "path": "奶油蛋糕研究所/红丝绒蛋糕.png",
+      "bytes": 1753785,
+      "sha256": "3fb95b9b7eacd7a6128b4eb0fe880b46d1ecc3759c48cf2efba9e3a3d66358ea"
+    },
+    {
+      "path": "奶油蛋糕研究所/芒果慕斯.png",
+      "bytes": 1705815,
+      "sha256": "8eef2acdc4ecff1f1e3e7f8e36d46187386a90225a27ce2bfa532d4e290edd0b"
+    },
+    {
+      "path": "奶油蛋糕研究所/草莓奶油蛋糕.png",
+      "bytes": 2041439,
+      "sha256": "cb9b63d0b8b25629d502431c08dc241752969d7ed213435da3af4bd6bd5485d2"
+    },
+    {
+      "path": "奶茶快乐水站/main.png",
+      "bytes": 2276455,
+      "sha256": "cc32efff25c70b511a34cab033a850472a776461d4532b2748fd41ae1cf5b29a"
+    },
+    {
+      "path": "奶茶快乐水站/多肉桃桃.png",
+      "bytes": 1757914,
+      "sha256": "6c76c58e003f4a3cf11567b9d12927ce86a3b8243b8ed72c7c3a1f1a949a8650"
+    },
+    {
+      "path": "奶茶快乐水站/杨枝甘露.png",
+      "bytes": 1867211,
+      "sha256": "4d2fe8b771ef6d683e022c6a9cc42ab2c427030bf9d4efcc4e7f91b569935dd3"
+    },
+    {
+      "path": "奶茶快乐水站/桂花酒酿奶茶.png",
+      "bytes": 1968967,
+      "sha256": "318cbae12a50af7b38d06a2217be86aa5033e4ba37b4f6100417392ae37425bf"
+    },
+    {
+      "path": "奶茶快乐水站/满杯西柚.png",
+      "bytes": 1769511,
+      "sha256": "10acd40c654caac4c89225bc9c880c5707fce29e4422d97952311004f70f4115"
+    },
+    {
+      "path": "奶茶快乐水站/珍珠奶茶.png",
+      "bytes": 1818986,
+      "sha256": "0063b0682924921f10db1b3e458a6b3683e56a0b4cf45a01c859bfa82d082972"
+    },
+    {
+      "path": "奶茶快乐水站/芋泥波波奶茶.png",
+      "bytes": 1926902,
+      "sha256": "c94bd109995c236c084d3ef4feb59c4d0bf42dfa516b780e98fc0aaecc8ba6ff"
+    },
+    {
+      "path": "奶茶快乐水站/芝士葡萄.png",
+      "bytes": 1776254,
+      "sha256": "d317351fae3a6c903c60a02604394f43505686f379b3a33afe51b2b26589e119"
+    },
+    {
+      "path": "奶茶快乐水站/茉莉奶绿.png",
+      "bytes": 1657786,
+      "sha256": "e3edf222a525a2b42022e65d8ac185fef16f67d4127c1bc218c70fec99a269ae"
+    },
+    {
+      "path": "奶茶快乐水站/阿华田脆脆.png",
+      "bytes": 2006472,
+      "sha256": "e15fe11b9079af4c86ef26dfb1066547b4e26f7538a669758b1528869c515dd5"
+    },
+    {
+      "path": "奶茶快乐水站/黑糖波波牛乳.png",
+      "bytes": 1888715,
+      "sha256": "d3910285547fedc53c1ae5dcc6513bcad01104157c04a2cf6f9dc8b7e99e7413"
+    },
+    {
+      "path": "寿司便当铺/main.png",
+      "bytes": 2652040,
+      "sha256": "b480b06ebf24f38c4860282d268a353360ae34dcb1e9ce24bd6144727d2b2be6"
+    },
+    {
+      "path": "寿司便当铺/三文鱼寿司拼盘.png",
+      "bytes": 2154450,
+      "sha256": "5cccf0849ab9852399008f984dc75c90935ab786c0197e9b5c009f8511ae772a"
+    },
+    {
+      "path": "寿司便当铺/加州卷.png",
+      "bytes": 2042776,
+      "sha256": "31853718be19a2218392cedfb6a85a947837affdde140fb6c5d5fde3543ef753"
+    },
+    {
+      "path": "寿司便当铺/天妇罗虾卷.png",
+      "bytes": 2081672,
+      "sha256": "c308451413e85392e06ebf7faf376245bb03fcbcff0c90b79106dcc3d655d82e"
+    },
+    {
+      "path": "寿司便当铺/日式照烧鸡便当.png",
+      "bytes": 2108886,
+      "sha256": "214fd8c7d83f59dc4ec42e4621a7435f4ded13a705f625e48604b4c4a91766ca"
+    },
+    {
+      "path": "寿司便当铺/海草沙拉.png",
+      "bytes": 2168084,
+      "sha256": "a41ddc466a37492974624708a80eb6c5111c7d5fc00b6a5a8feba325fb88c597"
+    },
+    {
+      "path": "寿司便当铺/炙烧三文鱼握寿司.png",
+      "bytes": 1964537,
+      "sha256": "86e9d8a4a79663e4f6dc7932e48da127a0310baf8d66195b5cd164b708e13e19"
+    },
+    {
+      "path": "寿司便当铺/玉子烧寿司.png",
+      "bytes": 1985996,
+      "sha256": "ceddf5ad7f3f47da1ad61e5c4ec32075b7472bbd49baa3d1c1a495abb6fb7344"
+    },
+    {
+      "path": "寿司便当铺/金枪鱼手卷.png",
+      "bytes": 1903368,
+      "sha256": "c711db72f87d8b858f58e4e4b8187806f5953ce8974d39f7be20957f015d6d8a"
+    },
+    {
+      "path": "寿司便当铺/鳗鱼寿司卷.png",
+      "bytes": 2134448,
+      "sha256": "4a47c1dc116b911e46f59cfab971a42a2cd4292e23235072470da1f089ddd843"
+    },
+    {
+      "path": "寿司便当铺/鳗鱼饭.png",
+      "bytes": 2185423,
+      "sha256": "bebd31d1b7b80f54b665adc6c3055599701deb25e114e54d2cbcec236ddbc27d"
+    },
+    {
+      "path": "小龙虾续命站/main.png",
+      "bytes": 2621591,
+      "sha256": "bb173a552c872f98b32029c6754cc8d8c10ef2beea07b502f42bae8d08a7a5d1"
+    },
+    {
+      "path": "小龙虾续命站/冰镇啤酒.png",
+      "bytes": 2196333,
+      "sha256": "0962a7b3a4d3e86d5fecc02edac9518307820fac60e9b4910fbc5c032a783981"
+    },
+    {
+      "path": "小龙虾续命站/凉拌毛豆.png",
+      "bytes": 2352158,
+      "sha256": "3810c6f1e38711de26609f7d25155c7669cc20a240711f33c814d686793110d5"
+    },
+    {
+      "path": "小龙虾续命站/十三香小龙虾.png",
+      "bytes": 2805782,
+      "sha256": "dfd1a440bbd4c850baacdcaf60f5e8bc3a3f1d1a6b965a9ca08e4c592341bd7d"
+    },
+    {
+      "path": "小龙虾续命站/椒盐皮皮虾.png",
+      "bytes": 2740598,
+      "sha256": "b8c88314ca6cf7d9a081899e188e61d54d206b0e92bcb62bfd311aff134c726c"
+    },
+    {
+      "path": "小龙虾续命站/油焖小龙虾.png",
+      "bytes": 2671157,
+      "sha256": "070919bed639e8b3eba5a29894f6c922209f6dac2a47225312036a79608f922d"
+    },
+    {
+      "path": "小龙虾续命站/清蒸小龙虾.png",
+      "bytes": 2540808,
+      "sha256": "8ea565858c1ffc805c618adcd3331c7c640c1da4cca294c3ebb71455fd7b7306"
+    },
+    {
+      "path": "小龙虾续命站/蒜蓉小龙虾.png",
+      "bytes": 2687621,
+      "sha256": "6e994c49dbe2646ec68b3947d0634709a54cf65487a519e7d0ac2b054dfe6c53"
+    },
+    {
+      "path": "小龙虾续命站/蒜香花甲.png",
+      "bytes": 2601975,
+      "sha256": "7a0fee94193cccac6f2481dba52fd8c64eae1e672cb31a055dd7e6319db75cb6"
+    },
+    {
+      "path": "小龙虾续命站/香辣虾尾.png",
+      "bytes": 2612676,
+      "sha256": "fd5d9431dfcf9ee4c31386e1f9b0f8025a116ea18606395ee1bcafba8ce8fb2e"
+    },
+    {
+      "path": "小龙虾续命站/麻辣小龙虾.png",
+      "bytes": 2607392,
+      "sha256": "c9d7fa560ee8c9d00a354c280aac465ca692c2980d2e218c294ba031da07eb32"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/main.png",
+      "bytes": 2936905,
+      "sha256": "be8eb697af495bbd541deeb58497013bbb7e69013d7950e15cf06d627ef642e2"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/口水鸡.png",
+      "bytes": 2487922,
+      "sha256": "83b86298f6b73630aa1d314735ded329860c28860659aa799ad1f8bbc4667aaf"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/回锅肉饭.png",
+      "bytes": 2298898,
+      "sha256": "7f9c05effb32819cbf813f6f9336dd1a36edfc2102369dbb99327f15284fe355"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/宫保鸡丁饭.png",
+      "bytes": 2420272,
+      "sha256": "e1fdaf65f483feeb759c5b3f3843f1db7209835162cc409d8f8916d7f70c89ec"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/小酥肉.png",
+      "bytes": 2567732,
+      "sha256": "c152b961555c5f8730427d6ab1575c6ff51c1c2f1a249e91ccc467cccaa2bb84"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/干锅花菜.png",
+      "bytes": 2609345,
+      "sha256": "81433f4e945244720ca5bf42cae0a3d932e50e0b7162d99fa30e17f34c9be4ee"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/毛血旺.png",
+      "bytes": 2582131,
+      "sha256": "9ddbe087d71fcf82d37c7b418e18393e5013daed609b345cc996678b151fcbd4"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/水煮牛肉.png",
+      "bytes": 2659481,
+      "sha256": "3f0e1c8029eaf94c67c8e6516da878c94e511a6b9da5c1f70150a3eb2db9bb2b"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/辣子鸡.png",
+      "bytes": 2617031,
+      "sha256": "c2a62c143faea8f4fdb68763cefc20386a03169515bb5c9897496809aaabfd8d"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/鱼香肉丝饭.png",
+      "bytes": 2461385,
+      "sha256": "72815cbbf81d4961fb531049742b129cdfffba27f3d0feeee6a47d8170db88a7"
+    },
+    {
+      "path": "川味下饭实验室/川味下饭实验室_正确版/麻婆豆腐饭.png",
+      "bytes": 2382082,
+      "sha256": "12794effda91697429c78979069d23a34164370e332b9426674fe4202cd4053b"
+    },
+    {
+      "path": "广式烧腊饭馆/main.png",
+      "bytes": 2241842,
+      "sha256": "de4922db0a74e6b1fdf31bce9817f9241e0cf9081e288e77453a23bc4a8fb1d0"
+    },
+    {
+      "path": "广式烧腊饭馆/云吞面.png",
+      "bytes": 2127713,
+      "sha256": "8e05cd112a29f4deff6a61c98070268af41393a9d0893d0c3703bb18506e62da"
+    },
+    {
+      "path": "广式烧腊饭馆/叉烧蛋炒饭.png",
+      "bytes": 2153890,
+      "sha256": "5a19519bbb404b538c6caef9328b1e41dcba39b213707f5096d1fa9a689e2c42"
+    },
+    {
+      "path": "广式烧腊饭馆/双拼烧腊饭.png",
+      "bytes": 2074737,
+      "sha256": "36253b3f06cfc91f7829c0d117417ad7d51389689e5d2c5cff3a058918399016"
+    },
+    {
+      "path": "广式烧腊饭馆/广式烧肉饭.png",
+      "bytes": 2151567,
+      "sha256": "fdb2d00d3cc1afcb27e73f82379864329279fd8f12a147d24319e1545a1c3365"
+    },
+    {
+      "path": "广式烧腊饭馆/油菜叉烧双拼.png",
+      "bytes": 2186860,
+      "sha256": "7c33a83483c06d4d3594bc4a4ee228d5420a3b2f14e25bffb7e6f3d6549e0f6f"
+    },
+    {
+      "path": "广式烧腊饭馆/烧鸭濑粉.png",
+      "bytes": 2152247,
+      "sha256": "0d915c3540e8fe6e80368a9b4734b11c0a95a6fe4698d57cc6a11f765515646d"
+    },
+    {
+      "path": "广式烧腊饭馆/玫瑰豉油鸡饭.png",
+      "bytes": 2120981,
+      "sha256": "76a88435190580e37d8a6ab22a9ff0b6e31c680a0ccdd1805341c946761570cf"
+    },
+    {
+      "path": "广式烧腊饭馆/脆皮烧鸭饭.png",
+      "bytes": 2319810,
+      "sha256": "34a64ddc6071a939f4a458228f34966d9eb2f6dfff7b222906ffef93472ce586"
+    },
+    {
+      "path": "广式烧腊饭馆/腊味煲仔饭.png",
+      "bytes": 2205354,
+      "sha256": "e751f39649a5b27fcb13cce743f83f165d7d9358ae59bfb232605eb267daff11"
+    },
+    {
+      "path": "广式烧腊饭馆/蜜汁叉烧饭.png",
+      "bytes": 2205486,
+      "sha256": "5a816d9406629a1ac97f2f6fc7abfde2aeda6ce077451dba0442eb028fbdc53b"
+    },
+    {
+      "path": "意面焗饭工坊/main.png",
+      "bytes": 2588020,
+      "sha256": "d27510c88b9a578eae495a472265f305188911378f9de3462cfc4453f054a76d"
+    },
+    {
+      "path": "意面焗饭工坊/凯撒沙拉.png",
+      "bytes": 2464795,
+      "sha256": "6c3f387249c76139c9aa2a1dccb1ec067eb2d60dbad9fe7ef913acabe39e7f9b"
+    },
+    {
+      "path": "意面焗饭工坊/奶油蘑菇培根意面.png",
+      "bytes": 2096660,
+      "sha256": "76862ae3abc84ef9ccd1cddf32a85766ed7c09f7a7add7a1bf7ecbdd2870435b"
+    },
+    {
+      "path": "意面焗饭工坊/奶油鸡肉焗饭.png",
+      "bytes": 2093437,
+      "sha256": "37cd5315b50cb86122d4bddf890fc4da109ade25a3f8b9f973e8dfb23925c98a"
+    },
+    {
+      "path": "意面焗饭工坊/海鲜番茄意面.png",
+      "bytes": 2264143,
+      "sha256": "f6039ebe64ded4b8557bc7331efe4ebaed4fad2b759e8f2961698b24b32583c6"
+    },
+    {
+      "path": "意面焗饭工坊/玉米浓汤.png",
+      "bytes": 1994632,
+      "sha256": "5fb3caaf3ae9d89270b7af5c41f8bd442f0c026497570020445f6274af7912ca"
+    },
+    {
+      "path": "意面焗饭工坊/番茄肉酱意面.png",
+      "bytes": 2247953,
+      "sha256": "5afc17bacbf7fa2505cb96797e401416dcad74bf5777f0288a958de0b06cdfc7"
+    },
+    {
+      "path": "意面焗饭工坊/芝士焗肉酱饭.png",
+      "bytes": 2248988,
+      "sha256": "cba8d55c4509dc15bf381771284e5b5079feffdf618637e70b60d762a70d39d3"
+    },
+    {
+      "path": "意面焗饭工坊/芝士焗鸡肉饭.png",
+      "bytes": 2240907,
+      "sha256": "400bc10cbe289b37046be727fa0b25e2b1aec855c02314bbde35f4c59e2e59bd"
+    },
+    {
+      "path": "意面焗饭工坊/蒜香面包.png",
+      "bytes": 2269708,
+      "sha256": "2a102077ebb07a360dc7861066ccc122844187854b131725b08841acac65eee3"
+    },
+    {
+      "path": "意面焗饭工坊/黑椒牛柳意面.png",
+      "bytes": 2321631,
+      "sha256": "eb19883a625eef418f021a7b0e74b840ea4abf3cd28a7284199454a937c3f507"
+    },
+    {
+      "path": "手打柠香茶铺/main.png",
+      "bytes": 2405937,
+      "sha256": "be09b9d68d830edf52bcc676f861e0b0765fafaa7c7e4057ed71c149e899c9fa"
+    },
+    {
+      "path": "手打柠香茶铺/冰柠茉莉茶.png",
+      "bytes": 1822446,
+      "sha256": "f49fc95c0cb538133e19e89cc985aa7a76c24b978eca391d36133c63a5acee2e"
+    },
+    {
+      "path": "手打柠香茶铺/多肉葡萄冰茶.png",
+      "bytes": 1845759,
+      "sha256": "6ab9d387c5a528282b1a425f35c60cf52f068b0c478ca43b600b869234b214ce"
+    },
+    {
+      "path": "手打柠香茶铺/手打柠檬鸭屎香.png",
+      "bytes": 1793556,
+      "sha256": "f02dbf1e10fbaef05bcaaf3a32a71ac2596042f94c580742fc69aaac260322a5"
+    },
+    {
+      "path": "手打柠香茶铺/手捣香水柠檬茶.png",
+      "bytes": 1872111,
+      "sha256": "8b8c0029a54168e9770239cda9efaad6bcb29c9118a4a47dfc1e17340830786f"
+    },
+    {
+      "path": "手打柠香茶铺/橙香乌龙气泡饮.png",
+      "bytes": 1821553,
+      "sha256": "88117d61c2e8c696d4db68e79db39ae5098da8d503ecf6a3a370549b59da44ec"
+    },
+    {
+      "path": "手打柠香茶铺/满杯百香果.png",
+      "bytes": 1830079,
+      "sha256": "2ff05ffeac842a17780a0514c8cdc471c03886b742b9937c8459fa9762c551aa"
+    },
+    {
+      "path": "手打柠香茶铺/生打椰青水.png",
+      "bytes": 1506821,
+      "sha256": "32a420359fa6d3b5944c99c644f0e4dd39a4e6d6b7f8eb4d66ad7887e08b74f9"
+    },
+    {
+      "path": "手打柠香茶铺/蜂蜜柚子冰茶.png",
+      "bytes": 1796322,
+      "sha256": "b11513d9da00162eccb3c95dc2de89ddb6943931efa94178e6bcf812d4436db6"
+    },
+    {
+      "path": "手打柠香茶铺/金桔柠檬茶.png",
+      "bytes": 1801470,
+      "sha256": "960108e5f2357f8d378936c25e664387b3da3251c37664511952d2bc6b7107ea"
+    },
+    {
+      "path": "手打柠香茶铺/青提茉莉冰茶.png",
+      "bytes": 1720491,
+      "sha256": "fafb857bd829059942416b3c48900dc5aa6f2c8bc10560901ac71a87dc5a5bc6"
+    },
+    {
+      "path": "手抓饼夜市档/main.png",
+      "bytes": 2474433,
+      "sha256": "146414652c91f9d8b07d1449e0cf9253d15831ae2d901ceee6cc71e2b94c3d46"
+    },
+    {
+      "path": "手抓饼夜市档/双蛋双肠手抓饼.png",
+      "bytes": 2451262,
+      "sha256": "4109618e4deb796a6293d44c1f8b5cf2a62b00a29553db119673cb1c35eeb43e"
+    },
+    {
+      "path": "手抓饼夜市档/土豆丝手抓饼.png",
+      "bytes": 2782278,
+      "sha256": "20423080bdef461db852037cb7ad31bb4c6e4dda0b3afdd20a1d791fe5a2b257"
+    },
+    {
+      "path": "手抓饼夜市档/培根鸡蛋手抓饼.png",
+      "bytes": 2818696,
+      "sha256": "2416fe3a7f502096acb86becf4f25b053cad25a7e855338acc17582358e8e312"
+    },
+    {
+      "path": "手抓饼夜市档/奶茶.png",
+      "bytes": 1888357,
+      "sha256": "00bb67df1ff3b6756237834abe465cf1b358996603bb0615c85506aa71f4e490"
+    },
+    {
+      "path": "手抓饼夜市档/孜然烤肠.png",
+      "bytes": 2472587,
+      "sha256": "23fddfe4bf97a94646d8001b27dafb0db22bb133f8014aeb19e920fa16a4bffa"
+    },
+    {
+      "path": "手抓饼夜市档/芝士火腿手抓饼.png",
+      "bytes": 2543671,
+      "sha256": "13c6fbc8c98decb151d7dd89415f0f2eea732caf15d5e763d52017bb07dc32fb"
+    },
+    {
+      "path": "手抓饼夜市档/豆浆.png",
+      "bytes": 1958893,
+      "sha256": "f6e272c5d7c0a1cff541f9bb25fe8aa37369cf43e0dfbc2849729f8f7deb6ab3"
+    },
+    {
+      "path": "手抓饼夜市档/里脊手抓饼.png",
+      "bytes": 2620665,
+      "sha256": "23b8712f4fae317ec517f541dbf1220ed3e49e516526a7a5307d75cf400c8519"
+    },
+    {
+      "path": "手抓饼夜市档/鸡柳手抓饼.png",
+      "bytes": 2468746,
+      "sha256": "d785268144d8153e608d81e90a5264b42c2c15056d42f4488f2e974e0e3c12fa"
+    },
+    {
+      "path": "手抓饼夜市档/鸡蛋灌饼.png",
+      "bytes": 2517523,
+      "sha256": "08aa2486ce0f76b46955ba5fa25dcce01a421eff1daa8367426e3e2e3f5e2937"
+    },
+    {
+      "path": "披萨补给站/main.png",
+      "bytes": 2516374,
+      "sha256": "afe022ccb04f049b75767ead674a80ca51ad71e11fc8af0628ee4be121f359ad"
+    },
+    {
+      "path": "披萨补给站/双层芝士披萨.png",
+      "bytes": 2463538,
+      "sha256": "06f4e3d19df488ef714cf001c363ece779546d604bff7713e35780c5243e2935"
+    },
+    {
+      "path": "披萨补给站/培根蘑菇披萨.png",
+      "bytes": 2545659,
+      "sha256": "2cd2e3214f3e8b2e011f74bbf505d61ec18c3daf6594c149fe3e73c6abba2ca8"
+    },
+    {
+      "path": "披萨补给站/奥尔良鸡肉披萨.png",
+      "bytes": 2496517,
+      "sha256": "32c800913c9ca40c8b0ce45fee5f5fb6c0838ce4a666701db393343f40334c90"
+    },
+    {
+      "path": "披萨补给站/榴莲披萨.png",
+      "bytes": 2444284,
+      "sha256": "d7acb82ae6ec529e70540360cb57aa1f2d730b0ce94daeae0ccbf94ac4d76302"
+    },
+    {
+      "path": "披萨补给站/海鲜总汇披萨.png",
+      "bytes": 2406392,
+      "sha256": "51cc7b77b04195728f6f4f6dc641870731eafeea5a18f536aad8a28ce5989125"
+    },
+    {
+      "path": "披萨补给站/番茄肉酱意面.png",
+      "bytes": 2233000,
+      "sha256": "ebb765245ce2f992c3ceffbf9c5db73dab96dd6a95097cd356ebbc2f160dac4d"
+    },
+    {
+      "path": "披萨补给站/经典玛格丽特披萨.png",
+      "bytes": 2351610,
+      "sha256": "f9be1c2b7060348d2419a866e9834808163b4d7099ef93a5f170a9989a59384d"
+    },
+    {
+      "path": "披萨补给站/薯角拼盘.png",
+      "bytes": 2219928,
+      "sha256": "d438d4a7f980a2b5488ac79c1e68e0568244d714b8e3892e79c7c9db12aa8308"
+    },
+    {
+      "path": "披萨补给站/香辣鸡肉披萨.png",
+      "bytes": 2646837,
+      "sha256": "34a9e035c94f1d711596408c03aba7971d3f3e4b3347c081caa1e383b7b7f8a2"
+    },
+    {
+      "path": "披萨补给站/黑椒牛肉披萨.png",
+      "bytes": 2512814,
+      "sha256": "fe57b82f685f322c3dda095d5728f69a85e407280fd624041e3d63e63c036409"
+    },
+    {
+      "path": "新疆烧烤局/main.png",
+      "bytes": 2939335,
+      "sha256": "c643f744b7ae6458e269e0ef4018371c22cbfed756b1932050579ac3c9073671"
+    },
+    {
+      "path": "新疆烧烤局/大盘鸡.png",
+      "bytes": 2595178,
+      "sha256": "89ddfb4b5dec7acddf516cfe6031a522c55355d3eb044d135e8ffe24e69147be"
+    },
+    {
+      "path": "新疆烧烤局/孜然烤鸡翅.png",
+      "bytes": 2996406,
+      "sha256": "da8e438a45176ead2127f0728fdfcf0de31c40c8a5c2aea8331e3f76d9d67af3"
+    },
+    {
+      "path": "新疆烧烤局/新疆炒米粉.png",
+      "bytes": 2687669,
+      "sha256": "d7f0fd99f2f8777a271116bb43695b873ea030f5ab3bf52f7285fe2c9ed2d8f6"
+    },
+    {
+      "path": "新疆烧烤局/烤包子.png",
+      "bytes": 2563160,
+      "sha256": "57a279e93b431e23965d79cff875e8c72c31982b9067ae10b03614f9c5eaa9dc"
+    },
+    {
+      "path": "新疆烧烤局/烤羊排.png",
+      "bytes": 2489609,
+      "sha256": "87d16c4177f5a39130af26d406a6fc8fddce78ca1c014b4ca1ee1170f12311dd"
+    },
+    {
+      "path": "新疆烧烤局/烤馕.png",
+      "bytes": 2439339,
+      "sha256": "65d661f6dd580fb64a6095ee5d5789ebd2ac736ce4c6550d2e0ba2d802290da9"
+    },
+    {
+      "path": "新疆烧烤局/红柳大串.png",
+      "bytes": 2274971,
+      "sha256": "274ddbddfcb6e9ebfe2a41712bd892621df1f7ca4895dce4ce7cdf2b0ac02f07"
+    },
+    {
+      "path": "新疆烧烤局/羊肉串.png",
+      "bytes": 2721485,
+      "sha256": "fd58732099a796f0f85c0aba6eb013de0561791d0905ad4bfcb1b0dffbb49086"
+    },
+    {
+      "path": "新疆烧烤局/酸奶疙瘩.png",
+      "bytes": 2443521,
+      "sha256": "2dd465bc06536ac8050e780edba5fd8347a4673e3e0d6e5fbc90152ea02bfd62"
+    },
+    {
+      "path": "新疆烧烤局/馕炒肉.png",
+      "bytes": 2536866,
+      "sha256": "495d36df499dd84b9601352ea5244bd98f6a01efb2993830126c3da85a7eceb4"
+    },
+    {
+      "path": "日式咖喱屋/main.png",
+      "bytes": 2425280,
+      "sha256": "27e740655df5ca27c8bb7ce0c20b4480e1b0b6ae8cc8019a8f317c83317a3630"
+    },
+    {
+      "path": "日式咖喱屋/厚切猪排咖喱饭.png",
+      "bytes": 2326920,
+      "sha256": "62cee4ddb3755485618188117a0497dad29966d33743138165da57bdd43e46eb"
+    },
+    {
+      "path": "日式咖喱屋/可乐饼咖喱饭.png",
+      "bytes": 2293280,
+      "sha256": "b6b5d524b33e9b2c18421257243ffdf326166a3f0d60e81fccd0f9300fef3bd3"
+    },
+    {
+      "path": "日式咖喱屋/味噌汤.png",
+      "bytes": 1871125,
+      "sha256": "43499a2df387d22566669cfcd68452b33dd9661ebdb443156e8a46def7067a54"
+    },
+    {
+      "path": "日式咖喱屋/唐扬鸡块咖喱饭.png",
+      "bytes": 2329311,
+      "sha256": "d53a85446c7eb301328e8e8ba9119585d632e096adfd1700e5b117eaa2dcd95e"
+    },
+    {
+      "path": "日式咖喱屋/土豆泥沙拉.png",
+      "bytes": 2104547,
+      "sha256": "7dbb98b7878bad3feae02f7895f06c351ae00f4c682251d77b533c88abd5e880"
+    },
+    {
+      "path": "日式咖喱屋/嫩蛋咖喱饭.png",
+      "bytes": 2170651,
+      "sha256": "92cfd93f6337b779166ff8321555e9cd86419eda5874fe05bd37d027dbb340d8"
+    },
+    {
+      "path": "日式咖喱屋/炸虾咖喱饭.png",
+      "bytes": 2276632,
+      "sha256": "869cfc5d5c0d0e085fc7fc4907a1916136f6491d5a449ab2d16031aa530d58bb"
+    },
+    {
+      "path": "日式咖喱屋/照烧鸡肉饭.png",
+      "bytes": 2298812,
+      "sha256": "aafd527e81aa479c6a804122781a0b5661afb9efa6eaadd52881092ca2836811"
+    },
+    {
+      "path": "日式咖喱屋/牛肉咖喱饭.png",
+      "bytes": 2331244,
+      "sha256": "c2370fb467c1b244aad61dd258703f343968f1fb001d79c896865e2bbf2d2a07"
+    },
+    {
+      "path": "日式咖喱屋/芝士焗咖喱饭.png",
+      "bytes": 2316312,
+      "sha256": "d9370b21fb8e9d22c4aa04a31eda7abda9fd1c60a6d516a91d9eb7a101d8648d"
+    },
+    {
+      "path": "早八早餐铺/main.png",
+      "bytes": 1943456,
+      "sha256": "a8f9ab8d4b2b87e83cb153f4892b7c7b3b40db2f4afa6646b3e64ef4917bb38b"
+    },
+    {
+      "path": "早八早餐铺/小米粥.png",
+      "bytes": 2014324,
+      "sha256": "46ac1c18a6603a035f2d794547147307205596463fa59418a1206110d7060622"
+    },
+    {
+      "path": "早八早餐铺/油条.png",
+      "bytes": 2145947,
+      "sha256": "61d9f772b274a55ad6c910508f85b8e84f5fa9bf3845b5b9c95781bae6e88456"
+    },
+    {
+      "path": "早八早餐铺/肉松饭团.png",
+      "bytes": 2188335,
+      "sha256": "df5680c7fb0ff6d09263776c1a1180189f6361a00d0f70df6a1e4fb648babb74"
+    },
+    {
+      "path": "早八早餐铺/茶叶蛋.png",
+      "bytes": 2079521,
+      "sha256": "411d4bf5940dc51612ed8780dd8bca3d5feac76cc2cce89f3d6106d73a1a2ff5"
+    },
+    {
+      "path": "早八早餐铺/豆浆.png",
+      "bytes": 1909125,
+      "sha256": "bda47248c0349cc7ca78d079718699d3c965bc0b8f220a09b1bebc8ef808746b"
+    },
+    {
+      "path": "早八早餐铺/豆腐脑.png",
+      "bytes": 2268048,
+      "sha256": "16f5331c83b17a7e139a5e6b2a2615bb4736e4633cdb23fe30abf02f046472d6"
+    },
+    {
+      "path": "早八早餐铺/韭菜盒子.png",
+      "bytes": 2294176,
+      "sha256": "23f33132ce6f5cb036332110276e70606bd31ae4b63fc7c12078eabfc40cfa2c"
+    },
+    {
+      "path": "早八早餐铺/香菇青菜包.png",
+      "bytes": 1882295,
+      "sha256": "40883e842c9bc9aa6e0f426624c4a31f1a44b04f87fc2277f9ab8ea7c963895e"
+    },
+    {
+      "path": "早八早餐铺/鲜肉大包.png",
+      "bytes": 1929070,
+      "sha256": "7f9ce245bee0f9540bec8f551447d357b9799564a839655316f4bac82ba84d06"
+    },
+    {
+      "path": "早八早餐铺/鸡蛋灌饼.png",
+      "bytes": 2137243,
+      "sha256": "d1c51db95d86631a82415312eb8a5538d65e9de8b4a4454046faf5ec32dc623d"
+    },
+    {
+      "path": "暖胃砂锅粥铺/main.png",
+      "bytes": 2415424,
+      "sha256": "f293f40aed3341ab036dff66e10e567dc59a26d5f055d0a616db22aad7ee8a3e"
+    },
+    {
+      "path": "暖胃砂锅粥铺/南瓜小米粥.png",
+      "bytes": 2479828,
+      "sha256": "8294ef7a6a3c3a0ac5412e9896c9edf245ccb05a6e00dfb1320b3395434ad491"
+    },
+    {
+      "path": "暖胃砂锅粥铺/油条.png",
+      "bytes": 2544922,
+      "sha256": "97d498dfe7c7fe997fcb1fd9beecf4bf002deccc85a7caed17c4934adcc8cbc9"
+    },
+    {
+      "path": "暖胃砂锅粥铺/海鲜粥.png",
+      "bytes": 2533567,
+      "sha256": "6db2368071c56b38ef278a73abdbe3549c035732b1f167ee2015d9d760515ee8"
+    },
+    {
+      "path": "暖胃砂锅粥铺/牛肉生滚粥.png",
+      "bytes": 2507795,
+      "sha256": "549b7edec68effbb5bca8daf09804390449881f0330039b3bd1a7aa15355707a"
+    },
+    {
+      "path": "暖胃砂锅粥铺/猪肝菠菜粥.png",
+      "bytes": 2567428,
+      "sha256": "4ed2040175daa4eba4e91d17634a395fc7c92db0dc55285f6b8dc0a62a34c699"
+    },
+    {
+      "path": "暖胃砂锅粥铺/皮蛋瘦肉粥.png",
+      "bytes": 2437064,
+      "sha256": "25d5b25210e364ab2b127572fad9f173a9a7b83a2d0b4c7cfa501a1bf7502aac"
+    },
+    {
+      "path": "暖胃砂锅粥铺/艇仔粥.png",
+      "bytes": 2516234,
+      "sha256": "a0543c20cebff35067eab0a4821692c7f25effb3ee41a67a21d4263c39fb9e64"
+    },
+    {
+      "path": "暖胃砂锅粥铺/虾饺.png",
+      "bytes": 2379326,
+      "sha256": "4072a8e9d6c055e4be3d3d054c1ab1e314be1467e30ab0c449545d4f6c29fbec"
+    },
+    {
+      "path": "暖胃砂锅粥铺/香菇滑鸡粥.png",
+      "bytes": 2480201,
+      "sha256": "b05c5abf80e859f55574fc825243989d8924389bc6e2d1584e08e3ff133b6081"
+    },
+    {
+      "path": "暖胃砂锅粥铺/鲜虾干贝粥.png",
+      "bytes": 2441085,
+      "sha256": "3dcae72a2fa525809dfa34ce59f61dbf78dccb30821deae8730dfa8858c544c5"
+    },
+    {
+      "path": "果切酸奶碗/main.png",
+      "bytes": 2163242,
+      "sha256": "ed8a1c7d8d92c59b31e9f8dbbddc89f5f4e4cb9f1a32021a40912e41da376927"
+    },
+    {
+      "path": "果切酸奶碗/可可香蕉酸奶杯.png",
+      "bytes": 2129459,
+      "sha256": "58fc29fb61572c76d33d3d538786cb0b8299a88f6b51146f7cb3cdd51c250640"
+    },
+    {
+      "path": "果切酸奶碗/奇异果酸奶杯.png",
+      "bytes": 2052194,
+      "sha256": "34121fd40c809d2ed3a128aba347779472260a36434f72f7408037753e8519e5"
+    },
+    {
+      "path": "果切酸奶碗/抹茶红豆酸奶碗.png",
+      "bytes": 2322763,
+      "sha256": "bb5b8b77061b9ca763924447b80fbd64817f4f49002040788c32c94416f47297"
+    },
+    {
+      "path": "果切酸奶碗/椰香酸奶碗.png",
+      "bytes": 2074646,
+      "sha256": "96c04f1baf284b9981a610f52b741f19f17271a3c43096a7e89ee7be600215f8"
+    },
+    {
+      "path": "果切酸奶碗/水果燕麦盒.png",
+      "bytes": 2165362,
+      "sha256": "0d48cdcac46db66fbd9b687bd590b49b2412167acb362b448f3b949d729b6397"
+    },
+    {
+      "path": "果切酸奶碗/火龙果燕麦碗.png",
+      "bytes": 2113877,
+      "sha256": "aa3ee035cbd3a38809dedb9384a2349bd0f5ba116f566bcd0fd50906cc8875de"
+    },
+    {
+      "path": "果切酸奶碗/牛油果坚果酸奶杯.png",
+      "bytes": 2205050,
+      "sha256": "7a3cfc64fe86800ae4a8eed1bb716a7f06f6b540a58d24959c98ca0956c76044"
+    },
+    {
+      "path": "果切酸奶碗/芒果酸奶碗.png",
+      "bytes": 2037025,
+      "sha256": "fc615a329b6e1197c19c4913e0d8829713df408da04eea492cb8a20eae5b5cba"
+    },
+    {
+      "path": "果切酸奶碗/草莓香蕉酸奶碗.png",
+      "bytes": 2110598,
+      "sha256": "a901c7be572a50f0fb8d5f8d8fcf6a65e3a7603f4ec5c0e466375bf7c1106a5b"
+    },
+    {
+      "path": "果切酸奶碗/蓝莓希腊酸奶碗.png",
+      "bytes": 2057148,
+      "sha256": "0348000c6451ef89395367d634c8b4b13ace982301c9562a0736a3d8758913ca"
+    },
+    {
+      "path": "植物基小饭桌/main.png",
+      "bytes": 2977623,
+      "sha256": "a1c24acd2c119a2fc01235f4552d3841cad47e88224c1079fdf2a0e99b681c28"
+    },
+    {
+      "path": "植物基小饭桌/坚果水果碗.png",
+      "bytes": 2350416,
+      "sha256": "a44fd8399de3abb86618c81b1f357068431e278147f1d65f9c1e493aa2b40323"
+    },
+    {
+      "path": "植物基小饭桌/彩虹蔬菜沙拉.png",
+      "bytes": 2582296,
+      "sha256": "3217b493452258092a91f1697b56ddd2c0add2fdf6129adb8bcaad30c2781476"
+    },
+    {
+      "path": "植物基小饭桌/抹茶燕麦杯.png",
+      "bytes": 2209867,
+      "sha256": "34b4f4196cf6d2b7d6495b41fb499a179895c84bc87b80c52c7156f18699440a"
+    },
+    {
+      "path": "植物基小饭桌/烤南瓜藜麦能量碗.png",
+      "bytes": 2544926,
+      "sha256": "6ff0258d95aa5cebd61267cf18540667027736ff779ca1a7f97bbe4e22679810"
+    },
+    {
+      "path": "植物基小饭桌/烤时蔬拼盘.png",
+      "bytes": 2771672,
+      "sha256": "055acf5c926e0bb699db5f4e42d1d754db884a78b3ca2318c4260145ccd41d7f"
+    },
+    {
+      "path": "植物基小饭桌/牛油果吐司.png",
+      "bytes": 2330352,
+      "sha256": "de50a7ddbdbcfedd9b191b493204ed1874db6c5f7e037d6c0c46d90b77035064"
+    },
+    {
+      "path": "植物基小饭桌/番茄罗勒汤.png",
+      "bytes": 2405869,
+      "sha256": "49218f0e190c61ea6044c499a25d65a69bf56b886bfe0ffc480b081ef0a410ca"
+    },
+    {
+      "path": "植物基小饭桌/菌菇意面.png",
+      "bytes": 2568801,
+      "sha256": "4bcad70aee79dfa70afea44c78d974e230866af656bc58cd9757871e037acf4f"
+    },
+    {
+      "path": "植物基小饭桌/豆腐藜麦饭.png",
+      "bytes": 2451170,
+      "sha256": "a596a25d4ee307a38cc5f207f4c6bafa6f1f7bfff23ca03e99d65c7dab5935aa"
+    },
+    {
+      "path": "植物基小饭桌/鹰嘴豆蔬菜卷.png",
+      "bytes": 2194030,
+      "sha256": "a3678d98527d7ae410a8e6b59980ace7b215bb69aff53fa69ebdeb82ec313820"
+    },
+    {
+      "path": "汤劲拉面局/main.png",
+      "bytes": 2572279,
+      "sha256": "c3febf014480a3f57e3edde19ca56aaa5e671be00a214898b512fc769c657ee2"
+    },
+    {
+      "path": "汤劲拉面局/叉烧溏心蛋拉面.png",
+      "bytes": 2639594,
+      "sha256": "c38c3e39448b5f2257f8ce8d7b2b1833d60c1d5ba775a17e9f9aa2ccdd9fa6a4"
+    },
+    {
+      "path": "汤劲拉面局/地狱辣味拉面.png",
+      "bytes": 2638931,
+      "sha256": "6c172f4565e3e7dc1eaaf5c09f860a3e7e271771c82aaea39ca83527b2ee7611"
+    },
+    {
+      "path": "汤劲拉面局/招牌豚骨拉面.png",
+      "bytes": 2598826,
+      "sha256": "3edc2ea7f1f985e54d415a2bd9e55599a9d99b783d7abb44988a1ec649e3f585"
+    },
+    {
+      "path": "汤劲拉面局/海鲜拉面.png",
+      "bytes": 2438687,
+      "sha256": "5c7586940b8fed20a16a8f15aae8cd4520652ce23e9b98bb82bc3f0975f47fd8"
+    },
+    {
+      "path": "汤劲拉面局/温泉蛋叉烧饭.png",
+      "bytes": 2330008,
+      "sha256": "4987b7297015c5631b944b0f7001e046d81bb40c3050f43d9549a33775f843ca"
+    },
+    {
+      "path": "汤劲拉面局/照烧鸡排拉面.png",
+      "bytes": 2593419,
+      "sha256": "0ff68d27f4993f6b7697f3c94b49b673fa5a57a35e2a7c821926e2c5d2fc933c"
+    },
+    {
+      "path": "汤劲拉面局/玉米黄油拉面.png",
+      "bytes": 2501793,
+      "sha256": "09e0064a456285da7a28e7b4ddffa7a6925e755c52c812d479c4cab970d82828"
+    },
+    {
+      "path": "汤劲拉面局/番茄浓汤拉面.png",
+      "bytes": 2369289,
+      "sha256": "dcc887d280a649827735de8c194b48e292bcabfb41ad2e0da5637dc5f6746846"
+    },
+    {
+      "path": "汤劲拉面局/肥牛味噌拉面.png",
+      "bytes": 2558587,
+      "sha256": "07884b1bfe686c177cb5f28724db027ba6643802297ad9ecda9d9b5693cfae32"
+    },
+    {
+      "path": "汤劲拉面局/蒜香黑蒜拉面.png",
+      "bytes": 2691967,
+      "sha256": "bcb5d797add56c6b834c3f41aede393eccc3ab3169c65c36984723ef91880060"
+    },
+    {
+      "path": "泰味小馆/main.png",
+      "bytes": 2686285,
+      "sha256": "7060dc136293d7cf16080eed4d2928116842f6c2ee7c7f678b07be100989c14d"
+    },
+    {
+      "path": "泰味小馆/冬阴功海鲜汤.png",
+      "bytes": 2261422,
+      "sha256": "2063b1bde09cb8237a28804c4a3be04a3b85d3c44254bf3e20c792194c9ea98d"
+    },
+    {
+      "path": "泰味小馆/咖喱皇炒蟹.png",
+      "bytes": 2295711,
+      "sha256": "f5494cb369836a5bffcae7799284e798d91bf60c0686069fb4c851f81f75b055"
+    },
+    {
+      "path": "泰味小馆/泰式奶茶.png",
+      "bytes": 1958629,
+      "sha256": "4d85ee33a891b356ba4f9475a138c781ac494aa8e327831ea64ac24745d13490"
+    },
+    {
+      "path": "泰味小馆/泰式打抛猪饭.png",
+      "bytes": 2092893,
+      "sha256": "be3bc07ae1a5299d171a551dc985ce1a87b1fc37fe14b44f8b66f3ce7ffeb51c"
+    },
+    {
+      "path": "泰味小馆/泰式菠萝炒饭.png",
+      "bytes": 2072662,
+      "sha256": "8968a12ef46dfcc58229c07971b464d53d638a6e51327de9ba8fe5570c5a45bb"
+    },
+    {
+      "path": "泰味小馆/芒果糯米饭.png",
+      "bytes": 1855375,
+      "sha256": "efe13906d1dc0c767b8541e55d2683e76a496b385f7073554a09f1c98186c1c9"
+    },
+    {
+      "path": "泰味小馆/虾酱空心菜.png",
+      "bytes": 2154505,
+      "sha256": "2a38569e13f0982e0415dbbb75e95565dfe4030302d31d43bc0abfd89ad86fa5"
+    },
+    {
+      "path": "泰味小馆/酸辣青木瓜沙拉.png",
+      "bytes": 1926482,
+      "sha256": "9adc8dd67e9affcc06b929ae4908040954e7b4bf1520887d1643dc6885e21fb0"
+    },
+    {
+      "path": "泰味小馆/青咖喱鸡.png",
+      "bytes": 2100887,
+      "sha256": "fe4ce0680a2815ad1acc2625ea334f8119ec8a2c89f91d2845c8a07adb9cc03a"
+    },
+    {
+      "path": "泰味小馆/香茅烤鸡.png",
+      "bytes": 2182478,
+      "sha256": "7df1a54fd98aa207badd0f4b137eba0f72df17923ffcbfbefc8d3df04fd475a9"
+    },
+    {
+      "path": "海南鸡饭屋/main.png",
+      "bytes": 2027570,
+      "sha256": "0bf852ab51f2222f4f32bb23f6e5d07e16692d42867106ecd22f5e78b73fa9dd"
+    },
+    {
+      "path": "海南鸡饭屋/叻沙海鲜面.png",
+      "bytes": 2151541,
+      "sha256": "049b61da76758535df2f225549ebdc76527c97301f7fa0e0529e4c9dea92a27a"
+    },
+    {
+      "path": "海南鸡饭屋/咖椰吐司.png",
+      "bytes": 1934324,
+      "sha256": "ae20ca2ef79dbbb722503e7bc7182d5f30520a02925f2f1af5e3451b8825abbe"
+    },
+    {
+      "path": "海南鸡饭屋/柠檬薏米水.png",
+      "bytes": 1923492,
+      "sha256": "5fd7910ce768e4fa424c16999efa6277bbf76f5ed56fbd1080838900fb150dd0"
+    },
+    {
+      "path": "海南鸡饭屋/椰浆饭.png",
+      "bytes": 2190877,
+      "sha256": "a7e8c8470e32bbcdf62b8f819639fd38202517cc95987685a1aa076e3762af6d"
+    },
+    {
+      "path": "海南鸡饭屋/海南鸡米饭双拼.png",
+      "bytes": 1855366,
+      "sha256": "3858a10ec017b64e787ceec3968061ece237f0efb867962e5fa1f9ce0b1e42ca"
+    },
+    {
+      "path": "海南鸡饭屋/班兰鸡蛋糕.png",
+      "bytes": 2344114,
+      "sha256": "f232e567d64afd7a277fd457d34efb4d18b569469c614fe9aa3248dfbc2c0703"
+    },
+    {
+      "path": "海南鸡饭屋/经典海南鸡饭.png",
+      "bytes": 2141563,
+      "sha256": "dc3792bde2a8a981530fdd8dacb71cf9782e80b02bb21728bb4d8de1d91bdd44"
+    },
+    {
+      "path": "海南鸡饭屋/肉骨茶.png",
+      "bytes": 2193748,
+      "sha256": "bac568ed012ed35cc45d2950c856bf7719df109020a97c38ef643f29303dddda"
+    },
+    {
+      "path": "海南鸡饭屋/香茅鸡腿饭.png",
+      "bytes": 2204239,
+      "sha256": "5b67b9d59acf139f790ce3b756e42131b46479f800abc4bfcb409f09b1a0a93e"
+    },
+    {
+      "path": "海南鸡饭屋/香辣参巴酱鸡饭.png",
+      "bytes": 2230182,
+      "sha256": "fe76b1969782e164a748828b64cb6ea17b9a10123587c3b162739a6d9933ba31"
+    },
+    {
+      "path": "海味炒饭馆/main.png",
+      "bytes": 2440340,
+      "sha256": "8f011bfce51b80716b1095ff5f2678fbc549746a7acd474aac4b5ce641f412cc"
+    },
+    {
+      "path": "海味炒饭馆/咖喱虾仁饭.png",
+      "bytes": 2327487,
+      "sha256": "226d468e26b157b8594fe821c13e54162691b76df50f8629d2d3c7022cf7fbfb"
+    },
+    {
+      "path": "海味炒饭馆/扬州炒饭.png",
+      "bytes": 2171200,
+      "sha256": "3e308bbba29b165936dd524366df944c3ce80b8122fb8f36893a0fdd7e8810d8"
+    },
+    {
+      "path": "海味炒饭馆/柠檬红茶.png",
+      "bytes": 1962801,
+      "sha256": "1c9f52a538faba5aefa10606d878b5c0789a25361a3f57d109ecc13e776cc459"
+    },
+    {
+      "path": "海味炒饭馆/海鲜炒乌冬.png",
+      "bytes": 2362764,
+      "sha256": "7ee34aa8fe3bc068493e9e0d7134b5146cec72639934cf4f674b43b4c553e991"
+    },
+    {
+      "path": "海味炒饭馆/牛肉炒饭.png",
+      "bytes": 2398108,
+      "sha256": "2cc79113812486edf0b061f82b35db3169aeef3f84220714ed7094396bb0716f"
+    },
+    {
+      "path": "海味炒饭馆/紫菜蛋花汤.png",
+      "bytes": 2406449,
+      "sha256": "0478d91e9c62871d1b5dbd4a9b99f29364d134836cf427272d26a23d639814ae"
+    },
+    {
+      "path": "海味炒饭馆/腊肠炒饭.png",
+      "bytes": 2465660,
+      "sha256": "45493ed9d769912e052b7ca6f909c80b217951a0f1c37064f62371e7cb81d049"
+    },
+    {
+      "path": "海味炒饭馆/虾仁蛋炒饭.png",
+      "bytes": 2184754,
+      "sha256": "dc84dcaf5654617dbcebe1258d11070ba8067fcad8bc5bbb1f7c64c773889f2d"
+    },
+    {
+      "path": "海味炒饭馆/酱油炒面.png",
+      "bytes": 2328619,
+      "sha256": "b26afa6011fca147d620765ff450e470d917cc31c37b4c6c01186027224c854e"
+    },
+    {
+      "path": "海味炒饭馆/黑椒鸡排饭.png",
+      "bytes": 2506173,
+      "sha256": "44f6c241a8fe3acf5fee6d86f38bc6e5a0142ef8e490621b9d5523742362aff6"
+    },
+    {
+      "path": "港味茶餐厅/main.png",
+      "bytes": 2694590,
+      "sha256": "68ef889d11b8a21932ceab7a0b97788570ffb7fa7e25cfc20342cfbf2895ffc8"
+    },
+    {
+      "path": "港味茶餐厅/云吞面.png",
+      "bytes": 2252571,
+      "sha256": "6ee23aec667684d16dfe6f82c623722393f4e06ce73822c86a9911f485b1e3df"
+    },
+    {
+      "path": "港味茶餐厅/冻柠茶.png",
+      "bytes": 2003024,
+      "sha256": "ba6ff8f07fce0f117fb0b083916f0da7f3fe2aa9c84faca41df0dbe7ef9de31c"
+    },
+    {
+      "path": "港味茶餐厅/咖喱鱼蛋.png",
+      "bytes": 2016680,
+      "sha256": "b1d985a8af4cc47a46efe8f29182ae6f2d9e386857ab9dad3d50a93fac4fc069"
+    },
+    {
+      "path": "港味茶餐厅/奶油猪仔包.png",
+      "bytes": 2052160,
+      "sha256": "c4b5c686cad82d1184138740b05320c665c5fa6305e62257133fd8ebe6709dfd"
+    },
+    {
+      "path": "港味茶餐厅/干炒牛河.png",
+      "bytes": 2266960,
+      "sha256": "8c97c456e76ad48d9cf9626a55a517d78aef5a7590b6efccfb28a9d34e0b65a4"
+    },
+    {
+      "path": "港味茶餐厅/港式西多士.png",
+      "bytes": 1869655,
+      "sha256": "9db05cd0551d72b3f7a42c71611fc9bd6497263b7d6e946b931e55533f2b8a20"
+    },
+    {
+      "path": "港味茶餐厅/滑蛋虾仁饭.png",
+      "bytes": 1904901,
+      "sha256": "18d2832bb25d7276cfb3dd8015b061821c8a6b25e4e974a1e6bc746c02069bbb"
+    },
+    {
+      "path": "港味茶餐厅/菠萝油.png",
+      "bytes": 2147330,
+      "sha256": "cc42dd1bee0a2e22505420b25533c10f389100641401729e691150aa6d507496"
+    },
+    {
+      "path": "港味茶餐厅/餐蛋公仔面.png",
+      "bytes": 2064179,
+      "sha256": "daf445976b0a7e7c0f522d711539b2a3ef407e34442a2aeb60cf121583f00a06"
+    },
+    {
+      "path": "港味茶餐厅/黯然销魂叉烧饭.png",
+      "bytes": 2308258,
+      "sha256": "4e501c7a3cf1e986c876d2427125c37bae515c820ea37eb4305e27afc19d5cf8"
+    },
+    {
+      "path": "湘辣下饭馆/main.png",
+      "bytes": 2567124,
+      "sha256": "29f27b6c6960ecc5b96c034e5100ee9b8b3ec22eb9e724721f18a2054c94805a"
+    },
+    {
+      "path": "湘辣下饭馆/农家一碗香.png",
+      "bytes": 2516784,
+      "sha256": "0cab18bdc20a5639ab8690076693a6895ac0f166f363ee16fc8dfc341beccf1c"
+    },
+    {
+      "path": "湘辣下饭馆/剁椒鱼头.png",
+      "bytes": 2614698,
+      "sha256": "de547da16449dd7a5c715bb623992e04b06a380ac0794d3920864df0da0434c7"
+    },
+    {
+      "path": "湘辣下饭馆/外婆菜炒蛋.png",
+      "bytes": 2560997,
+      "sha256": "9a931716080f108c0f6d8f66494cdc8f2ec0f0b5566a68e2aecc77e94e714e57"
+    },
+    {
+      "path": "湘辣下饭馆/小炒黄牛肉饭.png",
+      "bytes": 2441348,
+      "sha256": "e6957dab62044d873db55bbcc3d11272c8ebef5cd7696c8dd9fe319c9511e6f8"
+    },
+    {
+      "path": "湘辣下饭馆/干锅花菜.png",
+      "bytes": 2633304,
+      "sha256": "7e3c11be97da05e9795dde7ab468b5c811d81290bd4770111a069a9aee0e0676"
+    },
+    {
+      "path": "湘辣下饭馆/皮蛋豆腐.png",
+      "bytes": 2496519,
+      "sha256": "b1eb69c074b9b3e7c05221317c11f72c12dc994984e82eba663b833c2624cafb"
+    },
+    {
+      "path": "湘辣下饭馆/辣椒炒肉盖饭.png",
+      "bytes": 2649354,
+      "sha256": "7b617494d8cdd6ffd8cea2527c94e261d83cb921ef978d03c6329327dbc50d96"
+    },
+    {
+      "path": "湘辣下饭馆/酸豆角肉末饭.png",
+      "bytes": 2456001,
+      "sha256": "3252a08199a9603e0b76f6974f6857310ad527851cec317d55979b1fb6bb9932"
+    },
+    {
+      "path": "湘辣下饭馆/青椒擂皮蛋.png",
+      "bytes": 2527177,
+      "sha256": "7e4b5c6973dd4e1cb2003df52ea366217b7a5f2b7855cf4e53ddec9da6485672"
+    },
+    {
+      "path": "湘辣下饭馆/香干炒肉.png",
+      "bytes": 2575170,
+      "sha256": "7cf7949e0656acfb5823b92c9aaed8237576085e6fc96936617ebe2c18ff847b"
+    },
+    {
+      "path": "潮汕牛肉粿条/main.png",
+      "bytes": 2426463,
+      "sha256": "f7bc287b25d742b2ea228a784dd7f37d3b12fd7a7cc5b2ed97604b97a8c95861"
+    },
+    {
+      "path": "潮汕牛肉粿条/卤水拼盘.png",
+      "bytes": 2214946,
+      "sha256": "03845153ee0820736e32f9c9cd8bea13a3a1832e5ab19e3b349a98457aa90361"
+    },
+    {
+      "path": "潮汕牛肉粿条/咸菜猪肚汤.png",
+      "bytes": 2253436,
+      "sha256": "3fbee249080ad77173c6be6288e6dead49061e9b94be2f362fd7b7a1edbb7283"
+    },
+    {
+      "path": "潮汕牛肉粿条/沙茶牛肉炒粿条.png",
+      "bytes": 2218918,
+      "sha256": "3d3f0462cfae5fdd2731024064d0cbb81c34c6ae9e00ed17dc4de2ee2beeae85"
+    },
+    {
+      "path": "潮汕牛肉粿条/潮汕炸豆干.png",
+      "bytes": 2286587,
+      "sha256": "6d77200a8cfd055cf627a0441f25c350e50c996ec6e681dfee26e7eaa4b29647"
+    },
+    {
+      "path": "潮汕牛肉粿条/潮汕牛肉丸汤.png",
+      "bytes": 2284882,
+      "sha256": "be039a055361ab2ddcb1b24ed425d65752b16dc20168f3145966497e976c5094"
+    },
+    {
+      "path": "潮汕牛肉粿条/牛杂粿条.png",
+      "bytes": 2340618,
+      "sha256": "0941361df6757f0e067c54d5dc8063882c700ebca3957cc1936f4b74c4cf12d6"
+    },
+    {
+      "path": "潮汕牛肉粿条/牛肉丸粿条汤.png",
+      "bytes": 2375862,
+      "sha256": "3ed56bda6c41e95d288de387b4367cb52c50c9e43d47826883d14177c7dd89ff"
+    },
+    {
+      "path": "潮汕牛肉粿条/蚝烙.png",
+      "bytes": 2236230,
+      "sha256": "b34cf579cbf582d968acef33ff79ec974b452922ab98c0aacf4642168bcfad99"
+    },
+    {
+      "path": "潮汕牛肉粿条/鲜切牛肉粿条.png",
+      "bytes": 2347425,
+      "sha256": "c7562d61ad85f17108eed82af333ce07d01368c0abd95fdf79766f678de941ae"
+    },
+    {
+      "path": "潮汕牛肉粿条/鲜牛肉炒河粉.png",
+      "bytes": 2201360,
+      "sha256": "fda11eb619a4b3d824e5db979de1029e7b2db97f84c7d6c768481737ae09c709"
+    },
+    {
+      "path": "烤鱼夜宵社/main.png",
+      "bytes": 2979683,
+      "sha256": "ae10845f8760402efb9c42f7db5d90a426a7c4fcfc3f9d68755c3bff92814a1d"
+    },
+    {
+      "path": "烤鱼夜宵社/冰镇酸梅汤.png",
+      "bytes": 2447149,
+      "sha256": "026e427fdf8d7435986200a9838cec9a022a66f5fc93cb387413940ceddfcd2b"
+    },
+    {
+      "path": "烤鱼夜宵社/烤茄子.png",
+      "bytes": 2656267,
+      "sha256": "f56d7a2e98332712d8c50cac677b7cbae7636432a83bcdd90e3a261ed5b919a0"
+    },
+    {
+      "path": "烤鱼夜宵社/蒜香烤鱼.png",
+      "bytes": 2780163,
+      "sha256": "a754fdd10438d415d2467041d544211b3c34c99470a6e47a3ef116bb92fde0cd"
+    },
+    {
+      "path": "烤鱼夜宵社/藤椒烤鱼.png",
+      "bytes": 2743021,
+      "sha256": "e3cad3a462dcb1232016711c43caa0fc8c96c14ddcf9f6e6e0d3efb8d57467c2"
+    },
+    {
+      "path": "烤鱼夜宵社/豆豉烤鱼.png",
+      "bytes": 2985573,
+      "sha256": "2273072e3c9d2205d4f6ee901b71769e798d8034618edd5fbe13df4ddf1381c9"
+    },
+    {
+      "path": "烤鱼夜宵社/酸菜烤鱼.png",
+      "bytes": 2849758,
+      "sha256": "eb0f557adc1f78002afb60b31f7b01c787796c92b451b062eb7addbe6f34521c"
+    },
+    {
+      "path": "烤鱼夜宵社/锡纸金针菇.png",
+      "bytes": 2665339,
+      "sha256": "c29a7a16c004697204c285a356423a18393cd9d1b6c634edcd2da2408878d565"
+    },
+    {
+      "path": "烤鱼夜宵社/青花椒烤鱼.png",
+      "bytes": 2984192,
+      "sha256": "5ff019a95832548d556511a562b31c07e062689eeb21ee254f82656de9fb5df7"
+    },
+    {
+      "path": "烤鱼夜宵社/香辣烤鱼.png",
+      "bytes": 2858935,
+      "sha256": "1b28d5a2d14377e06f4b148219d03044a917c8da6d91e2ea6f37b78483f2931b"
+    },
+    {
+      "path": "烤鱼夜宵社/麻辣小龙虾尾.png",
+      "bytes": 2798168,
+      "sha256": "6629b2ebfd607433a837b83178ff6a83a02e729ed96fe664ade8fe9e77c9cf97"
+    },
+    {
+      "path": "烧鸟居酒小馆/main.png",
+      "bytes": 2678941,
+      "sha256": "9fd6bf37a922dc9a75948808c2b03402d9416e78b3f0d4e34aa4f6d9f8d65089"
+    },
+    {
+      "path": "烧鸟居酒小馆/可乐饼.png",
+      "bytes": 2434466,
+      "sha256": "0acb2a0ceea09247d78c2b68db6580c24fc1250bdb0b9e76f0483b8a47a97cfa"
+    },
+    {
+      "path": "烧鸟居酒小馆/唐扬炸鸡.png",
+      "bytes": 2634066,
+      "sha256": "be9e2a51d9eef6634b255797fc691c61cfad9bdb410adec117a96fe8f80c0541"
+    },
+    {
+      "path": "烧鸟居酒小馆/日式土豆沙拉.png",
+      "bytes": 2367742,
+      "sha256": "b9c30c0288b941415b4840416e64f6251c92c3be06f09f5f6d4953ca089d8372"
+    },
+    {
+      "path": "烧鸟居酒小馆/炭烤鸡胗串.png",
+      "bytes": 2557381,
+      "sha256": "e7fbb6ea12f163bc3e8057a780fe744aa36f1554351616d8d512e9f22d7e2180"
+    },
+    {
+      "path": "烧鸟居酒小馆/烤牛舌.png",
+      "bytes": 2925501,
+      "sha256": "8a9ef28bf9c93861315f98c998ca1880b2ac0a38fd48d2181a4750865809a36a"
+    },
+    {
+      "path": "烧鸟居酒小馆/烤饭团.png",
+      "bytes": 2464316,
+      "sha256": "592ef30d0b1e07467c18b004f8a96c2251ef262f44f73cae71d24362690d4763"
+    },
+    {
+      "path": "烧鸟居酒小馆/照烧鳗鱼饭.png",
+      "bytes": 2557532,
+      "sha256": "5d4db422935bacdc4dca115836211006b43a1b5cd7f87fcd2e74c472b022f971"
+    },
+    {
+      "path": "烧鸟居酒小馆/照烧鸡皮串.png",
+      "bytes": 2278646,
+      "sha256": "f719943b336027217fda0035cce515f96daea4ab88813f61037c27657415f6e5"
+    },
+    {
+      "path": "烧鸟居酒小馆/盐烤鸡腿肉串.png",
+      "bytes": 2658407,
+      "sha256": "822d64a5fe785015dd97728a661b024e1f2cc83db4214e79eac6cb53dadb7ad1"
+    },
+    {
+      "path": "烧鸟居酒小馆/章鱼烧.png",
+      "bytes": 2607604,
+      "sha256": "a53515e44ce9b34715f9265f55f09b319820085550656b36032f1d10c2572520"
+    },
+    {
+      "path": "煲仔饭食堂/main.png",
+      "bytes": 2901010,
+      "sha256": "cb58e183fb1d8dc62944868e3f0bfab39e2d50d3bc8d7c74520d4a215ccc20f3"
+    },
+    {
+      "path": "煲仔饭食堂/例汤.png",
+      "bytes": 2489626,
+      "sha256": "411fde51da15474b83f0ad6dc7fd6ea747ccf7bea0608111d3c18c8c2a2cc726"
+    },
+    {
+      "path": "煲仔饭食堂/叉烧滑蛋煲仔饭.png",
+      "bytes": 2378591,
+      "sha256": "541188a31dddfae1ffa5ff789f948e1f44ac2522c95964e754793197eaf15447"
+    },
+    {
+      "path": "煲仔饭食堂/双拼腊味饭.png",
+      "bytes": 2180135,
+      "sha256": "46785fbdeafa5b7eb76e1e43f679e5c5484f175f80bc14ccafac51988f16ad8b"
+    },
+    {
+      "path": "煲仔饭食堂/窝蛋牛肉煲仔饭.png",
+      "bytes": 2585110,
+      "sha256": "809cff20fd91bec2b78e3b149e7890e555ef2861176a15e50134030353fd6df1"
+    },
+    {
+      "path": "煲仔饭食堂/腊味煲仔饭.png",
+      "bytes": 2536411,
+      "sha256": "a3141086003c00fe9012d093395902e9af05a60b09f595312ad7465e45968e18"
+    },
+    {
+      "path": "煲仔饭食堂/蒜蓉菜心.png",
+      "bytes": 2205746,
+      "sha256": "3f4c2138699ea1f175f11447dcd55ff6adb6121879ad265b992b8693f6640b7a"
+    },
+    {
+      "path": "煲仔饭食堂/豉汁排骨煲仔饭.png",
+      "bytes": 2511288,
+      "sha256": "d1a7afa71e8bc6bf469d9c978adc5bfac2dcbdbdf89d77985a56ec7c45c9e910"
+    },
+    {
+      "path": "煲仔饭食堂/豉油鸡拼盘.png",
+      "bytes": 2481074,
+      "sha256": "0d29bd8cfea031cb93c2496238343563e6833afa82e4bc4e5740267dba560eb9"
+    },
+    {
+      "path": "煲仔饭食堂/香肠土豆饭.png",
+      "bytes": 2419812,
+      "sha256": "5af69dab8d39332e3a82e6b7ef1dc24a8024545e9375e1ca9cb3f54504604d96"
+    },
+    {
+      "path": "煲仔饭食堂/香菇滑鸡煲仔饭.png",
+      "bytes": 2463519,
+      "sha256": "a18db02dcadf2d535866a5a3285f4288e2e1294e44a79cf8aab4bef4b9a1ba4f"
+    },
+    {
+      "path": "现烤面包坊/main.png",
+      "bytes": 3012516,
+      "sha256": "27222ccf88d3ee591764c98730dd6d008ae1f04fc243a4aa78331bc6356b5536"
+    },
+    {
+      "path": "现烤面包坊/奶酪碱水包.png",
+      "bytes": 2471982,
+      "sha256": "16229324a3aa4f72758efd4378a0c2284472fc5c810dfb69036c9d1f27056ae1"
+    },
+    {
+      "path": "现烤面包坊/巧克力丹麦.png",
+      "bytes": 2319157,
+      "sha256": "cf51be6a6dd4fb716a6948ef8b4cce58918162c82391ce3bd327771737ffc83e"
+    },
+    {
+      "path": "现烤面包坊/椰蓉吐司.png",
+      "bytes": 2431537,
+      "sha256": "fac0dff0e72ecd283355dcbae556e6a0a4f7483be7eb17374f9b1079e79b5f68"
+    },
+    {
+      "path": "现烤面包坊/红豆麻薯包.png",
+      "bytes": 2382880,
+      "sha256": "4f577f12f3eb62d17338563a47727df88dba1d1dad88ff06e8c99545cc9cac3b"
+    },
+    {
+      "path": "现烤面包坊/肉松小贝.png",
+      "bytes": 2397512,
+      "sha256": "e7371c6e9fc0078613980c9dc56201030b856db9838ea84ae1557e8efeaca342"
+    },
+    {
+      "path": "现烤面包坊/芝士火腿面包.png",
+      "bytes": 2459801,
+      "sha256": "02146da69bcafcef4fd6549d28578be30e4536361ddc45ddc9081bcce6164efe"
+    },
+    {
+      "path": "现烤面包坊/蒜香法棍.png",
+      "bytes": 2421041,
+      "sha256": "e772da64e5fb3f7701e88068db4650478742957f74e75ccb78f8a19e33ecc114"
+    },
+    {
+      "path": "现烤面包坊/蓝莓贝果.png",
+      "bytes": 2657637,
+      "sha256": "3c340d25f5c20cef919c1704866da2988406608d919868b4cf660172df7c23fa"
+    },
+    {
+      "path": "现烤面包坊/黄油可颂.png",
+      "bytes": 2235931,
+      "sha256": "08e5040f268e6482f51c07342d4e028113acc5e72f9b8105feb2d4b9e72ac637"
+    },
+    {
+      "path": "现烤面包坊/黑芝麻餐包.png",
+      "bytes": 2392265,
+      "sha256": "3c51adb8333aa1756f6c44fedf77ca8e418c07fdc316b6f394894cebc6617a44"
+    },
+    {
+      "path": "生煎锅贴屋/main.png",
+      "bytes": 2779256,
+      "sha256": "a7060be1705fba35f1ea944425911279f3ea15d62373e063350aef7e6d079233"
+    },
+    {
+      "path": "生煎锅贴屋/招牌生煎包.png",
+      "bytes": 2372660,
+      "sha256": "8cffd942f3596e1e6980205ca9fe6830c6e1701732d930d11deaa43c52d713d5"
+    },
+    {
+      "path": "生煎锅贴屋/牛肉锅贴.png",
+      "bytes": 2538296,
+      "sha256": "33b87a298bd5afe6dcb7a92ad0aed943642cd999af2b483819cc85e3752080b1"
+    },
+    {
+      "path": "生煎锅贴屋/玉米猪肉锅贴.png",
+      "bytes": 2591453,
+      "sha256": "3b70f8b8928d5de684400d2efb3f4dc63af3024b51786f540a45e0fe81b8e58b"
+    },
+    {
+      "path": "生煎锅贴屋/紫菜蛋花汤.png",
+      "bytes": 2367201,
+      "sha256": "f08832091cbcc2d1643b478c597edac8aad9f129d3fe539d01324b55e6480d65"
+    },
+    {
+      "path": "生煎锅贴屋/红糖糍粑.png",
+      "bytes": 2515795,
+      "sha256": "a54b700a5e67067c7042eebc1485b113ce4e8058f9f0b89ff06e21f2d705495d"
+    },
+    {
+      "path": "生煎锅贴屋/虾仁生煎.png",
+      "bytes": 2307171,
+      "sha256": "f0118404626c4d0f5e9a13e0abc95c5e45005c962fee480fe738f79df1811bfc"
+    },
+    {
+      "path": "生煎锅贴屋/酸梅汤.png",
+      "bytes": 2216170,
+      "sha256": "7540e829190fa7027c15777c2ec87570c8778b8fd9ac03e013cf21421d233a4e"
+    },
+    {
+      "path": "生煎锅贴屋/酸辣粉丝汤.png",
+      "bytes": 2584471,
+      "sha256": "aaa3d5b8a3bf4136f07f1805bff5ceeb4ca5941eaac315547a52f4d7ac61b6e0"
+    },
+    {
+      "path": "生煎锅贴屋/韭菜鸡蛋锅贴.png",
+      "bytes": 2644040,
+      "sha256": "4c5abd11aa73e7120d54a7b2bb19aa6c31b116b4dd1783364170bad3f663bf11"
+    },
+    {
+      "path": "生煎锅贴屋/鲜肉锅贴.png",
+      "bytes": 2330341,
+      "sha256": "2cd1f6ae23e19051617327c02a4a782ffb5b75207a13bb31da97ce60170bcdae"
+    },
+    {
+      "path": "石锅拌饭馆/main.png",
+      "bytes": 2863807,
+      "sha256": "75fae8db43632899b7828e761a7050d2623268f704e8e321e08b7fcc29b0efdf"
+    },
+    {
+      "path": "石锅拌饭馆/泡菜五花肉拌饭.png",
+      "bytes": 2432437,
+      "sha256": "a0317f8d93ecfff38ab1a2431dbe9336152d436c4e7607a65f29623fe8716d0a"
+    },
+    {
+      "path": "石锅拌饭馆/海带汤.png",
+      "bytes": 2518790,
+      "sha256": "0008e7d076b4603df72c03dd54faae590cb9f1eac6d3a4fe1ce0108e78da7702"
+    },
+    {
+      "path": "石锅拌饭馆/海鲜石锅拌饭.png",
+      "bytes": 2558072,
+      "sha256": "43445fb9dd74478deda713731819a5195464e3f5ee3aa08293864d507524414a"
+    },
+    {
+      "path": "石锅拌饭馆/肥牛石锅拌饭.png",
+      "bytes": 2335564,
+      "sha256": "b66a706a0f4cac0a5e9952a6525d650465cdd584bb46c99002d110e15f26362a"
+    },
+    {
+      "path": "石锅拌饭馆/辣炒年糕.png",
+      "bytes": 2332321,
+      "sha256": "b2de14975644078de36f27da8a6c593b8cdd4525bfa55167e0d1fc28150be938"
+    },
+    {
+      "path": "石锅拌饭馆/金枪鱼石锅饭.png",
+      "bytes": 2414112,
+      "sha256": "4544f9e1a440d54ce4909192236becc9d773549e420aa142cac0d081f944eb96"
+    },
+    {
+      "path": "石锅拌饭馆/韩式冷面.png",
+      "bytes": 2479789,
+      "sha256": "0d8da5698dfb68df5a2c533a2132e2d1d45384dbc2a2f110210f9d14a3f7032e"
+    },
+    {
+      "path": "石锅拌饭馆/韩式炸酱面.png",
+      "bytes": 2478126,
+      "sha256": "e88b7d34ff0bb0544b2046d0a56fc8680b67bc74b9c1f93e0253efa689c1ffba"
+    },
+    {
+      "path": "石锅拌饭馆/韩式辣牛肉拌饭.png",
+      "bytes": 2563591,
+      "sha256": "008472721cef82047622f8a1a2ff7952350425bb90ba6e1cbe8a22721532d11c"
+    },
+    {
+      "path": "石锅拌饭馆/鸡排石锅饭.png",
+      "bytes": 2681453,
+      "sha256": "0a289b96937e017eccdc6ca3190e2a1dd138b868863437c09e085cbfc10f412e"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/main.png",
+      "bytes": 2492164,
+      "sha256": "b95fd9ab954e92b3787356e9bef07d3081a54c45beaacd3ea376582f8e096b8c"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/台式三杯鸡饭.png",
+      "bytes": 2426723,
+      "sha256": "fc3971a3639d44642baef87c0ee5ceeb1111c212cf637395514665a42ef9edc2"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/咖喱鸡排饭.png",
+      "bytes": 2449407,
+      "sha256": "d19b9b4c14f393f71efdaff62eb1018a129cc0efefffdb97a718f680c8092018"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/椒盐鸡米花饭.png",
+      "bytes": 2546012,
+      "sha256": "c81188ead4f3be50e1b211a029a71bf1f6bce89edae3ea2d81f984fd9683b149"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/照烧鸡腿饭.png",
+      "bytes": 2422752,
+      "sha256": "3dfa5acab0fd8efb8af71c0458fe20f98368c06b9afd68a17958cc0d32f67ae7"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/番茄鸡蛋饭.png",
+      "bytes": 2254414,
+      "sha256": "807024d24c40d1421ec6219c2975721fed834cf95672a01b752597fd2ecadd00"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/肥牛滑蛋饭.png",
+      "bytes": 2403256,
+      "sha256": "257ebeccfebbfa6bd0795a3a5fcceb0e9cf9657aee8e4ea46857b5af3cc0e043"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/金枪鱼蛋黄拌饭.png",
+      "bytes": 2286758,
+      "sha256": "68122644f37e9a9b46e97f874594828902e9c7e67c356d81111579cd5266e31b"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/香菇卤肉饭.png",
+      "bytes": 2389888,
+      "sha256": "061d5cb94d2ce2f1fb6f74e3a0f842b6028b524a3150075f873c6e990b726566"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/麻婆豆腐盖饭.png",
+      "bytes": 2488682,
+      "sha256": "a56ef31fb8017bdac6f465cb3d9ee973e6b016f7713c18403286a352eb985504"
+    },
+    {
+      "path": "米饭超会拌/米饭超会拌/黑椒牛柳饭.png",
+      "bytes": 2430342,
+      "sha256": "76e74063e9ac576df60efffa4eee15e05a6779419601d15c1c8a77de1bfd7179"
+    },
+    {
+      "path": "糖水冰粉铺/main.png",
+      "bytes": 2578620,
+      "sha256": "e44a639a0e5028678d2802de371c0f792fee3cebea7b966ec95ea358c9b8c297"
+    },
+    {
+      "path": "糖水冰粉铺/双皮奶.png",
+      "bytes": 1709592,
+      "sha256": "e838cc88a1d2ab1a01086d60971aa32854c9ef22e73ec9f76045c058cd3d9bf1"
+    },
+    {
+      "path": "糖水冰粉铺/杨枝甘露.png",
+      "bytes": 1883734,
+      "sha256": "40bacc089b36063908bddf00618bb9d4584f88e76d1efb325510c166180d46d1"
+    },
+    {
+      "path": "糖水冰粉铺/桂花酒酿圆子.png",
+      "bytes": 1837353,
+      "sha256": "36008efe03db176d366bb425d51b67dca3c95b366a335e4d8ccc2ce5d282a506"
+    },
+    {
+      "path": "糖水冰粉铺/桃胶银耳羹.png",
+      "bytes": 2164145,
+      "sha256": "564f37bd49a28257521bf33e17cb8e8e9636f0459ed398c005311b8b0176a58a"
+    },
+    {
+      "path": "糖水冰粉铺/红糖糍粑冰粉.png",
+      "bytes": 2297453,
+      "sha256": "de536e4537ee1eeef651d5172dd0ad9f3b626056604e8b1c1254068a20c9d863"
+    },
+    {
+      "path": "糖水冰粉铺/红豆冰沙.png",
+      "bytes": 2190017,
+      "sha256": "9cc5b7ab2bc29347d0740ea1011e1849ec8598f95858ead79ec3bbf1afeb1c6d"
+    },
+    {
+      "path": "糖水冰粉铺/绿豆沙.png",
+      "bytes": 1868852,
+      "sha256": "c47aa4ccf1a354ebc627a9ad4dace103ab24c3f562fbf08f5a01ba381caa66f0"
+    },
+    {
+      "path": "糖水冰粉铺/芋圆烧仙草.png",
+      "bytes": 2063439,
+      "sha256": "a641e632640e026664b4c7d44efd123e8d171a4912a0c795cd084a5471d27e38"
+    },
+    {
+      "path": "糖水冰粉铺/芒果西米露.png",
+      "bytes": 2028919,
+      "sha256": "00a9db8acf8772fc147494a658cdab975b9c5bfe13ac7542dc57a4efbbb07b49"
+    },
+    {
+      "path": "糖水冰粉铺/鲜果冰粉.png",
+      "bytes": 2011286,
+      "sha256": "b6dc38f2d4fa1ce5194c2188900be5acf97df211fa23592e853151052a8af723"
+    },
+    {
+      "path": "肉夹馍凉皮店/main.png",
+      "bytes": 2902376,
+      "sha256": "8867904183e196835d061b2eab554daaf082915ca218cf7110bbb14f96d6b9a4"
+    },
+    {
+      "path": "肉夹馍凉皮店/优质瘦肉夹馍.png",
+      "bytes": 2254835,
+      "sha256": "2d50bfa4451f39cd3ebc9b83c8e0aa03327a43e225aee63fc477a359f280b2af"
+    },
+    {
+      "path": "肉夹馍凉皮店/冰峰.png",
+      "bytes": 2303181,
+      "sha256": "3d3f2768534214fd8604445898bb7c86b71882d8f02cd5ac88f07d31256da6e4"
+    },
+    {
+      "path": "肉夹馍凉皮店/凉皮.png",
+      "bytes": 2360446,
+      "sha256": "06f6fd8dff2781177dd0c4a9b6f535b9d21b4c8801f6a05c948cd88812cf7c38"
+    },
+    {
+      "path": "肉夹馍凉皮店/卤蛋夹馍.png",
+      "bytes": 2093465,
+      "sha256": "11861751a4499cb2c9cc63eed75aa911a537711ef2efb6d4b6fee288755c1f02"
+    },
+    {
+      "path": "肉夹馍凉皮店/孜然土豆片.png",
+      "bytes": 2682354,
+      "sha256": "9197baea4eb22269013422872b7dd29c4725403582921a5dde550f58580b7814"
+    },
+    {
+      "path": "肉夹馍凉皮店/油泼面.png",
+      "bytes": 2385051,
+      "sha256": "990e0fcfcdc2bec66007a8200dd122ea29b37ed06fd86b7024f5d06988f4fdd3"
+    },
+    {
+      "path": "肉夹馍凉皮店/腊汁肉夹馍.png",
+      "bytes": 2318410,
+      "sha256": "f915c029bbda43f17dbf1affbc5f8fa66d7341f6ea3567aff37b215900653788"
+    },
+    {
+      "path": "肉夹馍凉皮店/臊子面.png",
+      "bytes": 2662790,
+      "sha256": "0ecf4e79b23c1a02a7471901d772b6147d0eb021c724419a0e51753629d297ea"
+    },
+    {
+      "path": "肉夹馍凉皮店/酸辣肚丝汤.png",
+      "bytes": 2292052,
+      "sha256": "71b13d0c4eca81afb7e8137c3134264fc2e3fc734f711ae44573dd3e7c549488"
+    },
+    {
+      "path": "肉夹馍凉皮店/麻酱凉皮.png",
+      "bytes": 2215055,
+      "sha256": "10037340e1995b270efef6d333cf4b4840e36d8e72aaa1ada99fbdec6d338647"
+    },
+    {
+      "path": "螺蛳粉快乐站/main.png",
+      "bytes": 2484773,
+      "sha256": "e82683b23b6d01f46b5f1b3ce40144cd74262445c1b813925ca89e1044cb3ff9"
+    },
+    {
+      "path": "螺蛳粉快乐站/凉拌木耳.png",
+      "bytes": 2374399,
+      "sha256": "28986f24121a1c3b0965b9ce803f42c6054281775373240b2c3318a210df7e6f"
+    },
+    {
+      "path": "螺蛳粉快乐站/加辣螺蛳粉.png",
+      "bytes": 2403151,
+      "sha256": "d049f19828dc745ce9d789e7910f02ab7a8b781473a077f3ce97d8fb45fdc30f"
+    },
+    {
+      "path": "螺蛳粉快乐站/卤蛋.png",
+      "bytes": 2044019,
+      "sha256": "a8ca62def5b5a0fd3edd9ba23a8806513ba365fc37b610a3b0ac3c7f1b38d22c"
+    },
+    {
+      "path": "螺蛳粉快乐站/叉烧螺蛳粉.png",
+      "bytes": 2421474,
+      "sha256": "2d04e316fb96ee17b567d3cc0330260329cb9fe8bbd53acf72635b8a5aa325a4"
+    },
+    {
+      "path": "螺蛳粉快乐站/炸蛋螺蛳粉.png",
+      "bytes": 2371439,
+      "sha256": "7e6a2ab3a18114cf62ea3ab0badf7d7bd23c0d78dda97dc3feb7331863e6d6e5"
+    },
+    {
+      "path": "螺蛳粉快乐站/经典螺蛳粉.png",
+      "bytes": 2566806,
+      "sha256": "cf3bba3b77c57d0ff4c0c7acce8405d4ed8717c40d477c5719bd7e7014377469"
+    },
+    {
+      "path": "螺蛳粉快乐站/肥肠螺蛳粉.png",
+      "bytes": 2392072,
+      "sha256": "10c098ae03bb483918bf38f5b1018b764a9258d83f6db47f698a837296dc824b"
+    },
+    {
+      "path": "螺蛳粉快乐站/豆奶.png",
+      "bytes": 2123938,
+      "sha256": "e18343419c8e55e37ff21ecd09facdaa13a8a150b2624d2a5630ab830aef7c60"
+    },
+    {
+      "path": "螺蛳粉快乐站/酸笋炒饭.png",
+      "bytes": 2338189,
+      "sha256": "00259b39eac66aa1586290a97a37c0d824cd14a4f31f1021e40cd212726a3f95"
+    },
+    {
+      "path": "螺蛳粉快乐站/鸭脚螺蛳粉.png",
+      "bytes": 2547146,
+      "sha256": "902e87572203a1db11e2aaf0e1dea301e7fc0893412f0ba85710c9f07790bf81"
+    },
+    {
+      "path": "西北面食铺/biangbiang面.png",
+      "bytes": 2852349,
+      "sha256": "86461a9543ba48ccc1565755d2d6987c2a00df478a32dbb995a1c76eda704576"
+    },
+    {
+      "path": "西北面食铺/main.png",
+      "bytes": 2771474,
+      "sha256": "f1b500eb93ac193dd29f1c777b91c4013bedd9d0c666f8da61c230e2329914ec"
+    },
+    {
+      "path": "西北面食铺/凉皮.png",
+      "bytes": 2698488,
+      "sha256": "c074272402c1c917d2ecc892f5df0ce0b01af5bab5514adb6f98eed579fc304b"
+    },
+    {
+      "path": "西北面食铺/油泼扯面.png",
+      "bytes": 2435016,
+      "sha256": "08752f47110cb7085d3b3130c93c609ed91238f0260da06926f71bf1ba2bbb75"
+    },
+    {
+      "path": "西北面食铺/牛肉拉条子.png",
+      "bytes": 2650767,
+      "sha256": "a00206508120c5c45ae62fefee8750fbf41ac00c77f4214c323b1f992d255aa1"
+    },
+    {
+      "path": "西北面食铺/番茄鸡蛋面.png",
+      "bytes": 2568267,
+      "sha256": "c9cdc267e72d058b56ef0ee66feced0ec064c60133e24d511a8f54c4e543be7f"
+    },
+    {
+      "path": "西北面食铺/羊肉泡馍.png",
+      "bytes": 2865859,
+      "sha256": "b3c9645f5774ca57d4d604c3f430878899d149edf7d33cbd7776cabc59abd4d9"
+    },
+    {
+      "path": "西北面食铺/肉丸胡辣汤.png",
+      "bytes": 2422206,
+      "sha256": "0dd04c3501e99bd843005c79f9f1ccb080ce52c87f472c312039f9de3a958d46"
+    },
+    {
+      "path": "西北面食铺/肉臊子夹馍.png",
+      "bytes": 2483260,
+      "sha256": "5b3e0984b96a45ac076e18b85082203fa86a306d7aaa239a037c9ac1855e92b4"
+    },
+    {
+      "path": "西北面食铺/臊子面.png",
+      "bytes": 2362169,
+      "sha256": "20dbf4808d5e5e23f055c608c4209488d3fbc9c42c32a240f331424b0aac0e94"
+    },
+    {
+      "path": "西北面食铺/麻酱凉面.png",
+      "bytes": 2350955,
+      "sha256": "f556177a6aa659edd3c03d8c269623dfea4dfc9f7d72458ae2ad3f6fcf5b7ae7"
+    },
+    {
+      "path": "越式清爽厨房/main.png",
+      "bytes": 2265543,
+      "sha256": "14c8968608c466033fdd649be1209c119a883ff655df6de82ad454b6580a0d8c"
+    },
+    {
+      "path": "越式清爽厨房/椰香咖喱鸡饭.png",
+      "bytes": 1999851,
+      "sha256": "10fa610fe2c0131ae0149528b92f9046719556340be0c6fadb0b4532d485de79"
+    },
+    {
+      "path": "越式清爽厨房/滴漏咖啡.png",
+      "bytes": 1855559,
+      "sha256": "425e825874c7c31f989839117ab471ce80097fdbfaf3f8598916f22452c2c611"
+    },
+    {
+      "path": "越式清爽厨房/炼乳冰咖啡.png",
+      "bytes": 1811888,
+      "sha256": "98d264cd518f1f31202b9235c53816ef8d85688f4457350139e44d7d4f4af847"
+    },
+    {
+      "path": "越式清爽厨房/虾仁米纸卷.png",
+      "bytes": 1907592,
+      "sha256": "50850ff4936e8273f1c268cf636cb6b627572ee930f4b232bbceb5bebf6aa5d0"
+    },
+    {
+      "path": "越式清爽厨房/越南牛肉河粉.png",
+      "bytes": 2203177,
+      "sha256": "6f55c8242281a7abc056fa31db53db9cf6fcff905cbc51b7640010ef01d32e50"
+    },
+    {
+      "path": "越式清爽厨房/越式春卷.png",
+      "bytes": 2115979,
+      "sha256": "6d8542de1480f8d7d058932a7acdf10b5e2eaf316a1867c078cde157fec73331"
+    },
+    {
+      "path": "越式清爽厨房/越式法棍三明治.png",
+      "bytes": 1989247,
+      "sha256": "71f51f1e927cc8fdc4ebb6178d8b6461ef67c02836c9a20030ad5db2fa786afb"
+    },
+    {
+      "path": "越式清爽厨房/青木瓜牛肉沙拉.png",
+      "bytes": 2147588,
+      "sha256": "8c843947767ebcd468f4374ba7701e2d243fd389d70dadef7e6ee1fb09710794"
+    },
+    {
+      "path": "越式清爽厨房/香茅猪排饭.png",
+      "bytes": 2300109,
+      "sha256": "4302c2d2e302399da0a68dc27d6de0891a50d8070fd44c74cc9b928abb776726"
+    },
+    {
+      "path": "越式清爽厨房/鸡丝河粉.png",
+      "bytes": 1928468,
+      "sha256": "4384f7cd2e704f7722f3b13cc342d06d0ec1a2b7b4066a8483e9042644d284e2"
+    },
+    {
+      "path": "轻食充电碗/main.png",
+      "bytes": 2230053,
+      "sha256": "58dba49f0be803a7865d4c710868d561bd8fc151aefe2585a92b556e99c6e773"
+    },
+    {
+      "path": "轻食充电碗/凯撒鸡肉沙拉.png",
+      "bytes": 2152206,
+      "sha256": "0051c5d2d36aa96abc98fc1165fe8e7da5d562c81c78cb225387810877b1daef"
+    },
+    {
+      "path": "轻食充电碗/日式豆腐沙拉.png",
+      "bytes": 2150562,
+      "sha256": "bd5a43412974741c16606f58754a3f6640fe49c645402b6e6d4cd1674d49f2b0"
+    },
+    {
+      "path": "轻食充电碗/烟熏三文鱼沙拉.png",
+      "bytes": 2153462,
+      "sha256": "26dd81f5a01f420eca5f2f552a3c50685ff527186bc43a7a0232d14b4bacbd04"
+    },
+    {
+      "path": "轻食充电碗/牛油果鸡胸能量碗.png",
+      "bytes": 2239357,
+      "sha256": "d90187b5fc1346b52fee783e8ddeef6554ed8e0cbcbe0fbaaca4f5cc9f20c3f7"
+    },
+    {
+      "path": "轻食充电碗/羽衣甘蓝水果碗.png",
+      "bytes": 2181596,
+      "sha256": "a7c02c99df3a0b22d46ce42f438091893a218ca79e6056eaba3f0dfd9ae18d26"
+    },
+    {
+      "path": "轻食充电碗/酸奶坚果碗.png",
+      "bytes": 2097439,
+      "sha256": "417d73a107cfa0f19d74076d9bf291fb22e333a5f35a9b79a18dfb155f2c2d07"
+    },
+    {
+      "path": "轻食充电碗/金枪鱼玉米沙拉.png",
+      "bytes": 2133563,
+      "sha256": "030a0046c044b75aac7aa6d33304ffb8a03045e5d772391828a2602f427d6718"
+    },
+    {
+      "path": "轻食充电碗/鲜虾牛油果沙拉.png",
+      "bytes": 2098639,
+      "sha256": "c8b0b83afba6940c1314ad758a6b275ef3ef47f51900544daad771d149ce72a6"
+    },
+    {
+      "path": "轻食充电碗/鸡胸全麦卷.png",
+      "bytes": 2118895,
+      "sha256": "dc42be05c4892c239e72617f333e6198cbeab79945e3746d707cf4edd48f5ba3"
+    },
+    {
+      "path": "轻食充电碗/黑椒牛肉藜麦碗.png",
+      "bytes": 2326314,
+      "sha256": "e905829c7f096f424fb731d3abd78e08018b75df708b63a61a602c1b4289df90"
+    },
+    {
+      "path": "重庆小面档口/main.png",
+      "bytes": 2264592,
+      "sha256": "037b8451f0dc486a2aaae97e81a5df99ac7799df65a9f63301eabfb94dbb6300"
+    },
+    {
+      "path": "重庆小面档口/冰粉.png",
+      "bytes": 2134278,
+      "sha256": "08bdcb86980376b56273afe09414e9f3a9dab1fecf6bf563bd5db8eeb1c29fc0"
+    },
+    {
+      "path": "重庆小面档口/凉面.png",
+      "bytes": 2171610,
+      "sha256": "e6c57dc8137e0c9df0d9d63aed56c2a2a5d39326b27fc2be15533316eb877aeb"
+    },
+    {
+      "path": "重庆小面档口/招牌重庆小面.png",
+      "bytes": 2302150,
+      "sha256": "be4d56f4d93cd6bad2dfbd7ba5a0cda0f900a48f130ff6d7a634b21c0c05b3f3"
+    },
+    {
+      "path": "重庆小面档口/红油水饺.png",
+      "bytes": 2227599,
+      "sha256": "de2699e92205638e3c6390749ca2ddff781eb889b55ae66e7a6d0c5904e94987"
+    },
+    {
+      "path": "重庆小面档口/红烧牛肉小面.png",
+      "bytes": 2274042,
+      "sha256": "8e7b389664cb62964f7e8b9651cadf727c9ee2b7d6020af0a218a329a32b2828"
+    },
+    {
+      "path": "重庆小面档口/肥肠小面.png",
+      "bytes": 2342679,
+      "sha256": "8182110ceaa7301b7431f01f6b24c3e8b3fee86facede6564a971c9a724be87d"
+    },
+    {
+      "path": "重庆小面档口/豌杂小面.png",
+      "bytes": 2433254,
+      "sha256": "208c8796e2bfbfaf45b1cd41a657fe61b04c8d78ad47f3a2c4ee0874f5973062"
+    },
+    {
+      "path": "重庆小面档口/豌豆杂酱面.png",
+      "bytes": 2319164,
+      "sha256": "c114cd3ca939ff07989f7984fb8d248851e31938f856efe5742e140b1f34e251"
+    },
+    {
+      "path": "重庆小面档口/酸辣粉.png",
+      "bytes": 2281275,
+      "sha256": "b91e8e053560aff3a5dfa52c0ac96c5a31f89e7fd8042ef29676fd8aae798a98"
+    },
+    {
+      "path": "重庆小面档口/麻辣抄手.png",
+      "bytes": 2314194,
+      "sha256": "2a1f13e2b408557b2407330333f9fd2768d84f6ce7727029c0a8aa37eb6d8260"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/main.png",
+      "bytes": 2629881,
+      "sha256": "3978088a709463159175f7ba8169c25ff23654614643f96c732f18a806876546"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/无骨炸鸡块.png",
+      "bytes": 2327718,
+      "sha256": "9afd5dce53dc8e9d18b957986328ef666315c2fdfb2fadf27c40ed1392a66c34"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/泡菜芝士年糕.png",
+      "bytes": 2367496,
+      "sha256": "687cfdd98fd68592cc16be722890321fc059040f9f9ae13578c94170887d1aa3"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/炸鸡汉堡.png",
+      "bytes": 2252719,
+      "sha256": "dbd3e99f21ac24c171db76404f935eb1e91ae6c46352f1851f03cd298560d897"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/芝士雪花炸鸡.png",
+      "bytes": 2684682,
+      "sha256": "bf54ae6644f7f16d06673d75d59d0d45cd35a187c37963f3ea6e2c9d27dc6695"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/蜂蜜蒜香炸鸡.png",
+      "bytes": 2394335,
+      "sha256": "3f531cbb952e73f0594e1d079fe4de81068dfd9f4178bfd95c3f86703981559c"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/蜂蜜黄油薯条.png",
+      "bytes": 2298822,
+      "sha256": "e98b55ae139e55d8c11ef29fa7441e58cca220b82b645a089ba89b9c8a1e52d7"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/辣白菜炒饭.png",
+      "bytes": 2383522,
+      "sha256": "b3f8544fbc03bae125fbdd6072d4e10535fe6d786a616160518369b6739ac43a"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/韩式甜辣炸鸡.png",
+      "bytes": 2616009,
+      "sha256": "8b0cb4c47df9e63f782d43b7d446831dabee96980bebe94bb99a861e1927d901"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/韩式部队锅.png",
+      "bytes": 2539979,
+      "sha256": "52c20819abb7093549a8d4fc296bd838b05f737fb784899aff0cee7b7d75eca3"
+    },
+    {
+      "path": "韩派炸鸡研究社/韩派炸鸡研究社_正确版/韩式鱼饼汤.png",
+      "bytes": 2345538,
+      "sha256": "65cdfcdf6dd150465765d4cc532e0c507bde0c8a450a30d0121af380889c011d"
+    },
+    {
+      "path": "麻辣烫快线/main.png",
+      "bytes": 2798413,
+      "sha256": "cb63aa4eeb9a73480a684b0555ae1fd4dbf59669c8d243a587c215c1a2845897"
+    },
+    {
+      "path": "麻辣烫快线/冒菜拼盘.png",
+      "bytes": 2608377,
+      "sha256": "8f4965ca292c6eaf35ec169191d791a56392bc9d7dbb571ce2510438deaf3ac7"
+    },
+    {
+      "path": "麻辣烫快线/冰豆奶.png",
+      "bytes": 2287879,
+      "sha256": "e98f645f246e4c4fca649cab6fb63c2433ef7c59e3f8b81edf785213e6d45c69"
+    },
+    {
+      "path": "麻辣烫快线/宽粉麻辣烫.png",
+      "bytes": 2620921,
+      "sha256": "0201ef35066ee4c933831c8e88567d3bb222eae3ca4beef5acfcb773764aa40c"
+    },
+    {
+      "path": "麻辣烫快线/方便面麻辣烫.png",
+      "bytes": 2527150,
+      "sha256": "02337eb08d6207f7903b09602b2366d4e2c9c24fcbcaeed65559b3adead84d7d"
+    },
+    {
+      "path": "麻辣烫快线/牛肉麻辣烫.png",
+      "bytes": 2548804,
+      "sha256": "9c180bdd0ca72700fe121dfd738f2960eae6da3911bed0b8f5f1d682b6610d32"
+    },
+    {
+      "path": "麻辣烫快线/番茄麻辣烫.png",
+      "bytes": 2720799,
+      "sha256": "ec1725b081c645b52307b34d7e892eb2d26ca4c30c8f108cc71d9aab7f0b11f6"
+    },
+    {
+      "path": "麻辣烫快线/自选麻辣烫.png",
+      "bytes": 2581921,
+      "sha256": "a0001cd948cff9556b0c2fb6581388cc19d96067777d79b46c22612cea5a3685"
+    },
+    {
+      "path": "麻辣烫快线/菌菇麻辣烫.png",
+      "bytes": 2548458,
+      "sha256": "0d5525a4b297cb626cea6ce3c1b6311043da6dbec6939e8406dbb15b488f8674"
+    },
+    {
+      "path": "麻辣烫快线/虾滑麻辣烫.png",
+      "bytes": 2469994,
+      "sha256": "ea0fa88641e36685e11ce1e165cf2432452d7b98731c56b8ae70f0f714825bee"
+    },
+    {
+      "path": "麻辣烫快线/骨汤麻辣烫.png",
+      "bytes": 2547820,
+      "sha256": "e86b125637ce36e3f4ca2725ea3edc8ef4875d2bfe747596875860b57f5cd144"
+    },
+    {
+      "path": "麻辣香锅集合店/main.png",
+      "bytes": 3005854,
+      "sha256": "43b9af62018b72656d2c0e1f979a4a64b4bd9e6834b27d5a5662cffaf5640675"
+    },
+    {
+      "path": "麻辣香锅集合店/午餐肉香锅.png",
+      "bytes": 2611551,
+      "sha256": "f010e98bccba68bd989efa1eaa8defb89bd83fdd48406d09e48b972cb23644e8"
+    },
+    {
+      "path": "麻辣香锅集合店/培根香锅.png",
+      "bytes": 2517692,
+      "sha256": "91d61344a9e67a7e30b1d1a77d4f32e506acc0924499f1ac38414e5cfcdb8a06"
+    },
+    {
+      "path": "麻辣香锅集合店/年糕宽粉香锅.png",
+      "bytes": 2620744,
+      "sha256": "b655d8eed9b31a12e84bcd33c682e180abd7af95b0bf79919b99c6ca54a3d2ef"
+    },
+    {
+      "path": "麻辣香锅集合店/招牌酸梅汤.png",
+      "bytes": 2201032,
+      "sha256": "b25a94001be516ce8ccfc366263056c4d395cbdb8ec1ca39b867c0630b195d6f"
+    },
+    {
+      "path": "麻辣香锅集合店/牛蛙香锅.png",
+      "bytes": 2631287,
+      "sha256": "47996133ff8ad2f4f8fe78fc061ae7090cb34186e4f8e63f552bac58bd70ca9b"
+    },
+    {
+      "path": "麻辣香锅集合店/素菜香锅.png",
+      "bytes": 2659175,
+      "sha256": "67272af59a52aeef76d7fb012f2e6df16a9f427a1c40f80197598b2f5e7a6b52"
+    },
+    {
+      "path": "麻辣香锅集合店/经典麻辣香锅.png",
+      "bytes": 2584309,
+      "sha256": "62d6059a1b136fca923a3c5ee444e1dbe6296cc46822e024b43e63853138464d"
+    },
+    {
+      "path": "麻辣香锅集合店/肥牛香锅.png",
+      "bytes": 2628588,
+      "sha256": "1824202e44c38b94d8b3734ab549b97cfae1ade6cf1a3a109111ee1d758199d3"
+    },
+    {
+      "path": "麻辣香锅集合店/菌菇香锅.png",
+      "bytes": 2525617,
+      "sha256": "66f77ec010f9684a92eedf3ea7a349114ab9f2a75ee814554ddd43fc9d25907f"
+    },
+    {
+      "path": "麻辣香锅集合店/虾滑香锅.png",
+      "bytes": 2507873,
+      "sha256": "c79d9117eb4a4fb65c1b8e6aa1d9566b8d6373ddce91c74c4ec1a6991002ac54"
+    }
+  ]
+}

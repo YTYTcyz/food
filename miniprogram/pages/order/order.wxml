@@ -1,0 +1,63 @@
+<view class="page order">
+  <view wx:if="{{pending}}" class="card">提交结果待确认，已保留本次内容。<button bindtap="startWait" loading="{{submitting}}">查询并重试</button></view>
+  <!-- 空 -->
+  <view wx:if="{{status === 'empty'}}" class="state">
+    <view class="state__title">购物车是空的</view>
+    <view>先去挑几样想吃的吧</view>
+    <navigator open-type="switchTab" url="/pages/home/home" class="btn-ghost state__btn">回首页</navigator>
+  </view>
+
+  <block wx:else>
+    <view class="card order__merchant">{{merchantName}}</view>
+    <view class="card">虚拟地址：{{virtualAddress}}<view>模拟配送 / 冷静期：5 分钟</view></view>
+
+    <view class="card">
+      <view class="line" wx:for="{{items}}" wx:key="id">
+        <image class="line__img" src="{{item.imageFileID || defaultImg}}" mode="aspectFill" />
+        <view class="line__info">
+          <view class="line__name">{{item.name}}</view>
+          <view class="line__price">¥{{item.priceYuan}}</view>
+        </view>
+        <view class="stepper">
+          <view class="stepper__btn" data-id="{{item.id}}" bindtap="onDec">−</view>
+          <text class="stepper__qty">{{item.qty}}</text>
+          <view class="stepper__btn stepper__btn--add" data-item="{{item}}" bindtap="onInc">＋</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card fees">
+      <view class="fees__row"><text>商品金额</text><text>¥{{goodsYuan}}</text></view>
+      <view class="fees__row"><text>配送费(模拟)</text><text>¥{{deliveryYuan}}</text></view>
+      <view class="fees__row fees__row--total"><text>合计</text><text class="fees__total">¥{{totalYuan}}</text></view>
+      <view wx:if="{{kcal > 0}}" class="fees__kcal">本单预估热量 {{kcal}} kcal · 成功后计入模拟避免热量</view>
+    </view>
+
+    <view class="card note">
+      <view class="note__label">备注</view>
+      <textarea
+        class="note__input"
+        placeholder="想对自己说点什么?(选填)"
+        maxlength="200"
+        value="{{note}}"
+        disabled="{{pending || submitting}}"
+        bindinput="onNote"
+      />
+    </view>
+
+    <view class="card"><view>模拟支付方式（不会扣款）</view><radio-group bindchange="onPayment"><label wx:for="{{paymentOptions}}" wx:key="*this"><radio value="{{item}}" checked="{{paymentMethod === item}}" disabled="{{pending || submitting}}" />{{item}}</label></radio-group></view>
+    <view class="sim-tip">模拟点单，不会真实配送或扣款。提交成功即开始计时；点击“不想吃了”或等待到时均算成功，届时计入成就钱包。</view>
+
+    <view style="height: 160rpx;"></view>
+
+    <view class="submit-bar">
+      <view class="submit-bar__total">
+        <text class="submit-bar__label">合计</text>
+        <text class="submit-bar__num">¥{{totalYuan}}</text>
+      </view>
+      <button class="submit-bar__btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="startWait">
+        {{pending ? '查询并重试' : '提交模拟订单'}}
+      </button>
+    </view>
+  </block>
+</view>

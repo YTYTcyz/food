@@ -1,0 +1,4 @@
+{
+  "read": "/^shop_pic\\//.test(resource.path) || /^memorial-presets\\//.test(resource.path) || (auth != null && /^private\\//.test(resource.path) && resource.openid == auth.openid)",
+  "write": "auth != null && /^private\\//.test(resource.path) && resource.openid == auth.openid"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "initDatabase",
+  "version": "1.0.0",
+  "description": "创建 MVP P0 云数据库集合",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

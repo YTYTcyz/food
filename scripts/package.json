@@ -1,0 +1,16 @@
+{
+  "name": "burenle-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "本地开发脚本:解析菜品 Excel、生成 seed 数据、领域规则测试",
+  "type": "commonjs",
+  "scripts": {
+    "parse-menu": "node parse-menu.js",
+    "sync-domain": "node sync-domain.js",
+    "enrich-menu": "node enrich-menu.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
