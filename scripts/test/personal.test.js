@@ -10,6 +10,24 @@ function fixture() {
   const service = createService(db, () => timestamp, { privateMediaReady: true, verifyFile: async () => ({ width: 1980, height: 1280, format: 'jpg', orientation: 1, sizeBytes: 1000 }) });
   return { db, service, call: event => service.execute('u1', event), now: () => timestamp, tick: ms => { timestamp += ms; } };
 }
+
+test('日记木鱼体重目标资料和音效只改变各自数据，不增加挑战奖励或手动打卡', async () => {
+  const f = fixture();
+  f.db.seed('user_state', 'u1', { ...domain.initialState('u1'), totalCompleted: 3, walletCents: 6000, totalCaloriesKcal: 900, level: 2 });
+  await f.call({ action: 'diary.save', id: 'sprint2_note', body: '测试心情', mood: '平静', version: 0 });
+  await f.call({ action: 'woodfish.add', date: '2026-09-08', deviceId: 'sprint2_device', total: 10 });
+  await f.call({ action: 'weight.add', requestId: 'sprint2_weight', grams: 68000 });
+  await f.call({ action: 'goal.save', requestId: 'sprint2_goal', targetGrams: 60000 });
+  await f.call({ action: 'profile.save', nickname: '测试昵称' });
+  await f.call({ action: 'preferences.save', soundEnabled: false });
+  const result = await f.call({ action: 'summary' });
+  assert.equal(result.state.totalCompleted, 3); assert.equal(result.state.walletCents, 6000); assert.equal(result.state.totalCaloriesKcal, 900);
+  assert.equal(result.currentWeight.grams, 68000); assert.equal(result.goal.startGrams, 68000); assert.equal(result.goal.targetGrams, 60000);
+  assert.equal(result.preferences.soundEnabled, false); assert.equal(result.user.nickname, '测试昵称');
+  for (const collection of ['daily_checkins', 'daily_successes', 'wallet_ledger', 'memorial_cards', 'memorial_card_progress', 'user_achievements']) assert.equal(f.db.list(collection).length, 0, collection);
+  const checkin = await f.call({ action: 'checkin' }); assert.equal(checkin.already, false);
+  assert.equal((await f.call({ action: 'summary' })).state.totalCompleted, 3);
+});
 test('重复手动打卡只计一天，第7天解锁徽章，成功奖励和打卡互不代替', async () => {
   const f = fixture();
   await Promise.all(Array.from({ length: 5 }, () => f.call({ action: 'checkin' })));

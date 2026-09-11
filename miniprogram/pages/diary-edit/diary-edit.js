@@ -4,21 +4,34 @@ const { MOODS } = require('../../domain/personal');
 Page({
   data: { id: '', orderId: '', body: '', mood: '', moods: MOODS.slice(1), count: 0, status: 'loading', saving: false, hint: '', encouragement: '', version: 0, existing: false },
   async onLoad(q) {
+    this.query = q; this.visible = true;
+    return this.load();
+  },
+  onShow() { this.visible = true; this.finishMutation(); },
+  async load() {
+    const q = this.query, generation = this.loadGeneration = (this.loadGeneration || 0) + 1;
+    this.setData({ status: 'loading', hint: '' });
     this.setData({ id: q.id || api.requestId(), orderId: q.orderId || '', existing: !!q.id });
     const userId = await getApp().ensureLogin();
+    if (this.unloaded || generation !== this.loadGeneration) return;
     if (!userId) { this.setData({ status: 'error' }); return; }
     this.draftKey = 'diaryDraft:' + userId + ':' + (q.id || 'new');
     if (q.id) {
       const r = await api.call('diary.get', { id: q.id });
+      if (this.unloaded || generation !== this.loadGeneration) return;
       if (!r.success) { this.setData({ status: 'error', hint: api.error(r) }); return; }
       this.setData({ body: r.data.body, mood: r.data.mood, count: Array.from(r.data.body).length, version: r.data.version, id: r.data._id });
     }
     const draft = wx.getStorageSync(this.draftKey);
-    if (draft) { this.setData({ ...draft, count: Array.from(draft.body).length, hint: '已恢复本机草稿' }); this.dirty = true; this.protect(); }
+    if (draft) {
+      const { id, body, mood, version } = draft;
+      // 草稿恢复内容与版本；返回目的地以本次入口为准。
+      this.setData({ id, body, mood, version, count: Array.from(body).length, hint: '已恢复本机草稿' }); this.dirty = true; this.protect();
+    }
     this.setData({ status: 'ready' });
   },
   onInput(e) {
-    if (this.data.saving) return;
+    if (this.data.saving || this.data.status !== 'ready') return;
     const body = Array.from(e.detail.value).slice(0, 2000).join('');
     this.setData({ body, count: Array.from(body).length }); this.changed();
     clearTimeout(this.encourageTimer);
@@ -32,24 +45,28 @@ Page({
     try { const { id, body, mood, version, orderId } = this.data; wx.setStorageSync(this.draftKey, { id, body, mood, version, orderId }); return true; }
     catch (_) { this.setData({ hint: '本机存储空间不足，请先保存日记再离开' }); return false; }
   },
-  onHide() { this.storeDraft(); clearTimeout(this.encourageTimer); },
-  onUnload() { this.storeDraft(); this.unloaded = true; clearTimeout(this.encourageTimer); },
+  onHide() { this.visible = false; this.storeDraft(); clearTimeout(this.encourageTimer); },
+  onUnload() { this.storeDraft(); this.unloaded = true; this.visible = false; this.loadGeneration = (this.loadGeneration || 0) + 1; clearTimeout(this.encourageTimer); this.finishMutation(); },
   async save() {
-    if (this.data.saving || !this.data.body.trim()) return;
+    if (this.data.saving || this.data.status !== 'ready' || !this.data.body.trim()) return;
     this.setData({ saving: true, hint: '' }); this.storeDraft();
     const { id, body, mood, version, orderId } = this.data;
     const r = await api.call('diary.save', { id, body, mood, version, challengeOrderId: orderId });
-    if (this.unloaded) {
-      if (r.success) {
-        this.dirty = false;
-        const latest = wx.getStorageSync(this.draftKey);
-        if (latest && latest.id === id && latest.body === body && latest.mood === mood) wx.removeStorageSync(this.draftKey);
-      }
-      return;
+    this.mutationResult = { result: r, snapshot: { id, body, mood, version } };
+    this.finishMutation();
+  },
+  finishMutation() {
+    if (!this.mutationResult || (this.visible === false && !this.unloaded)) return;
+    const { result, snapshot } = this.mutationResult; this.mutationResult = null;
+    if (result.success) {
+      this.dirty = false;
+      const latest = wx.getStorageSync(this.draftKey);
+      if (latest && latest.id === snapshot.id && latest.body === snapshot.body && latest.mood === snapshot.mood && latest.version === snapshot.version) wx.removeStorageSync(this.draftKey);
     }
+    if (this.unloaded) return;
     this.setData({ saving: false });
-    if (!r.success) { this.setData({ hint: api.error(r) }); return; }
-    this.dirty = false; wx.removeStorageSync(this.draftKey); if (wx.disableAlertBeforeUnload) wx.disableAlertBeforeUnload();
+    if (!result.success) { this.setData({ hint: api.error(result) }); return; }
+    if (wx.disableAlertBeforeUnload) wx.disableAlertBeforeUnload();
     this.returnToOrigin();
   },
   returnToOrigin() { if (this.data.orderId) wx.redirectTo({ url: '/pages/wait/wait?orderId=' + this.data.orderId }); else wx.navigateBack(); },
@@ -64,13 +81,12 @@ Page({
     } });
   },
   remove() {
+    if (!this.data.existing || this.data.saving) return;
     wx.showModal({ title: '删除这篇日记？', content: '删除后正文和字数统计会一并移除。', confirmText: '删除', success: async r => {
-      if (!r.confirm || this.data.saving) return;
-      this.setData({ saving: true }); const result = await api.call('diary.delete', { id: this.data.id });
-      if (this.unloaded) { if (result.success) wx.removeStorageSync(this.draftKey); return; }
-      this.setData({ saving: false });
-      if (!result.success) { api.toast(result); return; }
-      this.dirty = false; wx.removeStorageSync(this.draftKey); if (wx.disableAlertBeforeUnload) wx.disableAlertBeforeUnload(); this.returnToOrigin();
+      if (!r.confirm || this.data.saving || this.unloaded || this.visible === false) return;
+      const { id, body, mood, version } = this.data;
+      this.setData({ saving: true }); const result = await api.call('diary.delete', { id });
+      this.mutationResult = { result, snapshot: { id, body, mood, version } }; this.finishMutation();
     } });
   }
 });

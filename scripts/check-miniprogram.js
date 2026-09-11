@@ -15,6 +15,25 @@ const app = JSON.parse(fs.readFileSync(path.join(mini, 'app.json'), 'utf8'));
 for (const route of app.pages) for (const ext of ['.js','.json','.wxml','.wxss']) {
   if (!fs.existsSync(path.join(mini, route + ext))) throw new Error('Missing route: ' + route + ext);
 }
+// 页面四件套和模板编译成功，不能证明 usingComponents 引用的组件完整。
+const components = new Set();
+function checkComponents(configFile) {
+  const config = JSON.parse(fs.readFileSync(configFile, 'utf8').replace(/^\uFEFF/, ''));
+  for (const [name, reference] of Object.entries(config.usingComponents || {})) {
+    const base = reference.startsWith('/') ? path.resolve(mini, '.' + reference) : path.resolve(path.dirname(configFile), reference);
+    if (!base.startsWith(mini + path.sep)) throw new Error('Component outside miniprogram: ' + reference);
+    if (components.has(base)) continue;
+    for (const ext of ['.js', '.json', '.wxml', '.wxss']) {
+      if (!fs.existsSync(base + ext)) throw new Error(`Missing component ${name}: ${base + ext} (using by ${configFile})`);
+    }
+    const definition = JSON.parse(fs.readFileSync(base + '.json', 'utf8').replace(/^\uFEFF/, ''));
+    if (definition.component !== true) throw new Error('Missing component:true: ' + base + '.json');
+    components.add(base);
+    checkComponents(base + '.json');
+  }
+}
+checkComponents(path.join(mini, 'app.json'));
+for (const route of app.pages) checkComponents(path.join(mini, route + '.json'));
 const compilerRoot = process.argv[2];
 if (compilerRoot) {
   const binaries = path.join(compilerRoot, 'code/package.nw/node_modules/wcc-exec');
@@ -28,3 +47,4 @@ if (compilerRoot) {
   }
 }
 console.log(js + ' JavaScript, ' + json + ' JSON, ' + app.pages.length + ' complete page routes checked');
+console.log(components.size + ' referenced components checked (files, registration and nested dependencies)');

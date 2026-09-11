@@ -2,6 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { createService } = require("../../cloudfunctions/challenge/service");
 const { dayKey } = require("../../shared/domain/product");
+const { initialState } = require("../../shared/domain/personal");
+const { applyImage } = require("../../shared/domain/puzzle");
 
 // 乐观事务测试替身：快照读写、冲突重试、异常不提交。不是云SDK兼容性证明。
 function fixture() {
@@ -83,15 +85,21 @@ test("到期前放弃不入账，不被后续成功请求覆盖", async () => {
   assert.equal(f.db.list("wallet_ledger").length, 0);
   assert.equal(f.db.get("user_state", "u1").totalCompleted, 0);
 });
-test("奖励中途失败完全回滚，下一次重试成功", async () => {
-  const f = fixture(); const o = (await f.service.execute("u1", f.payload("request_001"))).data;
-  f.db.failCollection = "memorial_card_progress";
-  await assert.rejects(() => f.service.execute("u1", { action: "complete", orderId: o._id }), /INJECTED_FAILURE/);
-  assert.equal(f.db.get("challenge_orders", o._id).status, "waiting");
-  assert.equal(f.db.list("wallet_ledger").length, 0);
-  assert.equal(f.db.list("memorial_cards").length, 0);
-  f.db.failCollection = "";
-  assert.equal((await f.service.execute("u1", { action: "complete", orderId: o._id })).data.status, "completed");
+test("任一奖励写入失败均完全回滚，下一次重试只结算一次", async () => {
+  const collections = ["wallet_ledger", "daily_successes", "memorial_cards", "memorial_card_progress",
+    "user_achievements", "challenge_orders", "user_state"];
+  for (const failedCollection of collections) {
+    const f = fixture(); const o = (await f.service.execute("u1", f.payload("request_001"))).data;
+    const before = collections.map(c => f.db.list(c));
+    f.db.failCollection = failedCollection;
+    await assert.rejects(() => f.service.execute("u1", { action: "complete", orderId: o._id }), /INJECTED_FAILURE/);
+    assert.deepEqual(collections.map(c => f.db.list(c)), before, failedCollection);
+    f.db.failCollection = "";
+    assert.equal((await f.service.execute("u1", { action: "complete", orderId: o._id })).data.status, "completed");
+    assert.equal(f.db.get("user_state", "u1").totalCompleted, 1);
+    assert.equal(f.db.list("wallet_ledger").length, 1);
+    assert.equal(f.db.list("memorial_card_progress").length, 1);
+  }
 });
 test("同日7次集齐36块，第8次自动创建新卡，等级按次数更新", async () => {
   const f = fixture();
@@ -122,4 +130,93 @@ test("拒绝他人订单、跨店商品和异常数量；lookup可查超时提�
   f.db.seed("menu_items", "other", { merchantId: "m002", isAvailable: true });
   await assert.rejects(() => f.service.execute("u2", { ...f.payload("request_003"), items: [{ menuItemId: "other", quantity: 1 }] }), /ITEM_UNAVAILABLE/);
   await assert.rejects(() => f.service.execute("u2", { ...f.payload("request_003"), items: [{ menuItemId: "food1", quantity: -1 }] }), /INVALID_ITEMS/);
+});
+test("已有成果按增量结算，第7次完成当前54块卡且不改变手动打卡", async () => {
+  const f = fixture(), date = dayKey(f.time());
+  const state = { ...initialState("u1"), totalCompleted: 6, walletCents: 18000, totalCaloriesKcal: 3600,
+    level: 2, checkinDays: 6, activeCardId: "u1_1", cardSequence: 1 };
+  f.db.seed("user_state", "u1", state);
+  const card = applyImage({ _id: "u1_1", userId: "u1", currentStep: 6, totalSteps: 7,
+    status: "active", revealedTileIndexes: [] }, 1280, 1980);
+  f.db.seed("memorial_cards", card._id, card);
+  f.db.seed("daily_successes", `u1_${date}`, { userId: "u1", date, completed: 2, amountCents: 6000, caloriesKcal: 1200 });
+  f.db.seed("daily_checkins", `u1_${date}`, { userId: "u1", date, checkedAt: new Date(f.time() - 1000) });
+  f.db.seed("user_achievements", "u1_first_success", { userId: "u1", code: "first_success", unlockedAt: new Date(f.time() - 86400000) });
+  const beforeCheckins = f.db.list("daily_checkins"), firstBadge = f.db.get("user_achievements", "u1_first_success");
+  const o = (await f.service.execute("u1", f.payload("request_001"))).data;
+  assert.equal(f.db.get("user_state", "u1").walletCents, 18000);
+  assert.equal(f.db.list("wallet_ledger").length, 0);
+  const completed = (await f.service.execute("u1", { action: "complete", orderId: o._id })).data;
+  assert.deepEqual(completed.result, { amountCents: 5150, caloriesKcal: 1000, totalCompleted: 7,
+    walletCents: 23150, level: 3, cardId: "u1_1", cardStep: 7, cardCompleted: true });
+  const after = f.db.get("user_state", "u1");
+  assert.equal(after.totalCaloriesKcal, 4600);
+  assert.equal(after.completedCards, 1);
+  assert.equal(after.activeCardId, "");
+  assert.equal(after.checkinDays, 6);
+  const daily = f.db.get("daily_successes", `u1_${date}`);
+  assert.equal(daily.completed, 3); assert.equal(daily.amountCents, 11150); assert.equal(daily.caloriesKcal, 2200);
+  const progress = f.db.list("memorial_card_progress");
+  assert.equal(progress.length, 1); assert.equal(progress[0].tileCount, 54); assert.equal(progress[0].revealedTileIndexes.length, 8);
+  assert.equal(f.db.list("memorial_cards").length, 1);
+  assert.equal(f.db.get("memorial_cards", card._id).revealedTileIndexes.length, 54);
+  assert.deepEqual(f.db.list("daily_checkins"), beforeCheckins);
+  assert.deepEqual(f.db.get("user_achievements", "u1_first_success"), firstBadge);
+  assert.deepEqual(f.db.list("user_achievements").map(b => b.code).sort(), ["first_card", "first_success", "seven_successes"]);
+});
+test("提前操作按云函数接收时间裁决，处理延迟跨到期点和午夜不改成功归属", async () => {
+  for (const action of ["complete", "giveUp"]) {
+    const f = fixture(), o = (await f.service.execute("u1", f.payload("request_001"))).data;
+    f.tick(119000);
+    const receivedAt = f.time();
+    f.tick(600000);
+    const result = (await f.service.execute("u1", { action, orderId: o._id }, receivedAt)).data;
+    if (action === "complete") {
+      assert.equal(result.completionReason, "early");
+      assert.equal(+new Date(result.completedAt), receivedAt);
+      assert.equal(result.successDate, "2026-09-08");
+      assert.equal(result.elapsedSeconds, 119);
+      assert.equal(f.db.list("daily_successes")[0].date, "2026-09-08");
+    } else {
+      assert.equal(result.status, "given_up");
+      assert.equal(+new Date(result.givenUpAt), receivedAt);
+      assert.equal(f.db.list("wallet_ledger").length, 0);
+    }
+  }
+});
+test("恰好到期时完成与放弃并发都返回自动成功，原终态和结果不被重试覆盖", async () => {
+  const f = fixture(), o = (await f.service.execute("u1", f.payload("request_001"))).data;
+  f.tick(300000);
+  const results = await Promise.all(["complete", "giveUp", "get"].map(action => f.service.execute("u1", { action, orderId: o._id })));
+  for (const result of results) {
+    assert.equal(result.data.status, "completed");
+    assert.equal(result.data.completionReason, "timeout");
+    assert.equal(+new Date(result.data.completedAt), +new Date(o.expiresAt));
+  }
+  const savedOrder = f.db.get("challenge_orders", o._id), savedState = f.db.get("user_state", "u1");
+  f.tick(86400000);
+  await f.service.execute("u1", { action: "giveUp", orderId: o._id });
+  assert.deepEqual(f.db.get("challenge_orders", o._id), savedOrder);
+  assert.deepEqual(f.db.get("user_state", "u1"), savedState);
+  assert.equal(f.db.list("wallet_ledger").length, 1);
+  assert.equal(f.db.list("memorial_card_progress").length, 1);
+});
+test("重开与同key查询补结算一单，旧结果ack不清除新的待查看结果", async () => {
+  const f = fixture(), first = (await f.service.execute("u1", f.payload("request_001"))).data;
+  f.tick(400000);
+  const recovered = await Promise.all([
+    f.service.execute("u1", { action: "active" }),
+    f.service.execute("u1", { action: "lookup", idempotencyKey: "request_001" })
+  ]);
+  assert.ok(recovered.every(r => r.data._id === first._id && r.data.completionReason === "timeout"));
+  assert.equal(f.db.list("wallet_ledger").length, 1);
+  const second = (await f.service.execute("u1", f.payload("request_002"))).data;
+  await f.service.execute("u1", { action: "complete", orderId: second._id });
+  await f.service.execute("u1", { action: "ack", orderId: first._id });
+  assert.equal((await f.service.execute("u1", { action: "active" })).data._id, second._id);
+  await f.service.execute("u1", { action: "ack", orderId: second._id });
+  assert.equal((await f.service.execute("u1", { action: "active" })).data, null);
+  assert.equal(f.db.get("user_state", "u1").walletCents, 10300);
+  assert.equal(f.db.list("wallet_ledger").length, 2);
+  assert.equal(f.db.list("memorial_card_progress").length, 2);
 });

@@ -25,31 +25,30 @@ App({
     this.ensureLogin();
     wx.onNetworkStatusChange((r) => {
       if (r.isConnected) {
-        require("./utils/challenge").reconcile();
-        require("./utils/woodfish").flush();
+        require("./utils/challenge").reconcile(this);
+        require("./utils/woodfish").flush(this);
       }
     });
   },
 
   onShow() {
     if (this.globalData.env) {
-      require("./utils/challenge").reconcile();
-      require("./utils/woodfish").flush();
+      // 首次生命周期中 getApp() 可能尚未返回实例，显式传递当前 App。
+      require("./utils/challenge").reconcile(this);
+      require("./utils/woodfish").flush(this);
     }
   },
 
   // 用微信 OPENID 换取内部 userId(身份分离,业务一律用内部 userId)
   ensureLogin: function () {
     if (this._loginPromise) return this._loginPromise;
-    const cached = wx.getStorageSync("userId");
-    if (cached) {
-      this.globalData.userId = cached;
-    }
+    // 身份由auth确认；缓存不可用不应把登录Promise永久置为失败。
+    try { const cached = wx.getStorageSync("userId"); if (cached) this.globalData.userId = cached; } catch (_) {}
     if (!ENV_ID) return Promise.resolve("");
     this._loginPromise = callFn("auth").then((r) => {
       if (r.success && r.data && r.data.userId) {
         this.globalData.userId = r.data.userId;
-        wx.setStorageSync("userId", r.data.userId);
+        try { wx.setStorageSync("userId", r.data.userId); } catch (_) {}
         return r.data.userId;
       }
       this._loginPromise = null;

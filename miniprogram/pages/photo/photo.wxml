@@ -2,16 +2,19 @@
   <view class="heading">选好你的这一束光</view>
   <view class="subtitle">{{purpose === 'card' ? '完整保留照片，横图、竖图都可以。' : '拖动图片、调整大小，保留你喜欢的部分。'}}</view>
   <view wx:if="{{hint}}" class="error-box">{{hint}}</view>
+  <view wx:if="{{selecting}}" class="muted stack">正在准备图片，较大的图片会自动优化…</view>
+  <view wx:if="{{ready && processingNote}}" class="muted stack">{{processingNote}}</view>
+  <canvas type="2d" id="image-process" class="processing-canvas" />
   <block wx:if="{{purpose === 'avatar'}}">
     <canvas type="2d" id="crop" class="crop" bindtouchstart="start" catchtouchmove="move" />
     <slider min="100" max="300" value="{{zoom * 100}}" disabled="{{!ready || uploading || selecting}}" bindchange="zoom" activeColor="#ef3f86" />
   </block>
   <block wx:else>
-    <view class="preview"><image wx:if="{{preview}}" src="{{preview}}" style="{{previewStyle}}" mode="aspectFit" binderror="previewError" /><view wx:else class="empty">选择一张喜欢的照片</view></view>
+    <view class="preview"><image wx:if="{{preview}}" src="{{preview}}" style="{{previewStyle}}" mode="aspectFit" data-version="{{selectionVersion}}" binderror="previewError" /><view wx:else class="empty">选择一张喜欢的照片</view></view>
     <view wx:if="{{layout}}" class="muted stack">{{layout.columns}} 列 × {{layout.rows}} 行 · 共 {{layout.tileCount}} 块 · 7次成功集齐</view>
   </block>
   <button class="soft-button stack" disabled="{{uploading || selecting}}" loading="{{selecting}}" bindtap="choose">选择图片</button>
   <view wx:if="{{uploading}}" class="stack"><progress percent="{{progress}}" show-info activeColor="#ef3f86" /></view>
   <button class="action stack" disabled="{{!ready || uploading || selecting}}" loading="{{uploading}}" bindtap="upload">确认并上传</button>
-  <view class="muted stack">仅你自己可见 · JPG/PNG · 原图不超过10 MB</view>
+  <view class="muted stack">仅你自己可见 · 大图自动优化 · 保留原始照片</view>
 </view>

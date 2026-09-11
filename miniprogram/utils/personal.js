@@ -1,11 +1,12 @@
 const { callFn } = require('./cloud');
-const MESSAGES = { UNAUTHENTICATED: '暂时无法登录，请联网后重试', EDIT_CONFLICT: '这篇日记已在别处修改，本机内容已保留为草稿',
+const MESSAGES = { UNAUTHENTICATED: '暂时无法登录，请联网后重试', LOCAL_STORAGE_ERROR: '本机记录暂时无法保存，请检查存储空间后重试', EDIT_CONFLICT: '这篇日记已在别处修改，本机内容已保留为草稿',
   WEIGHT_REQUIRED: '请先记录当前体重', CARD_LOCKED: '已完成的拼图图片已锁定', CARD_NOT_COMPLETE: '完成拼图后才能设为背景',
   PRESET_NOT_READY: '图片暂未准备好，请稍后重试', INVALID_WEIGHT: '请填写有效体重（10～500 kg）',
   INVALID_NICKNAME: '昵称需要1～20个字', INVALID_DIARY: '请填写不超过2000字的日记', NOT_FOUND: '这条记录已不存在',
   FORBIDDEN: '无法访问这条记录', INVALID_MEDIA: '图片校验失败，请重新上传', MEDIA_NOT_READY: '图片上传正在准备中，请稍后再来' };
-async function call(action, data = {}) {
-  if (!await getApp().ensureLogin()) return { success: false, error: 'UNAUTHENTICATED' };
+async function call(action, data = {}, app = getApp()) {
+  if (!app || typeof app.ensureLogin !== 'function') return { success: false, error: 'APP_NOT_READY' };
+  if (!await app.ensureLogin()) return { success: false, error: 'UNAUTHENTICATED' };
   return callFn('personal', { ...data, action });
 }
 function error(result) { return MESSAGES[result.error] || '暂时连接不上，内容已保留，请重试'; }

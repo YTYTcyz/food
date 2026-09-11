@@ -1,13 +1,14 @@
 Component({
-  properties: { points: { type: Array, value: [], observer() { if (this.ready) this.draw(); } } },
+  properties: { points: { type: Array, value: [], observer() { if (this.chartReady) this.draw(); } } },
   data: { empty: true, first: '', last: '', minimum: '', maximum: '' },
-  lifetimes: { ready() { this.ready = true; this.draw(); } },
+  lifetimes: { ready() { this.chartReady = true; this.draw(); }, detached() { this.chartReady = false; this.generation = (this.generation || 0) + 1; } },
   methods: {
     draw() {
+      const generation = this.generation = (this.generation || 0) + 1;
       const points = this.properties.points, values = points.filter(p => p.grams != null).map(p => p.grams);
       this.setData({ empty: !values.length, first: points.length ? points[0].date.slice(5) : '', last: points.length ? points[points.length - 1].date.slice(5) : '', minimum: values.length ? (Math.min(...values) / 1000).toFixed(1) : '', maximum: values.length ? (Math.max(...values) / 1000).toFixed(1) : '' });
       this.createSelectorQuery().select('#chart').fields({ node: true, size: true }).exec(rows => {
-        if (!rows[0] || !rows[0].node) return; const canvas = rows[0].node, width = rows[0].width, height = rows[0].height;
+        if (!this.chartReady || generation !== this.generation || !rows[0] || !rows[0].node) return; const canvas = rows[0].node, width = rows[0].width, height = rows[0].height;
         canvas.width = width * 2; canvas.height = height * 2; const c = canvas.getContext('2d'); c.scale(2, 2); c.clearRect(0, 0, width, height);
         if (!values.length) return;
         const lower = Math.min(...values) - 300, upper = Math.max(...values) + 300;

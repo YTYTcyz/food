@@ -1,24 +1,15 @@
 // 云函数调用统一封装:总是 resolve 出 { success, data?, error? },避免各页面重复 try/catch。
-function callFn(name, data = {}) {
-  return new Promise((resolve) => {
+async function callFn(name, data = {}) {
+  try {
     if (!wx.cloud) {
-      resolve({ success: false, error: "NO_CLOUD" });
-      return;
+      return { success: false, error: "NO_CLOUD" };
     }
-    wx.cloud
-      .callFunction({ name, data })
-      .then((res) => {
-        const r = res && res.result;
-        if (r && typeof r === "object" && "success" in r) {
-          resolve(r);
-        } else {
-          resolve({ success: true, data: r });
-        }
-      })
-      .catch((err) => {
-        resolve({ success: false, error: (err && err.errMsg) || "CALL_FAILED" });
-      });
-  });
+    const res = await wx.cloud.callFunction({ name, data });
+    const r = res && res.result;
+    return r && typeof r === "object" && "success" in r ? r : { success: true, data: r };
+  } catch (err) {
+    return { success: false, error: (err && err.errMsg) || "CALL_FAILED" };
+  }
 }
 
 module.exports = { callFn };

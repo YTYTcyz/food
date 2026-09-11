@@ -8,14 +8,21 @@ Page({
     note: "", submitting: false, pending: false, defaultImg: "/images/default-goods-image.png" },
   onLoad(q) { this.merchantId = q.merchantId || ""; },
   async onShow() {
+    this.visible = true;
+    const view = this.viewVersion = (this.viewVersion || 0) + 1;
+    this._navigating = false;
+    this.setData({ submitting: false });
     this.refresh();
     const uid = await getApp().ensureLogin();
-    if (!uid) return;
+    if (!uid || !this.isCurrent(view)) return;
     this.draftKey = `orderDraft:${uid}:${this.merchantId}`;
     this.draft = wx.getStorageSync(this.draftKey) || null;
     this.setData({ pending: !!this.draft });
-    if (this.draft) { this.setData({ note: this.draft.note, paymentMethod: this.draft.paymentMethod }); this.lookup(false); }
+    if (this.draft) { this.setData({ note: this.draft.note, paymentMethod: this.draft.paymentMethod }); return this.lookup(false); }
   },
+  onHide() { this.visible = false; this.viewVersion = (this.viewVersion || 0) + 1; },
+  onUnload() { this.onHide(); },
+  isCurrent(view) { return this.visible && this.viewVersion === view; },
   refresh() {
     const c = cart.getForMerchant(this.merchantId);
     const s = cart.summary(c);
@@ -36,8 +43,10 @@ Page({
   onPayment(e) { if (!this.data.pending) this.setData({ paymentMethod: e.detail.value }); },
   async lookup(resubmit) {
     if (!this.draft || this.data.submitting) return;
+    const view = this.viewVersion;
     this.setData({ submitting: true });
     const r = await challenge.call("lookup", { idempotencyKey: this.draft.idempotencyKey });
+    if (!this.isCurrent(view)) return;
     if (r.success && r.data) { this.created(r.data); return; }
     if (r.success && resubmit) { await this.send(); return; }
     this.setData({ submitting: false });
@@ -45,7 +54,10 @@ Page({
   },
   async startWait() {
     if (this.data.submitting) return;
-    if (!await getApp().ensureLogin()) { wx.showToast({ title: "登录失败，请联网后重试", icon: "none" }); return; }
+    const view = this.viewVersion;
+    const uid = await getApp().ensureLogin();
+    if (!this.isCurrent(view)) return;
+    if (!uid) { wx.showToast({ title: "登录失败，请联网后重试", icon: "none" }); return; }
     if (this.draft) { await this.lookup(true); return; }
     const c = cart.getForMerchant(this.merchantId);
     if (!c || !Object.keys(c.items).length) return;
@@ -57,26 +69,38 @@ Page({
     await this.send();
   },
   async send() {
+    const view = this.viewVersion;
     const r = await challenge.call("create", this.draft);
+    if (!this.isCurrent(view)) return;
     if (r.success && r.data) { this.created(r.data); return; }
     this.setData({ submitting: false });
     if (r.error === "ACTIVE_EXISTS") {
       wx.removeStorageSync(this.draftKey); this.draft = null; this.setData({ pending: false });
       wx.showModal({ title: "已有进行中的挑战", content: "可以继续浏览商品，请先完成当前挑战。", confirmText: "去查看",
-        success: (v) => { if (v.confirm) wx.navigateTo({ url: `/pages/wait/wait?orderId=${r.data._id}` }); } });
+        success: (v) => { if (v.confirm && this.isCurrent(view)) wx.navigateTo({ url: `/pages/wait/wait?orderId=${r.data._id}` }); } });
     } else if (["EMPTY_CART", "INVALID_ORDER", "INVALID_ITEMS", "ITEM_UNAVAILABLE", "MERCHANT_NOT_FOUND", "INVALID_MENU_DATA", "REFERENCE_NOT_READY"].includes(r.error)) {
       wx.removeStorageSync(this.draftKey); this.draft = null; this.setData({ pending: false });
       wx.showToast({ title: "商品信息暂不可用，请返回商家重新选择", icon: "none" });
     } else wx.showToast({ title: "提交未确认，请查询并重试", icon: "none" });
   },
   created(order) {
-    if (this._navigating) return;
+    if (this._navigating || !this.visible) return;
     this._navigating = true;
+    const view = this.viewVersion, draft = this.draft, draftKey = this.draftKey;
     const current = cart.toOrderItems(cart.getForMerchant(this.merchantId));
-    if (JSON.stringify(current) === JSON.stringify(this.draft.items)) cart.clear(this.merchantId);
-    wx.removeStorageSync(this.draftKey); this.draft = null;
+    if (JSON.stringify(current) === JSON.stringify(draft.items)) cart.clear(this.merchantId);
     this.setData({ submitting: false, pending: false });
-    const go = () => wx.redirectTo({ url: `/pages/${order.status === "completed" ? "result/result" : "wait/wait"}?orderId=${order._id}` });
+    const go = () => {
+      if (!this.isCurrent(view)) return;
+      wx.redirectTo({ url: `/pages/${order.status === "completed" ? "result/result" : "wait/wait"}?orderId=${order._id}`,
+        // 成功进入挑战后才移除请求，弹层停留/切后台仍可按原 key 恢复。
+        success: () => {
+          const saved = wx.getStorageSync(draftKey);
+          if (saved && saved.idempotencyKey === draft.idempotencyKey) wx.removeStorageSync(draftKey);
+          if (this.draft && this.draft.idempotencyKey === draft.idempotencyKey) this.draft = null;
+        },
+        fail: () => { if (this.isCurrent(view)) { this._navigating = false; this.setData({ pending: true }); } } });
+    };
     if (order.status !== "waiting") { go(); return; }
     wx.showModal({ title: "模拟订单提交成功", content: "5 分钟模拟配送已开始，成功后计入成就钱包。不会真实支付或配送。",
       showCancel: false, confirmText: "进入等待", success: go });

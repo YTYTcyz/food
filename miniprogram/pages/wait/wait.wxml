@@ -41,7 +41,7 @@
       </view>
     </view>
 
-    <view wx:if="{{status === 'pending'}}" class="card">结果待同步，尚未确认入账。<button bindtap="retry">联网后重试</button></view>
+    <view wx:if="{{status === 'pending'}}" class="card">{{pendingMessage || '结果待同步，尚未确认入账。'}}<button bindtap="retry">重试</button></view>
     <button class="btn-primary" disabled="{{status !== 'waiting'}}" bindtap="onSuccess">我已不想吃了，取消订单</button>
     <view class="cancel" bindtap="onGiveUp">还是吃了</view>
     <view class="sim-tip">模拟订单，不会真实配送或扣款</view>
