@@ -72,6 +72,8 @@
 }
 .order-brief__row {
   display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
   justify-content: space-between;
   font-size: var(--fs-aux);
   color: var(--text-sub);
@@ -106,6 +108,7 @@
 .tool__emoji {
   font-size: 40rpx;
 }
+.tool__image { width: 52rpx; height: 52rpx; flex-shrink: 0; }
 .tool__label {
   font-size: var(--fs-body);
   color: var(--text-main);

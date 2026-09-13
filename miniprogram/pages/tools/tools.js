@@ -1,7 +1,7 @@
 const { openAppGuide } = require('../../utils/app-guide');
 Page({
   data: { tools: [
-    { key: 'woodfish', icon: '木', name: '电子木鱼', description: '轻轻敲一下，让心慢下来', color: 'wood' },
+    { key: 'woodfish', image: '/images/woodfish/woodfish.png', name: '电子木鱼', description: '轻轻敲一下，让心慢下来', color: 'wood' },
     { key: 'diary', icon: '记', name: '心事日记', description: '把这一刻的心情写下来', color: 'diary' },
     { key: 'reverse', icon: '色', name: '图片反转', description: '换一种颜色，看待眼前的诱惑', color: 'reverse' },
     { key: 'card', icon: '光', name: '激励卡片', description: '每一次选择，都点亮一块拼图', color: 'card' }

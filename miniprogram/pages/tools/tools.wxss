@@ -3,4 +3,5 @@
 .tool-icon { flex: 0 0 88rpx; height: 88rpx; line-height: 88rpx; text-align: center; border-radius: 28rpx; font-size: 38rpx; font-weight: 600; background: #f3dfc7; color: #805835; }
 .diary .tool-icon { background: #fce1e9; color: #b34b6a; }.reverse .tool-icon { background: #ddefe8; color: #347c70; }.card .tool-icon { background: #ece4f8; color: #8a5fad; }
 .tool-copy { flex: 1; min-width: 0; }.tool-copy .section-title { margin-bottom: 10rpx; }.chevron { color: #bdb1ab; font-size: 42rpx; }
+.wood-icon { display: block; width: 68rpx; height: 68rpx; margin: 10rpx; }
 

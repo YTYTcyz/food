@@ -1,4 +1,4 @@
 <view class="frame">
   <image wx:if="{{imagePath}}" class="image" src="{{imagePath}}" mode="{{mode}}" data-version="{{version}}" bindload="loaded" binderror="failed" />
-  <view wx:if="{{state !== 'ready'}}" class="placeholder" catchtap="retry">{{state === 'error' ? '图片加载失败，点击重试' : state === 'loading' ? '图片加载中…' : placeholder}}</view>
+  <view wx:if="{{state !== 'ready'}}" class="placeholder" catchtap="retry">{{state === 'error' ? (compact ? '重试' : '图片加载失败，点击重试') : state === 'loading' ? (compact ? '加载中' : '图片加载中…') : placeholder}}</view>
 </view>

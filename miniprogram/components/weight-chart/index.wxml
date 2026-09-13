@@ -1,2 +1,2 @@
-<view class="range">{{empty ? '还没有体重记录' : minimum + '～' + maximum + ' kg'}}</view><canvas type="2d" id="chart" class="chart" /><view class="axis"><text>{{first}}</text><text>{{last}}</text></view><view wx:if="{{empty}}" class="empty-label">记录后，会在这里留下你的变化。</view>
+<view wx:if="{{failed}}" class="retry" bindtap="draw">曲线暂未绘制 · 点击重试</view><view class="range">{{empty ? '还没有体重记录' : minimum + '～' + maximum + ' kg'}}</view><canvas type="2d" id="chart" class="chart" /><view class="axis"><text>{{first}}</text><text>{{last}}</text></view><view wx:if="{{empty}}" class="empty-label">记录后，会在这里留下你的变化。</view>
 

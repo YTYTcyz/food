@@ -4,6 +4,6 @@
 module.exports = {
   ENV_ID: "cloud1-d8g64k9vi2f9daa44",
   APP_DOWNLOAD_URL: "",
-  // 私人存储规则经双用户核验后，由协同操作开启。
-  PRIVATE_MEDIA_READY: false,
+  // 2026-09-11用户要求先开放并统一在Sprint 4验收；personal云函数同名环境变量须为true。
+  PRIVATE_MEDIA_READY: true,
 };

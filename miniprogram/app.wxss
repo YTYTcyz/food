@@ -10,6 +10,7 @@ scroll-view {
 .page {
   min-height: 100vh;
   padding: var(--sp-4);
+  overflow-wrap: break-word;
 }
 
 /* 卡片 */

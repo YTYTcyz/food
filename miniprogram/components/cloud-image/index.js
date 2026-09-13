@@ -4,6 +4,7 @@ Component({
   properties: {
     src: { type: String, value: '' },
     mode: { type: String, value: 'aspectFit' },
+    compact: { type: Boolean, value: false },
     placeholder: { type: String, value: '图片正在准备中' }
   },
   data: { imagePath: '', state: 'empty', version: 0 },

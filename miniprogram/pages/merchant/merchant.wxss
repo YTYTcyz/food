@@ -1,5 +1,7 @@
 .merchant {
-  padding-bottom: var(--sp-8);
+  padding-bottom: 184rpx;
+  padding-bottom: calc(184rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(184rpx + env(safe-area-inset-bottom));
 }
 
 .m-header {
@@ -54,6 +56,8 @@
 }
 .menu-item__bottom {
   display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
   align-items: center;
   justify-content: space-between;
   margin-top: var(--sp-2);
@@ -66,6 +70,7 @@
 
 .stepper {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: var(--sp-3);
 }
@@ -101,19 +106,22 @@
   bottom: var(--sp-4);
   bottom: calc(var(--sp-4) + constant(safe-area-inset-bottom));
   bottom: calc(var(--sp-4) + env(safe-area-inset-bottom));
-  height: 96rpx;
+  min-height: 96rpx;
   border-radius: 999rpx;
   background: var(--surface);
   box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12rpx 0 var(--sp-5);
+  padding: 10rpx 12rpx 10rpx var(--sp-4);
+  gap: 16rpx;
 }
 .cart-bar__info {
   display: flex;
-  align-items: baseline;
-  gap: var(--sp-3);
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4rpx;
 }
 .cart-bar__count {
   font-size: var(--fs-body);
@@ -125,6 +133,7 @@
   color: var(--text-sub);
 }
 .cart-bar__btn {
+  flex-shrink: 0;
   height: 76rpx;
   padding: 0 var(--sp-6);
   border-radius: 999rpx;

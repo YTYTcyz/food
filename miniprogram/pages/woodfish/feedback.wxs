@@ -1,0 +1,22 @@
+// 触摸动效直接在视图层执行，不等待逻辑层 setData 往返。
+function start(event, owner) {
+  var fish = owner.selectComponent('#woodfish-feedback');
+  var data = fish.getDataset();
+  if (!data.enabled) return;
+  var count = event.changedTouches ? event.changedTouches.length : 1;
+  if (!count) return;
+  var state = owner.getState();
+  state.alternate = !state.alternate;
+  var suffix = state.alternate ? 'a' : 'b';
+  fish.setStyle({ animation: 'wood-hit-' + suffix + ' 140ms ease-out' });
+  owner.selectComponent('#woodfish-word').setStyle({ animation: 'wood-word-' + suffix + ' 180ms ease-out' });
+  owner.callMethod('tap', { count: count, viewVersion: data.viewVersion });
+}
+function reset(value, oldValue, owner) {
+  owner.getState().alternate = false;
+  var fish = owner.selectComponent('#woodfish-feedback');
+  var word = owner.selectComponent('#woodfish-word');
+  if (fish) fish.setStyle({ animation: 'none' });
+  if (word) word.setStyle({ animation: 'none' });
+}
+module.exports = { start: start, reset: reset };

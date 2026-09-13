@@ -11,8 +11,8 @@
   <view wx:elif="{{status === 'empty'}}" class="state">没有找到相关商家或商品，换个关键词试试</view>
   <view wx:else class="merchant-list">
     <view class="card" wx:for="{{merchants}}" wx:key="id" wx:for-item="merchant">
-      <view class="merchant-card" data-id="{{merchant.id}}" bindtap="goMerchant"><image class="merchant-card__cover" src="{{merchant.coverFileID || defaultCover}}" mode="aspectFill"/><view class="merchant-card__info"><view class="merchant-card__name">{{merchant.name}}</view><view class="merchant-card__comment">评分 {{merchant.rating}} · 月售 {{merchant.monthlySales}}</view><view class="merchant-card__comment">{{merchant.comment}}</view><text class="tag" wx:for="{{merchant.tags}}" wx:key="*this">{{item}}</text></view></view>
-      <scroll-view scroll-x class="product-row"><view class="product" wx:for="{{merchant.products}}" wx:key="id" data-merchant="{{merchant.id}}" data-id="{{item.id}}" bindtap="goProduct"><image src="{{item.imageFileID || defaultCover}}" mode="aspectFill"/><view>{{item.name}}</view><text>¥{{item.priceCents / 100}}</text></view></scroll-view>
+      <view class="merchant-card" data-id="{{merchant.id}}" bindtap="goMerchant"><cloud-image compact class="merchant-card__cover" src="{{merchant.coverFileID || defaultCover}}" mode="aspectFill"/><view class="merchant-card__info"><view class="merchant-card__name">{{merchant.name}}</view><view class="merchant-card__comment">评分 {{merchant.rating}} · 月售 {{merchant.monthlySales}}</view><view class="merchant-card__comment">{{merchant.comment}}</view><text class="tag" wx:for="{{merchant.tags}}" wx:key="*this">{{item}}</text></view></view>
+      <scroll-view scroll-x class="product-row"><view class="product" wx:for="{{merchant.products}}" wx:key="id" data-merchant="{{merchant.id}}" data-id="{{item.id}}" bindtap="goProduct"><cloud-image compact class="product__image" src="{{item.imageFileID || defaultCover}}" mode="aspectFill"/><view>{{item.name}}</view><text>¥{{item.priceCents / 100}}</text></view></scroll-view>
     </view>
     <view wx:if="{{loadingMore}}" class="state">加载更多…</view>
     <button wx:elif="{{moreError}}" bindtap="more">加载失败，重试下一页</button>

@@ -13,7 +13,7 @@
 
     <view class="card">
       <view class="line" wx:for="{{items}}" wx:key="id">
-        <image class="line__img" src="{{item.imageFileID || defaultImg}}" mode="aspectFill" />
+        <cloud-image compact class="line__img" src="{{item.imageFileID || defaultImg}}" mode="aspectFill" />
         <view class="line__info">
           <view class="line__name">{{item.name}}</view>
           <view class="line__price">¥{{item.priceYuan}}</view>
@@ -45,10 +45,9 @@
       />
     </view>
 
-    <view class="card"><view>模拟支付方式（不会扣款）</view><radio-group bindchange="onPayment"><label wx:for="{{paymentOptions}}" wx:key="*this"><radio value="{{item}}" checked="{{paymentMethod === item}}" disabled="{{pending || submitting}}" />{{item}}</label></radio-group></view>
+    <view class="card"><view>模拟支付方式（不会扣款）</view><radio-group class="payment-options" bindchange="onPayment"><label wx:for="{{paymentOptions}}" wx:key="*this"><radio value="{{item}}" checked="{{paymentMethod === item}}" disabled="{{pending || submitting}}" />{{item}}</label></radio-group></view>
     <view class="sim-tip">模拟点单，不会真实配送或扣款。提交成功即开始计时；点击“不想吃了”或等待到时均算成功，届时计入成就钱包。</view>
 
-    <view style="height: 160rpx;"></view>
 
     <view class="submit-bar">
       <view class="submit-bar__total">

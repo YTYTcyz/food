@@ -1,5 +1,5 @@
 {
-  "usingComponents": {},
+  "usingComponents": { "cloud-image": "/components/cloud-image/index" },
   "enablePullDownRefresh": true,
   "backgroundColor": "#FFF7F2",
   "navigationBarTitleText": "不忍了"

@@ -21,8 +21,10 @@ function page(name, api, mocks = {}) {
   const wx = { getStorageSync: key => structuredClone(storage.get(key)), setStorageSync: (key, data) => storage.set(key, structuredClone(data)), removeStorageSync: key => storage.delete(key),
     showToast: data => toasts.push(data), showModal: data => modals.push(data), navigateBack: () => routes.push('back'), navigateTo: data => routes.push(data.url), redirectTo: data => routes.push(data.url), switchTab: data => routes.push(data.url),
     enableAlertBeforeUnload() {}, disableAlertBeforeUnload() {}, createInnerAudioContext: () => ({ stop() {}, play() {}, destroy() {} }), vibrateShort() {}, getPerformance: () => ({ now: () => 0 }), ...mocks.wx };
+  const audioModule = { exports: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'miniprogram/utils/woodfish-audio.js'), 'utf8'), { module: audioModule, wx });
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), { Page: value => { p = value; }, wx, getApp: () => app,
-    require: id => id === '../../utils/personal' ? api : mocks[id] || localRequire(id),
+    require: id => id === '../../utils/personal' ? api : mocks[id] || (id === '../../utils/woodfish-audio' ? audioModule.exports : localRequire(id)),
     setTimeout: fn => { timers.set(++timerId, fn); return timerId; }, clearTimeout: id => timers.delete(id) });
   p.setData = (data, callback) => { Object.assign(p.data, data); if (callback) callback(); };
   return { p, storage, routes, modals, toasts, timers, wx, app };
@@ -162,7 +164,8 @@ test('木鱼查询期间后台确认敲击不导致显示回退，跨日敲击�
     '../../utils/woodfish': counter, wx: { getPerformance: () => ({ now: () => elapsed }) }
   });
   f.p.onLoad({}); await f.p.onShow(); assert.equal(f.p.data.count, 12); assert.equal(f.p.data.pending, 0);
-  f.p.tap(); assert.equal(f.p.data.count, 13); elapsed = 2000; f.p.tap();
+  f.p.tap(); f.timers.get(f.p.countTimer)(); assert.equal(f.p.data.count, 13);
+  elapsed = 2000; f.p.tap(); f.timers.get(f.p.countTimer)();
   assert.equal(f.p.data.count, 1); assert.equal(state.totals['2026-09-11'], 1);
   f.p.onHide(); const count = f.p.data.count; f.p.tap(); assert.equal(f.p.data.count, count);
 });

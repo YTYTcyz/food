@@ -35,6 +35,7 @@
   font-weight: 600;
   color: var(--text-main);
 }
+.active-card > view { flex: 1; min-width: 0; margin-right: 16rpx; }
 .active-card__hint {
   font-size: var(--fs-aux);
   color: var(--text-sub);
@@ -109,6 +110,6 @@
 .list-heading { display: flex; justify-content: space-between; margin-bottom: 10rpx; }
 .product-row { white-space: nowrap; padding: 0 16rpx 20rpx; box-sizing: border-box; }
 .product { display: inline-block; vertical-align: top; width: 180rpx; margin-right: 16rpx; font-size: 23rpx; white-space: normal; }
-.product image { width: 180rpx; height: 140rpx; border-radius: 16rpx; }
+.product__image { width: 180rpx; height: 140rpx; border-radius: 16rpx; }
 .product text { color: #db5720; }
 .tag { font-size: 22rpx; margin-right: 12rpx; color: #a84522; }

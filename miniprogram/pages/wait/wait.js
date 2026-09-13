@@ -1,7 +1,7 @@
 const challenge = require("../../utils/challenge");
 Page({
   data: { status: "loading", order: null, remaining: 0, mmss: "05:00", progress: 0, pendingMessage: '',
-    tools: [{ key: "woodfish", label: "电子木鱼", emoji: "🪵" }, { key: "diary", label: "心事日记", emoji: "📝" },
+    tools: [{ key: "woodfish", label: "电子木鱼", image: "/images/woodfish/woodfish.png" }, { key: "diary", label: "心事日记", emoji: "📝" },
       { key: "reverse", label: "图片反转", emoji: "🎨" }, { key: "card", label: "激励卡片", emoji: "✨" }] },
   onLoad(q) { this.orderId = q.orderId; },
   onShow() { this.visible = true; this.sync(); },

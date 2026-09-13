@@ -1,8 +1,11 @@
 @import '../../styles/personal.wxss';
 .wood-space { height: 560rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.woodfish { display: block; width: 350rpx; height: 280rpx; margin-bottom: 42rpx; transition: transform .1s; }
-.woodfish.hit { transform: scale(.94); }
-.floating { height: 70rpx; opacity: 0; color: #966039; font-size: 32rpx; transition: opacity .2s, transform .2s; }
-.floating.show { opacity: 1; transform: translateY(-12rpx); }
+.woodfish { display: block; width: 350rpx; height: 280rpx; margin-bottom: 42rpx; transform-origin: center bottom; }
+.floating { height: 70rpx; opacity: 0; color: #966039; font-size: 32rpx; }
+/* 新一击替换旧动画，直接反馈并自行回弹，不等待上一击结束。 */
+@keyframes wood-hit-a { 0% { transform: scale(.94); } 100% { transform: scale(1); } }
+@keyframes wood-hit-b { 0% { transform: scale(.94); } 100% { transform: scale(1); } }
+@keyframes wood-word-a { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-28rpx); } }
+@keyframes wood-word-b { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-28rpx); } }
 .count-panel { text-align: center; }
 .count { font-size: 86rpx; color: #8b5c3b; margin: 12rpx; }

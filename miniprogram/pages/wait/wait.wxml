@@ -35,7 +35,8 @@
       <view class="tools__title">转移一下注意力</view>
       <view class="tools__grid">
         <view class="tool" wx:for="{{tools}}" wx:key="key" data-key="{{item.key}}" bindtap="onTool">
-          <view class="tool__emoji">{{item.emoji}}</view>
+          <image wx:if="{{item.image}}" class="tool__image" src="{{item.image}}" mode="aspectFit" />
+          <view wx:else class="tool__emoji">{{item.emoji}}</view>
           <view class="tool__label">{{item.label}}</view>
         </view>
       </view>

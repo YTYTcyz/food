@@ -28,7 +28,7 @@
 
     <view class="menu-list">
       <view id="dish-{{item.id}}" class="menu-item card" wx:for="{{menu}}" wx:key="id">
-        <image
+        <cloud-image compact
           class="menu-item__img"
           src="{{item.imageFileID || defaultImg}}"
           mode="aspectFill"
@@ -59,7 +59,6 @@
     </view>
 
     <view class="sim-note">模拟点单,不会真实配送,也不会扣款</view>
-    <view style="height: 140rpx;"></view>
   </block>
 
   <!-- 购物车栏 -->

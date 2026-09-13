@@ -4,7 +4,7 @@ const puzzle = require('../../domain/puzzle');
 const { prepareImage } = require('../../utils/image-upload');
 const { PRIVATE_MEDIA_READY } = require('../../config');
 Page({
-  data: { purpose: 'card', ready: false, zoom: 1, progress: 0, uploading: false, selecting: false, hint: '', preview: '', previewStyle: '', selectionVersion: 0, processingNote: '' },
+  data: { mediaReady: PRIVATE_MEDIA_READY, purpose: 'card', ready: false, zoom: 1, progress: 0, uploading: false, selecting: false, hint: '', preview: '', previewStyle: '', selectionVersion: 0, processingNote: '' },
   onLoad(q) { this.visible = true; this.setData({ purpose: q.purpose === 'avatar' ? 'avatar' : 'card' }); },
   onReady() { if (PRIVATE_MEDIA_READY) this.choose(); else this.setData({ hint: '图片上传正在准备中，请稍后再来。' }); },
   onShow() { this.visible = true; this.finishUpload(); },

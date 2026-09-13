@@ -1,6 +1,12 @@
 .order {
   padding: var(--sp-4);
+  padding-bottom: 200rpx;
+  padding-bottom: calc(200rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(200rpx + env(safe-area-inset-bottom));
 }
+.order > .card { margin-bottom: var(--sp-4); }
+.payment-options { display: flex; flex-wrap: wrap; gap: 24rpx; margin-top: 24rpx; }
+.payment-options label { display: flex; align-items: center; }
 
 .state {
   padding: 120rpx var(--sp-4);
@@ -56,6 +62,7 @@
 
 .stepper {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: var(--sp-3);
 }
@@ -83,6 +90,8 @@
 
 .fees__row {
   display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
   justify-content: space-between;
   font-size: var(--fs-aux);
   color: var(--text-sub);
@@ -141,21 +150,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20rpx;
 }
+.submit-bar__total { flex: 1; min-width: 0; }
 .submit-bar__label {
+  display: block;
   font-size: var(--fs-aux);
   color: var(--text-sub);
   margin-right: var(--sp-2);
 }
 .submit-bar__num {
-  font-size: var(--fs-headline);
+  font-size: 44rpx;
   color: var(--brand-orange);
   font-weight: 600;
 }
 .submit-bar__btn {
+  flex-shrink: 0;
   height: 84rpx;
   line-height: 84rpx;
-  padding: 0 var(--sp-7);
+  padding: 0 var(--sp-4);
   border-radius: 999rpx;
   background: var(--brand-gradient);
   color: #fff;

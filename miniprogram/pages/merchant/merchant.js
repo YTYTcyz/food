@@ -15,23 +15,31 @@ Page({
     cartGoodsYuan: "0.00",
   },
 
-  onLoad(query) {
+  onLoad(query = {}) {
     this.focusItemId = query.itemId || "";
     this.setData({ merchantId: (query && query.id) || "" });
-    this.load();
   },
 
   onShow() {
+    this.visible = true;
     this.refreshCart();
+    if (this.data.merchant) wx.setNavigationBarTitle({ title: this.data.merchant.name });
+    if (this.data.status === 'loading' || this.data.status === 'error') return this.load();
+    this.focusItem(this.loadVersion);
   },
+  onHide() { this.visible = false; this.loadVersion = (this.loadVersion || 0) + 1; },
+  onUnload() { this.onHide(); },
+  isCurrent(version) { return this.visible && this.loadVersion === version; },
 
   load() {
+    const version = this.loadVersion = (this.loadVersion || 0) + 1;
     if (!app.globalData.env || !this.data.merchantId) {
       this.setData({ status: "error" });
       return;
     }
     this.setData({ status: "loading" });
-    callFn("merchant", { action: "detail", merchantId: this.data.merchantId }).then((r) => {
+    return callFn("merchant", { action: "detail", merchantId: this.data.merchantId }).then((r) => {
+      if (!this.isCurrent(version)) return;
       if (!r.success || !r.data) {
         this.setData({ status: "error" });
         return;
@@ -47,7 +55,15 @@ Page({
         status: (d.menu || []).length ? "ready" : "empty",
       });
       this.refreshCart();
-      if (this.focusItemId) wx.nextTick(() => wx.pageScrollTo({ selector: `#dish-${this.focusItemId}`, duration: 300 }));
+      this.focusItem(version);
+    });
+  },
+  focusItem(version) {
+    if (this.focusItemId) wx.nextTick(() => {
+      if (!this.isCurrent(version) || !this.focusItemId) return;
+      const id = this.focusItemId;
+      this.focusItemId = '';
+      wx.pageScrollTo({ selector: `#dish-${id}`, duration: 300 });
     });
   },
 
@@ -81,6 +97,6 @@ Page({
   },
 
   retry() {
-    this.load();
+    return this.load();
   },
 });

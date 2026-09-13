@@ -2,7 +2,7 @@
   <view class="heading">给自己一点时间</view><view class="subtitle">想吃的冲动来了，也可以先陪自己一会儿。</view>
   <challenge-banner bind:leave="leave" />
   <view class="tool-tile {{item.color}}" wx:for="{{tools}}" wx:key="key" data-key="{{item.key}}" bindtap="openTool">
-    <view class="tool-icon">{{item.icon}}</view><view class="tool-copy"><view class="section-title">{{item.name}}</view><view class="muted">{{item.description}}</view></view><text class="chevron">›</text>
+    <view class="tool-icon"><image wx:if="{{item.image}}" class="wood-icon" src="{{item.image}}" mode="aspectFit" /><text wx:else>{{item.icon}}</text></view><view class="tool-copy"><view class="section-title">{{item.name}}</view><view class="muted">{{item.description}}</view></view><text class="chevron">›</text>
   </view>
   <view class="section row stack" bindtap="download"><text>更多健康功能</text><text class="link">了解 App ›</text></view>
 </view>

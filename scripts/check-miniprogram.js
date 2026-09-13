@@ -40,10 +40,15 @@ if (compilerRoot) {
   fs.mkdirSync(path.join(root,'tmp'),{ recursive:true });
   for (const [binary,extension] of [['wcc.exe','.wxml'],['wcsc.exe','.wxss']]) {
     const inputs = files(mini).filter(file => file.endsWith(extension)).map(file => './' + path.relative(mini,file).split(path.sep).join('/'));
+    const wxs = extension === '.wxml' ? files(mini).filter(file => file.endsWith('.wxs')).map(file => './' + path.relative(mini,file).split(path.sep).join('/')) : [];
     const output = path.join(root, 'tmp', extension.slice(1) + '-compiled.js');
-    const result = spawnSync(path.join(binaries,binary), ['-o',output,...inputs], { cwd:mini,encoding:'utf8',maxBuffer:8*1024*1024 });
-    if (result.status !== 0) throw new Error(binary + ': ' + result.stderr + result.stdout);
-    console.log(binary + ': ' + inputs.length + ' files compiled');
+    // wcc 必须显式接收外部 WXS；wcsc 只编译首个文件，其余参数为 import 依赖。
+    const batches = extension === '.wxss' ? inputs.map(first => [first, ...inputs.filter(file => file !== first)]) : [[...inputs, ...wxs]];
+    for (const batch of batches) {
+      const result = spawnSync(path.join(binaries,binary), ['-o',output,...batch], { cwd:mini,encoding:'utf8',maxBuffer:8*1024*1024 });
+      if (result.status !== 0) throw new Error(binary + ': ' + result.stderr + result.stdout);
+    }
+    console.log(binary + ': ' + inputs.length + ' files compiled' + (wxs.length ? ' with ' + wxs.length + ' WXS' : ''));
   }
 }
 console.log(js + ' JavaScript, ' + json + ' JSON, ' + app.pages.length + ' complete page routes checked');
