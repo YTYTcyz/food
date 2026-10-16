@@ -1,10 +1,11 @@
+const { instrumentPage, engage } = require('../../utils/analytics-page');
 const api = require('../../utils/personal');
 const counter = require('../../utils/woodfish');
 const { create: createAudio } = require('../../utils/woodfish-audio');
 const { dayKey } = require('../../domain/product');
 const FRAME_MS = 16;
 const SYNC_MS = 1000;
-Page({
+Page(instrumentPage({
   data: { count: 0, pending: 0, ready: false, active: false, viewVersion: 0, sound: true, soundReady: false, soundSaving: false, orderId: '', hint: '', audioHint: '' },
   onLoad(q) {
     this.setData({ orderId: q.orderId || '' });
@@ -97,6 +98,7 @@ Page({
     if (date !== this.date) { this.date = date; this.serverCount = 0; this.serverDeviceTotal = 0; }
     try { this.updateCount(counter.tap(date, count), false); }
     catch (_) { this.setData({ hint: '本机空间不足，本次未计数，请清理空间后重试' }); return; }
+    engage(this, count);
     this.scheduleSync(true);
     if (this.data.sound && this.audio) for (let i = 0; i < count; i++) this.audio.play();
     this.vibrate();
@@ -127,4 +129,4 @@ Page({
     if (!r.success) api.toast(r);
   },
   leave(e) { wx.navigateTo({ url: e.detail.url }); }
-});
+}, 'woodfish'));

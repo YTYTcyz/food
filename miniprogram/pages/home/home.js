@@ -1,6 +1,8 @@
+const { instrumentPage } = require('../../utils/analytics-page');
+const analytics = require('../../utils/analytics');
 const { callFn } = require("../../utils/cloud");
 const challenge = require("../../utils/challenge");
-Page({
+Page(instrumentPage({
   data: { status: "loading", merchants: [], active: null, challengeError: false, keyword: "", category: "", sort: "recommend",
     categories: [{ id: "", name: "全部" }], sorts: ["综合推荐", "评分", "月售"], sortIndex: 0,
     hasMore: false, loadingMore: false, moreError: false, defaultCover: "/images/default-goods-image.png" },
@@ -20,13 +22,16 @@ Page({
     if (o) wx.navigateTo({ url: `/pages/${o.status === "completed" ? "result/result" : "wait/wait"}?orderId=${o._id}` });
   },
   onKeyword(e) { this.setData({ keyword: e.detail.value }); },
-  search() { this.load(true); },
-  selectCategory(e) { this.setData({ category: e.currentTarget.dataset.id }); this.load(true); },
-  selectSort(e) { const i = Number(e.detail.value); this.setData({ sortIndex: i, sort: ["recommend", "rating", "sales"][i] }); this.load(true); },
+  search() { analytics.track('brl_home_search_click', { keyword_length: Array.from(this.data.keyword.trim()).length }); this.searchPending = true; this.load(true); },
+  selectCategory(e) { this.setData({ category: e.currentTarget.dataset.id }); analytics.track('brl_home_category_click', { category_id: this.data.category || 'all' }); this.load(true); },
+  selectSort(e) { const i = Number(e.detail.value); this.setData({ sortIndex: i, sort: ["recommend", "rating", "sales"][i] }); analytics.track('brl_home_sort_click', { sort: this.data.sort }); this.load(true); },
   async load(reset) {
     if (!reset && (this.data.loadingMore || !this.data.hasMore)) return;
     if (reset) { this.generation = (this.generation || 0) + 1; this.page = 0; }
     const generation = this.generation;
+    const isSearch = reset && this.searchPending;
+    const keywordLength = Array.from(this.data.keyword.trim()).length;
+    if (reset) this.searchPending = false;
     const page = this.page + 1;
     this.setData(reset ? { status: "loading", merchants: [], loadingMore: false, moreError: false, hasMore: false } : { loadingMore: true, moreError: false });
     const r = await callFn("merchant", { action: "list", keyword: this.data.keyword, category: this.data.category,
@@ -34,6 +39,7 @@ Page({
     if (generation !== this.generation) return;
     if (this.visible !== false) wx.stopPullDownRefresh();
     if (!r.success) { this.setData(reset ? { status: "error" } : { loadingMore: false, moreError: true }); return; }
+    if (isSearch) analytics.track('brl_home_search_submit', { keyword_length: keywordLength, result_count: Number(r.data.total) || r.data.items.length, zero_results: !r.data.items.length, success: true });
     this.page = page;
     const list = reset ? r.data.items : this.data.merchants.concat(r.data.items);
     this.setData({ merchants: list, categories: [{ id: "", name: "全部" }].concat(r.data.categories),
@@ -43,6 +49,6 @@ Page({
   onReachBottom() { this.load(false); },
   retry() { this.load(true); },
   more() { this.load(false); },
-  goMerchant(e) { wx.navigateTo({ url: `/pages/merchant/merchant?id=${e.currentTarget.dataset.id}` }); },
-  goProduct(e) { const d = e.currentTarget.dataset; wx.navigateTo({ url: `/pages/merchant/merchant?id=${d.merchant}&itemId=${d.id}` }); },
-});
+  goMerchant(e) { analytics.track('brl_home_merchant_click', { merchant_id: e.currentTarget.dataset.id, entry_pos: 'merchant' }); wx.navigateTo({ url: `/pages/merchant/merchant?id=${e.currentTarget.dataset.id}` }); },
+  goProduct(e) { const d = e.currentTarget.dataset; analytics.track('brl_home_merchant_click', { merchant_id: d.merchant, item_id: d.id, entry_pos: 'dish' }); wx.navigateTo({ url: `/pages/merchant/merchant?id=${d.merchant}&itemId=${d.id}` }); },
+}, 'home'));

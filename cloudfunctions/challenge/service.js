@@ -2,6 +2,10 @@ const crypto = require("crypto");
 const rules = require("./lib/product");
 const puzzle = require('./lib/puzzle');
 const { initialState } = require("./lib/personal");
+const { attribution } = require('./lib/analytics-context');
+
+// 分析字段只是归因线索，不参与定价、身份、幂等或奖励判断。
+// 异常分析字段丢弃，不能让埋点阻断正常下单；不持久化任意客户端对象。
 
 // user_state 是每个用户的事务互斥点；所有读写仅使用 doc。
 function createService(db, now = Date.now) {
@@ -129,6 +133,8 @@ function createService(db, now = Date.now) {
           virtualAddress: rules.VIRTUAL_ADDRESS, status: "waiting", durationSeconds: rules.DURATION_SECONDS,
           startedAt, expiresAt: new Date(startedAt.getTime() + rules.DURATION_SECONDS * 1000),
           idempotencyKey: event.idempotencyKey, createdAt: startedAt, updatedAt: startedAt };
+        const analytics = attribution(event.analytics);
+        if (analytics) order.analytics = analytics;
         state.activeOrderId = id;
         await put(tx, "challenge_orders", id, order); await put(tx, "user_state", userId, state);
         return { order };
@@ -158,4 +164,4 @@ function createService(db, now = Date.now) {
   }
   return { execute };
 }
-module.exports = { createService };
+module.exports = { createService, attribution };

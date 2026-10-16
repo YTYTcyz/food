@@ -1,5 +1,7 @@
 const { APP_DOWNLOAD_URL } = require("../config");
+const analytics = require('./analytics');
 function openAppGuide(source = "download") {
+  analytics.track('brl_app_entry_click', { entry_pos: source });
   const message = source === "withdraw" ? "提现功能暂未开放。成就钱包记录模拟累计节省金额。"
     : source === "health" ? "更多健康功能暂未开放。" : "App 暂未开放下载，后续开放后可从这里进入。";
   wx.showModal({ title: source === "withdraw" ? "成就钱包" : "不忍了 App", content: message,

@@ -1,5 +1,7 @@
+const { instrumentPage, context: analyticsContext } = require('../../utils/analytics-page');
+const analytics = require('../../utils/analytics');
 const challenge = require("../../utils/challenge");
-Page({
+Page(instrumentPage({
   data: { status: "loading", order: null, remaining: 0, mmss: "05:00", progress: 0, pendingMessage: '',
     tools: [{ key: "woodfish", label: "电子木鱼", image: "/images/woodfish/woodfish.png" }, { key: "diary", label: "心事日记", emoji: "📝" },
       { key: "reverse", label: "图片反转", emoji: "🎨" }, { key: "card", label: "激励卡片", emoji: "✨" }] },
@@ -47,6 +49,7 @@ Page({
     if (this.busy || this.data.status !== "waiting" || !this.visible) return;
     const version = this.requestVersion || 0;
     this.busy = true; this.stopTimer(); this.setData({ status: "submitting" });
+    analytics.track('brl_cooldown_choice', { choice: action }, analyticsContext(this));
     const r = await challenge.submitOutcome(this.orderId, action);
     if (!this.isCurrent(version)) return;
     this.busy = false;
@@ -60,8 +63,9 @@ Page({
       confirmText: "再坚持下", cancelText: "还是吃了", success: (r) => { if (r.cancel) this.choose("giveUp"); } });
   },
   onTool(e) {
+    analytics.track('brl_cooldown_tool_click', { tool: e.currentTarget.dataset.key, entry_source: 'challenge' }, analyticsContext(this));
     getApp().globalData.toolContext = { orderId: this.orderId, tool: e.currentTarget.dataset.key };
     wx.switchTab({ url: "/pages/tools/tools" });
   },
   retry() { this.sync(); },
-});
+}, 'wait'));

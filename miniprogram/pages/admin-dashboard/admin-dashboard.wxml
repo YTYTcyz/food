@@ -1,0 +1,119 @@
+<view class="dashboard">
+  <view class="intro">
+    <text class="eyebrow">不忍了 · 管理员专属</text>
+    <view class="heading">运营看板</view>
+    <view class="subtitle">用户规模、挑战转化、留存与工具使用</view>
+  </view>
+
+  <view wx:if="{{status !== 'denied'}}" class="filters">
+    <view class="filter-row"><text class="filter-label">时间范围</text><view class="segments">
+      <button class="segment {{days === 7 ? 'selected' : ''}}" data-days="7" bindtap="chooseDays">近 7 天</button>
+      <button class="segment {{days === 30 ? 'selected' : ''}}" data-days="30" bindtap="chooseDays">近 30 天</button>
+    </view></view>
+    <view class="filter-row"><text class="filter-label">用户范围</text><view class="segments">
+      <button class="segment {{scope === 'release' ? 'selected' : ''}}" data-scope="release" bindtap="chooseScope">正式用户</button>
+      <button class="segment {{scope === 'all' ? 'selected' : ''}}" data-scope="all" bindtap="chooseScope">含测试</button>
+    </view></view>
+    <view class="caption">北京时间 · 含今天 · 下拉刷新</view>
+  </view>
+
+  <view wx:if="{{status === 'loading'}}" class="state-box"><view class="state-title">正在验证权限并加载统计…</view><text>运营数据仅对管理员开放。</text></view>
+  <view wx:elif="{{status === 'denied'}}" class="state-box"><view class="state-title">仅管理员可访问</view><text>当前账号未获得运营看板权限。</text><button class="action" bindtap="back">返回我的</button></view>
+  <view wx:elif="{{status === 'error'}}" class="state-box"><view class="state-title">暂时没有加载成功</view><text>{{message}}</text><button class="action" bindtap="retry">重新加载</button></view>
+  <view wx:elif="{{status === 'pending'}}" class="state-box"><view class="state-title">等待首次统计</view><text>{{message || '当前范围还没有可用的汇总。'}}</text><view class="caption">正式用户范围不包含开发版和测试账号；验收时可切换「含测试」。</view><button class="action" bindtap="retry">刷新统计</button></view>
+
+  <block wx:if="{{status === 'ready' && report}}">
+    <view class="freshness"><view>{{report.rangeLabel}}</view><view>{{report.scopeLabel}}</view><view>汇总生成：{{report.generatedAt}}</view><view>统计截至：{{report.watermark}}</view></view>
+    <view wx:for="{{report.notices}}" wx:key="*this" class="notice">{{item}}</view>
+
+    <view class="panel northstar">
+      <view class="section-number">01 / 价值交付</view>
+      <view class="section-title">周完成挑战用户数</view>
+      <view class="hero-number">{{report.weekly}}<text>人</text></view>
+      <view class="caption">本周一至统计时间 · 上周同期 {{report.previousWeekly}} 人</view>
+      <view class="comparison">与上周同期相比：{{report.weekChange}}</view>
+      <view class="divider"></view>
+      <view class="caption">当前筛选区间共 {{report.completedUsers}} 人完成挑战</view>
+      <view class="metric-pair"><view><text class="metric-number">{{report.earlyUsers}}</text><view class="metric-label">主动提前成功用户</view></view><view><text class="metric-number">{{report.timeoutUsers}}</text><view class="metric-label">到期自动成功用户</view></view></view>
+      <view class="result-rate"><text>已完成订单结果查看率</text><text>{{report.resultViewRate}}</text></view>
+      <view class="caption">区间内完成的挑战中，{{report.resultViewedOrders}} 单已查看结果</view>
+      <view class="footnote">同一用户可能出现在两类中，不能直接相加。自动成功只代表挑战到期，不能证明现实中没有进食。</view>
+    </view>
+
+    <view class="panel">
+      <view class="section-number">02 / 用户规模</view><view class="section-title">有多少人来，是否继续使用</view>
+      <view class="metrics"><view class="metric" wx:for="{{report.stats}}" wx:key="key"><view class="metric-label">{{item.label}}</view><view class="metric-number">{{item.value}}</view><view class="caption">{{item.note}}</view></view></view>
+      <view class="source-line"><text>活跃粘性 · DAU / MAU</text><text>{{report.dauMau}}</text></view>
+      <view class="source-line"><text>区间人均创建挑战</text><text>{{report.ordersPerActiveUser}} 单</text></view>
+      <view class="source-line"><text>挑战用户工具渗透率</text><text>{{report.toolPenetration}}</text></view>
+      <view class="caption">人均挑战以区间活跃用户为分母；工具渗透率以区间创建挑战用户为分母，统计其挑战结束前的有效使用。</view>
+      <view class="chart-title">每日活跃与完成挑战用户</view>
+      <view wx:if="{{report.trend.length}}">
+        <view class="axis"><text>单位：人</text><text>纵轴 0 — {{report.trendMax}}</text></view>
+        <view class="legend"><text><text class="legend-dot active-dot"></text>活跃用户</text><text><text class="legend-dot completed-dot"></text>完成挑战用户</text></view>
+        <scroll-view scroll-x class="trend-scroll" enhanced show-scrollbar="{{true}}">
+          <view class="trend-chart">
+            <view class="trend-column" wx:for="{{report.trend}}" wx:key="date">
+              <view class="trend-values"><text>{{item.value}}</text><text>{{item.completed}}</text></view><view class="trend-track"><view class="trend-bar" style="height: {{item.height}}%;"></view><view class="trend-bar completed-bar" style="height: {{item.completedHeight}}%;"></view></view><view class="trend-date">{{item.label}}</view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="caption">横轴：日期（月-日）· 可横向滑动查看</view>
+      </view>
+      <view wx:else class="empty-inline">尚无每日趋势</view>
+      <view class="chart-title">进入小程序的来源</view>
+      <view wx:for="{{report.sources}}" wx:key="scene" class="bar-row"><view class="bar-heading"><text>{{item.label}}</text><text>{{item.value}} 人 · {{item.sessionLabel}} 次会话</text></view><view class="bar-track"><view class="bar-fill muted-bar" style="width: {{item.width}}%;"></view></view></view>
+      <view wx:if="{{!report.sources.length}}" class="empty-inline">尚无来源记录</view>
+      <view class="footnote">用户跨来源去重统计，各来源人数不可直接相加；后台自动结算不计为活跃或回访。</view>
+    </view>
+
+    <view class="panel">
+      <view class="section-number">03 / 核心转化</view><view class="section-title">用户在哪一步离开</view>
+      <view wx:for="{{report.funnel}}" wx:key="key" class="funnel-row"><view class="bar-heading"><text class="funnel-name">{{item.step}}. {{item.label}}</text><text class="bar-value">{{item.value}} 人</text></view><view class="bar-track"><view class="bar-fill" style="width: {{item.width}}%;"></view></view><view class="caption">{{index === 0 ? '漏斗起点' : '较上一步转化 ' + item.conversion}}</view></view>
+      <view wx:if="{{!report.funnel.length}}" class="empty-inline">尚无漏斗记录</view>
+      <view class="result-rate"><text>挑战订单成功率</text><text>{{report.successRate}}</text></view>
+      <view class="caption">当前区间创建且已结算 {{report.eligibleOrders}} 单，其中成功 {{report.cohortCompletedOrders}} 单</view>
+      <view class="footnote">漏斗按有顺序的行为链统计人数。订单成功率 = 区间内创建且已结算的成功订单 ÷（成功 + 放弃订单），等待中不计入。切 Tab、锁屏和退出是过程行为，不计为挑战失败。</view>
+    </view>
+
+    <view class="panel">
+      <view class="section-number">04 / 留存</view><view class="section-title">第一次来以后，还会回来吗</view>
+      <view class="caption">首次观测到前台访问的用户 · 自然日回访</view>
+      <view class="result-rate"><text>首访后 7 日内完成过挑战</text><text>{{report.activationRate}}</text></view>
+      <view class="caption">观察满 168 小时的 {{report.activationEligible}} 人中，有 {{report.activatedUsers}} 人在首次访问后 168 小时内至少完成 1 次挑战</view>
+      <view wx:if="{{report.retention.length}}" class="retention-table">
+        <view class="retention-row table-head"><view>首访 / 人数</view><view>次日</view><view>第 3 日</view><view>第 7 日</view></view>
+        <view wx:for="{{report.retention}}" wx:key="date" class="retention-row"><view class="cohort"><view>{{item.shortDate}}</view><text>{{item.users}} 人</text></view><view class="retention-cell {{item.d1.tone}}"><view>{{item.d1.label}}</view><text>{{item.d1.sample}}</text></view><view class="retention-cell {{item.d3.tone}}"><view>{{item.d3.label}}</view><text>{{item.d3.sample}}</text></view><view class="retention-cell {{item.d7.tone}}"><view>{{item.d7.label}}</view><text>{{item.d7.sample}}</text></view></view>
+      </view>
+      <view wx:else class="empty-inline">尚无首访分组</view>
+      <view class="footnote">只计算已满观察期的分组。「未满期」不等于 0%；历史未采集的访问不能追补。</view>
+      <view class="chart-title">按首日挑战行为比较留存</view>
+      <view wx:for="{{report.retentionGroups}}" wx:key="key" class="group-card">
+        <view class="bar-heading"><text>{{item.label}}</text><text>{{item.users}} 人</text></view>
+        <view class="group-grid"><view class="group-cell {{item.d1.tone}}"><view class="caption">次日</view><view>{{item.d1.label}}</view><text>{{item.d1.sample}}</text></view><view class="group-cell {{item.d3.tone}}"><view class="caption">第 3 日</view><view>{{item.d3.label}}</view><text>{{item.d3.sample}}</text></view><view class="group-cell {{item.d7.tone}}"><view class="caption">第 7 日</view><view>{{item.d7.label}}</view><text>{{item.d7.sample}}</text></view></view>
+      </view>
+      <view wx:if="{{!report.retentionGroups.length}}" class="empty-inline">尚无首日行为分组</view>
+      <view class="footnote">按首访当日「有成功 → 无成功但有放弃 → 仅等待 → 未发起」分组。每格显示回访人数 / 已满观察期人数，未满期用户不进入分母；分组差异只代表关联。</view>
+    </view>
+
+    <view class="panel">
+      <view class="section-number">05 / 工具使用</view><view class="section-title">哪些工具有人用</view>
+      <view wx:for="{{report.tools}}" wx:key="key" class="tool-row"><view class="bar-heading"><text class="tool-title">{{item.label}}</text><text>{{item.users}} 人使用</text></view><view class="tool-detail"><view>有效使用 {{item.engagements}} 次</view><view>人均前台时长 {{item.avgDuration}} · {{item.durationSampleUsers}} 人有时长样本</view><view>关联挑战 {{item.linkedOrders}} 单 · 完成 {{item.completedOrders}} 单</view><view>关联挑战成功率 {{item.successRate}}</view></view></view>
+      <view wx:if="{{!report.tools.length}}" class="empty-inline">尚无工具使用记录</view>
+      <view class="chart-title">使用工具与挑战结果的关联</view>
+      <view class="comparison-grid"><view><view class="metric-label">挑战中使用工具</view><view class="metric-number small-number">{{report.used.rate}}</view><view class="caption">{{report.used.orders}} 单 · 完成 {{report.used.completed}} 单</view></view><view><view class="metric-label">挑战中未使用工具</view><view class="metric-number small-number">{{report.unused.rate}}</view><view class="caption">{{report.unused.orders}} 单 · 完成 {{report.unused.completed}} 单</view></view></view>
+      <view class="comparison">成功率差异：{{report.difference}}</view>
+      <view class="footnote">时长仅统计收到结束汇总的用户，未上报不计为 0。仅关联挑战结束前的工具使用；独立使用保留在使用指标中。这是观察关联，不能据此认定工具导致成功率变化。</view>
+    </view>
+
+    <view class="panel">
+      <view class="section-number">06 / APP 兴趣</view><view class="section-title">是否愿意进一步了解 App</view>
+      <view class="interest-metrics"><view><view class="metric-number">{{report.appViews}}</view><view class="metric-label">入口曝光次数</view></view><view><view class="metric-number">{{report.appClicks}}</view><view class="metric-label">入口点击次数</view></view><view><view class="metric-number">{{report.appUsers}}</view><view class="metric-label">点击用户数</view></view></view>
+      <view wx:for="{{report.appSources}}" wx:key="source" class="source-line"><text>{{item.label}}</text><text>曝光 {{item.views}} · 点击 {{item.clicks}}</text></view>
+      <view class="result-rate"><text>真实 App 激活</text><text class="unconnected">未接入</text></view>
+      <view class="footnote">入口点击用于观察兴趣，不等于下载或激活。</view>
+    </view>
+    <view wx:if="{{report.definitions.length}}" class="panel definitions"><button class="definitions-toggle" bindtap="toggleDefinitions">完整统计口径 <text>{{definitionsVisible ? '收起 −' : '展开 ＋'}}</text></button><view wx:if="{{definitionsVisible}}"><view wx:for="{{report.definitions}}" wx:key="*this" class="definition-item">{{index + 1}}. {{item}}</view></view></view>
+    <view class="footer-note">空缺指标显示「—」；已观测的真实零值显示「0」。<view>仅管理员可见 · 每次查询均验证权限</view></view>
+  </block>
+</view>

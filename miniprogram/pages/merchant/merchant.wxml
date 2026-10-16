@@ -25,6 +25,7 @@
     </view>
 
     <view wx:if="{{disclaimer}}" class="disclaimer">{{disclaimer}}</view>
+    <view class="disclaimer">{{runningNote}}</view>
 
     <view class="menu-list">
       <view id="dish-{{item.id}}" class="menu-item card" wx:for="{{menu}}" wx:key="id">

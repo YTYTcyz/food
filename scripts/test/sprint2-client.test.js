@@ -113,6 +113,84 @@ test('体重提交中保持输入，后台保存不弹提示，返回后刷新�
   await f.p.onShow(); assert.equal(f.p.data.weight, ''); assert.equal(f.p.data.status, 'ready'); assert.equal(f.toasts.length, 1);
 });
 
+test('记录体重以服务端成功为准完成打卡，返回我的后刷新且当天仍能继续记录', async () => {
+  const info = summary(), requests = [], calls = [], mutations = [];
+  const api = apiMock(async action => {
+    calls.push(action);
+    return ok(action === 'summary' ? structuredClone(info) : { items: [], hasMore: false });
+  });
+  const me = page('me', api, { '../../utils/challenge': { reconcile: async () => ok(null) } });
+  const weight = page('weight', api, {
+    '../../utils/pending-mutation': {
+      pending: () => null,
+      submit: (action, data) => { const pending = deferred(); mutations.push({ action, data }); requests.push(pending); return pending.promise; }
+    }
+  });
+  await me.p.onShow(); assert.equal(me.p.data.info.checkin.today, false);
+  me.p.go({ currentTarget: { dataset: { page: 'weight' } } }); me.p.onHide();
+  await weight.p.onShow();
+  weight.p.input({ currentTarget: { dataset: { field: 'weight' } }, detail: { value: '68.5' } });
+  const first = weight.p.saveWeight(); await weight.p.saveWeight();
+  assert.equal(mutations.length, 1); assert.equal(weight.toasts.length, 0);
+  assert.equal(weight.p.data.info.checkin.today, false);
+  info.checkin = { today: true, count: 1 }; info.currentWeight = { grams: 68500 };
+  requests[0].resolve(ok({ grams: 68500, today: info.today, checkin: { date: info.today, already: false } })); await first;
+  assert.equal(weight.toasts[0].title, '已记录并打卡'); assert.equal(weight.p.data.info.checkin.today, true);
+  await me.p.onShow(); assert.equal(me.p.data.info.checkin.today, true); assert.equal(me.p.data.currentKg, '68.5');
+  me.p.go({ currentTarget: { dataset: { page: 'weight' } } });
+  assert.deepEqual(me.routes, ['/pages/weight/weight', '/pages/weight/weight']);
+  weight.p.input({ currentTarget: { dataset: { field: 'weight' } }, detail: { value: '68.4' } });
+  const again = weight.p.saveWeight();
+  requests[1].resolve(ok({ grams: 68400, today: info.today, checkin: { date: info.today, already: true } })); await again;
+  assert.equal(weight.toasts[1].title, '体重已更新');
+  assert.deepEqual(mutations.map(item => ({ action: item.action, grams: item.data.grams })), [
+    { action: 'weight.add', grams: 68500 }, { action: 'weight.add', grams: 68400 }
+  ]);
+  assert.ok(calls.every(action => action === 'summary' || action === 'weight.list'));
+});
+
+test('体重打卡失败不显示成功也不丢输入，保留待确认请求供重试', async () => {
+  const info = summary(), failures = [], calls = []; let pendingValue = null, succeed = false;
+  const api = apiMock(async action => ok(action === 'summary' ? structuredClone(info) : { items: [], hasMore: false }));
+  api.toast = result => failures.push(result.error);
+  const f = page('weight', api, {
+    '../../utils/pending-mutation': {
+      pending: action => action === 'weight.add' ? pendingValue : null,
+      submit: async (action, value) => {
+        calls.push({ action, value });
+        if (!succeed) { pendingValue = value; return error('CALL_FAILED'); }
+        pendingValue = null; info.checkin = { today: true, count: 1 };
+        return ok({ grams: value.grams, today: info.today, checkin: { date: info.today, already: false } });
+      }
+    }
+  });
+  await f.p.onShow(); f.p.input({ currentTarget: { dataset: { field: 'weight' } }, detail: { value: '68.5' } });
+  await f.p.saveWeight();
+  assert.deepEqual(failures, ['CALL_FAILED']); assert.equal(f.toasts.length, 0);
+  assert.equal(f.p.data.weight, '68.5'); assert.equal(f.p.data.pendingWeight, true);
+  assert.equal(f.p.data.saving, false); assert.equal(f.p.data.info.checkin.today, false);
+  f.p.input({ currentTarget: { dataset: { field: 'weight' } }, detail: { value: '99' } });
+  assert.equal(f.p.data.weight, '68.5');
+  succeed = true; await f.p.saveWeight();
+  assert.equal(calls.length, 2); assert.equal(calls[0].action, 'weight.add'); assert.equal(calls[1].value.grams, 68500);
+  assert.equal(f.p.data.pendingWeight, false); assert.equal(f.p.data.weight, '');
+  assert.equal(f.toasts[0].title, '已记录并打卡'); assert.equal(f.p.data.info.checkin.today, true);
+});
+
+for (const scenario of [
+  { name: '昨天的重试记录不冒充今日打卡', data: { today: '2026-09-11', checkin: { date: '2026-09-10', already: true } }, title: '此前记录已确认' },
+  { name: '旧体重记录没有关联打卡时只确认此前记录', data: { today: '2026-09-11', checkin: null }, title: '此前记录已确认' },
+  { name: '兼容旧云函数响应时不承诺已打卡', data: { grams: 68500 }, title: '体重已记录' },
+  { name: '修改目标不会提示打卡成功', action: 'goal.save', flag: 'pendingGoal', data: {}, title: '已记录' }
+]) test(`体重保存提示：${scenario.name}`, async () => {
+  const f = page('weight', apiMock(async action => ok(action === 'summary' ? summary() : { items: [], hasMore: false })), {
+    '../../utils/pending-mutation': { pending: () => null, submit: async () => ok(scenario.data) }
+  });
+  await f.p.onShow();
+  await f.p.save(scenario.action || 'weight.add', { grams: 68500 }, scenario.flag || 'pendingWeight');
+  assert.equal(f.toasts.length, 1); assert.equal(f.toasts[0].title, scenario.title);
+});
+
 test('体重和目标响应丢失时沿用原payload，迟到结果不清除另一身份队列', async () => {
   const storage = new Map(), mod = { exports: {} }, app = { globalData: { userId: 'u1' }, ensureLogin: async () => app.globalData.userId };
   let id = 0, pending; const calls = [];
@@ -239,7 +317,8 @@ test('图片反转保留横图比例，0/50/100三档从原像素计算且不上
   const node = { getContext: () => context };
   const f = page('reverse', apiMock(), { '../../utils/canvas': { node: async () => ({ node }), localImage: async () => 'local.jpg', image: async () => ({ width: 1600, height: 900 }) } });
   f.p.onLoad({}); f.p.setData({ source: 'cloud://picture' }); await f.p.render();
-  assert.deepEqual(drawn[0].slice(1), [0, 112, 512, 288]); assert.deepEqual(outputs.at(-1), [20,80,240,255]);
+  assert.deepEqual(drawn[0].slice(1), [0, 112, 512, 288]); assert.deepEqual(outputs.at(-1), [...pixels]);
+  f.p.ratio({ detail: { value: 100 } }); assert.deepEqual(outputs.at(-1), [20,80,240,255]);
   f.p.ratio({ detail: { value: 0 } }); assert.deepEqual(outputs.at(-1), [...pixels]);
   f.p.ratio({ detail: { value: 50 } }); assert.deepEqual(outputs.at(-1), [130,80,130,255]);
   assert.deepEqual([...pixels], [240,80,20,255]); assert.equal(f.p.data.originalPath, 'local.jpg');

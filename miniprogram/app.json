@@ -18,7 +18,8 @@
     "pages/wallet/wallet",
     "pages/weight/weight",
     "pages/calendar/calendar",
-    "pages/badges/badges"
+    "pages/badges/badges",
+    "pages/admin-dashboard/admin-dashboard"
   ],
   "window": {
     "backgroundColor": "#FFF7F2",
@@ -36,22 +37,28 @@
       {
         "pagePath": "pages/home/home",
         "text": "首页",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home-active.png"
+        "iconPath": "images/icons/tab-home.png",
+        "selectedIconPath": "images/icons/tab-home-active.png"
       },
       {
         "pagePath": "pages/tools/tools",
         "text": "忍忍",
-        "iconPath": "images/icons/examples.png",
-        "selectedIconPath": "images/icons/examples-active.png"
+        "iconPath": "images/icons/tab-pause.png",
+        "selectedIconPath": "images/icons/tab-pause-active.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "我的",
-        "iconPath": "images/icons/usercenter.png",
-        "selectedIconPath": "images/icons/usercenter-active.png"
+        "iconPath": "images/icons/tab-profile.png",
+        "selectedIconPath": "images/icons/tab-profile-active.png"
       }
     ]
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.3",
+      "provider": "wx069ba97219f66d99"
+    }
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

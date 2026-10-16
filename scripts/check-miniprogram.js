@@ -36,7 +36,10 @@ checkComponents(path.join(mini, 'app.json'));
 for (const route of app.pages) checkComponents(path.join(mini, route + '.json'));
 const compilerRoot = process.argv[2];
 if (compilerRoot) {
-  const binaries = path.join(compilerRoot, 'code/package.nw/node_modules/wcc-exec');
+  const binaries = ['resources/app.asar.unpacked/node_modules/wcc-exec', 'code/package.nw/node_modules/wcc-exec']
+    .map(relative => path.join(compilerRoot, relative))
+    .find(candidate => ['wcc.exe', 'wcsc.exe'].every(name => fs.existsSync(path.join(candidate, name))));
+  if (!binaries) throw new Error('WeChat template compilers not found under: ' + compilerRoot);
   fs.mkdirSync(path.join(root,'tmp'),{ recursive:true });
   for (const [binary,extension] of [['wcc.exe','.wxml'],['wcsc.exe','.wxss']]) {
     const inputs = files(mini).filter(file => file.endsWith(extension)).map(file => './' + path.relative(mini,file).split(path.sep).join('/'));
@@ -46,6 +49,7 @@ if (compilerRoot) {
     const batches = extension === '.wxss' ? inputs.map(first => [first, ...inputs.filter(file => file !== first)]) : [[...inputs, ...wxs]];
     for (const batch of batches) {
       const result = spawnSync(path.join(binaries,binary), ['-o',output,...batch], { cwd:mini,encoding:'utf8',maxBuffer:8*1024*1024 });
+      if (result.error) throw new Error(binary + ': ' + result.error.message);
       if (result.status !== 0) throw new Error(binary + ': ' + result.stderr + result.stdout);
     }
     console.log(binary + ': ' + inputs.length + ' files compiled' + (wxs.length ? ' with ' + wxs.length + ' WXS' : ''));

@@ -1,5 +1,6 @@
+const { instrumentPage, feature } = require('../../utils/analytics-page');
 const api = require('../../utils/personal');
-Page({
+Page(instrumentPage({
   data: { month: '', days: [], blanks: [], weekdays: ['一','二','三','四','五','六','日'], selected: null, status: 'loading' },
   onShow() { this.visible = true; return this.load(); },
   onHide() { this.visible = false; this.generation = (this.generation || 0) + 1; },
@@ -26,5 +27,5 @@ Page({
     if (d.getUTCFullYear() < 2000 || d.getUTCFullYear() > 2099) return;
     this.setData({ month: d.toISOString().slice(0, 7) }); return this.load();
   },
-  choose(e) { if (this.data.status === 'ready') this.setData({ selected: this.data.days.find(d => d.date === e.currentTarget.dataset.date) }); }
-});
+  choose(e) { if (this.data.status === 'ready') { feature(this, 'calendar', 'day', { phase: 'view' }); this.setData({ selected: this.data.days.find(d => d.date === e.currentTarget.dataset.date) }); } }
+}, 'calendar'));

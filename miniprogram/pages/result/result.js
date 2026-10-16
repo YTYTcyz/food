@@ -1,5 +1,6 @@
+const { instrumentPage, feature } = require('../../utils/analytics-page');
 const challenge = require("../../utils/challenge");
-Page({
+Page(instrumentPage({
   data: { status: "loading", order: null, savedYuan: "0.00", kcal: 0, totalCompleted: 0, level: 1, cardStep: 0, minutes: "0.0" },
   onLoad(q) { this.orderId = q.orderId; },
   onShow() { this.visible = true; return this.load(); },
@@ -12,6 +13,7 @@ Page({
     if (!this.visible || this.loadVersion !== version) return;
     if (!r.success || !r.data || r.data.status !== "completed") { this.setData({ status: "error" }); return; }
     const o = r.data;
+    feature(this, 'result', 'view', { phase: 'view', success: true });
     this.setData({ status: "ready", order: o, merchantName: o.merchantName, savedYuan: (o.result.amountCents / 100).toFixed(2),
       kcal: o.result.caloriesKcal, totalCompleted: o.result.totalCompleted, level: o.result.level,
       cardStep: o.result.cardStep, minutes: (o.elapsedSeconds / 60).toFixed(1) }, () => {
@@ -20,4 +22,4 @@ Page({
   },
   again() { wx.switchTab({ url: "/pages/home/home" }); },
   goHistory() { wx.switchTab({ url: "/pages/me/me" }); },
-});
+}, 'result'));

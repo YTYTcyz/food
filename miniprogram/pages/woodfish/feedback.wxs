@@ -8,6 +8,12 @@ function start(event, owner) {
   var state = owner.getState();
   state.alternate = !state.alternate;
   var suffix = state.alternate ? 'a' : 'b';
+  var index = Math.floor(Math.random() * 4);
+  if (state.wordIndex !== undefined && state.wordIndex !== index) {
+    owner.selectComponent('#woodfish-word-' + state.wordIndex).setStyle({ visibility: 'hidden' });
+  }
+  owner.selectComponent('#woodfish-word-' + index).setStyle({ visibility: 'visible' });
+  state.wordIndex = index;
   fish.setStyle({ animation: 'wood-hit-' + suffix + ' 140ms ease-out' });
   owner.selectComponent('#woodfish-word').setStyle({ animation: 'wood-word-' + suffix + ' 180ms ease-out' });
   owner.callMethod('tap', { count: count, viewVersion: data.viewVersion });

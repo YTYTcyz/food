@@ -7,7 +7,11 @@ const MESSAGES = { UNAUTHENTICATED: '暂时无法登录，请联网后重试', L
 async function call(action, data = {}, app = getApp()) {
   if (!app || typeof app.ensureLogin !== 'function') return { success: false, error: 'APP_NOT_READY' };
   if (!await app.ensureLogin()) return { success: false, error: 'UNAUTHENTICATED' };
-  return callFn('personal', { ...data, action });
+  let analytics;
+  if (action === 'weight.add' || action === 'checkin') {
+    try { analytics = data.analytics || require('./analytics').getContext(); } catch (_) {}
+  }
+  return callFn('personal', { ...data, ...(analytics ? { analytics } : {}), action });
 }
 function error(result) { return MESSAGES[result.error] || '暂时连接不上，内容已保留，请重试'; }
 function toast(result) { wx.showToast({ title: error(result), icon: 'none', duration: 3000 }); }

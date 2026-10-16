@@ -1,9 +1,10 @@
+const { instrumentPage, engage, feature } = require('../../utils/analytics-page');
 const challenge = require('../../utils/challenge');
 const { callFn } = require('../../utils/cloud');
 const canvas = require('../../utils/canvas');
 const { swapRB } = require('../../domain/personal');
-Page({
-  data: { source: '', originalPath: '', title: '', ratio: 100, status: 'loading', orderId: '', examples: [] },
+Page(instrumentPage({
+  data: { source: '', originalPath: '', title: '', ratio: 0, status: 'loading', orderId: '', examples: [] },
   onLoad(q) { this.visible = true; this.setData({ orderId: q.orderId || '' }); },
   onReady() { this.canvasReady = true; return this.load(); },
   onShow() { this.visible = true; if (this.canvasReady) return this.retry(); },
@@ -45,9 +46,9 @@ Page({
       const scale = Math.min(512 / img.width, 512 / img.height); this.context.fillStyle = '#ffffff'; this.context.fillRect(0, 0, 512, 512);
       this.context.drawImage(img, (512 - img.width * scale) / 2, (512 - img.height * scale) / 2, img.width * scale, img.height * scale);
       this.original = this.context.getImageData(0, 0, 512, 512); this.mix(this.data.ratio); this.setData({ status: 'ready', originalPath: path });
-    } catch (_) { if (this.current(generation)) this.setData({ status: 'error' }); }
+    } catch (_) { if (this.current(generation)) { feature(this, 'reverse', 'render', { phase: 'result', success: false }); this.setData({ status: 'error' }); } }
   },
   mix(value) { if (!this.original) return; const output = this.context.createImageData(512, 512); output.data.set(swapRB(this.original.data, value / 100)); this.context.putImageData(output, 0, 0); },
-  ratio(e) { if (this.data.status !== 'ready') return; const ratio = Math.max(0, Math.min(100, Number(e.detail.value))); this.setData({ ratio }); this.mix(ratio); },
+  ratio(e) { if (this.data.status !== 'ready') return; const ratio = Math.max(0, Math.min(100, Number(e.detail.value))); if (ratio !== this.data.ratio) engage(this); this.setData({ ratio }); this.mix(ratio); },
   leave(e) { wx.navigateTo({ url: e.detail.url }); }
-});
+}, 'reverse'));

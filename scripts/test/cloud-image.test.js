@@ -81,8 +81,8 @@ test('普通网络及本地图片无需云下载；无效云下载结果不泄�
   }
 });
 
-test('拼图主图、图库、我的背景及头像均接入云图片组件，重试事件可用', () => {
-  for (const [page, count] of [['card', 2], ['me', 2], ['profile', 1]]) {
+test('拼图主图、图库预览、完成收藏、我的背景及头像均接入云图片组件，重试事件可用', () => {
+  for (const [page, count] of [['card', 3], ['cards', 2], ['me', 2], ['profile', 1]]) {
     const file = path.join(root, `pages/${page}/${page}`);
     const config = JSON.parse(fs.readFileSync(file + '.json', 'utf8'));
     assert.equal(config.usingComponents['cloud-image'], '../../components/cloud-image/index');

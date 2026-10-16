@@ -1,14 +1,18 @@
+const { instrumentPage } = require('../../utils/analytics-page');
+const analytics = require('../../utils/analytics');
 const { callFn } = require("../../utils/cloud");
 const cart = require("../../utils/cart");
+const { RUNNING_NOTE } = require('../../utils/nutrition-display');
 const app = getApp();
 
-Page({
+Page(instrumentPage({
   data: {
     status: "loading", // loading | error | empty | ready
     merchantId: "",
     merchant: null,
     menu: [],
     disclaimer: "",
+    runningNote: RUNNING_NOTE,
     defaultImg: "/images/default-goods-image.png",
     cartMap: {}, // { menuItemId: qty }
     cartCount: 0,
@@ -93,10 +97,12 @@ Page({
 
   goOrder() {
     if (!this.data.cartCount) return;
+    const c = cart.getForMerchant(this.data.merchantId);
+    analytics.track('brl_shop_checkout_click', { merchant_id: this.data.merchantId, count: this.data.cartCount }, { flowId: c && c.flowId });
     wx.navigateTo({ url: `/pages/order/order?merchantId=${this.data.merchantId}` });
   },
 
   retry() {
     return this.load();
   },
-});
+}, 'merchant'));

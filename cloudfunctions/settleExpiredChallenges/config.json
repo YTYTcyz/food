@@ -1,0 +1,5 @@
+{
+  "triggers": [
+    { "name": "settle-expired-challenges", "type": "timer", "config": "0 */5 * * * * *" }
+  ]
+}

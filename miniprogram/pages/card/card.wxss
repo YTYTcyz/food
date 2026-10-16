@@ -1,3 +1,26 @@
 @import '../../styles/personal.wxss';
-.puzzle { position: relative; max-width: 100%; margin: 0 auto; border-radius: 24rpx; overflow: hidden; background: #f5e5dc; }.picture, .tiles { position: absolute; inset: 0; width: 100%; height: 100%; }.tiles { display: grid;  pointer-events: none; }.tile { min-width: 0; min-height: 0; overflow: hidden; border: 1rpx solid #ffffff55; }.covered { background: #f8d5b2; color: #de9b72; display: flex; align-items: center; justify-content: center; font-size: 30rpx; }.quote { padding: 28rpx; background: #fce4ec; color: #ad5d76; line-height: 1.8; border-radius: 28rpx; margin-bottom: 28rpx; }.presets { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12rpx; margin-top: 20rpx; }.preset { width: 100%; height: 170rpx; border-radius: 20rpx; }
+.puzzle { position: relative; max-width: 100%; margin: 0 auto; border-radius: 24rpx; overflow: hidden; background: #f5e5dc; }.picture, .tiles { position: absolute; inset: 0; width: 100%; height: 100%; }.tiles { display: grid;  pointer-events: none; }.tile { min-width: 0; min-height: 0; overflow: hidden; border: 1rpx solid #ffffff55; }.covered { background: #f8d5b2; color: #de9b72; display: flex; align-items: center; justify-content: center; font-size: 30rpx; }.quote { padding: 28rpx; background: #fce4ec; color: #ad5d76; line-height: 1.8; border-radius: 28rpx; margin-bottom: 28rpx; }
+/* 三行缩略图：3 × 170rpx + 2 × 12rpx；少于三行时由模板缩短高度。 */
+.preset-scroll { width: 100%; height: 534rpx; margin-top: 20rpx; }
+.presets { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12rpx; }
+.preset { position: relative; width: 100%; height: 170rpx; border-radius: 20rpx; overflow: hidden; }
+.preset-image { width: 100%; height: 100%; }
+.preset-star { position: absolute; top: 6rpx; right: 6rpx; width: 42rpx; height: 42rpx; line-height: 42rpx; text-align: center; border-radius: 50%; color: #9c6200; background: #fff2c5; box-shadow: 0 2rpx 8rpx #67412033; font-size: 32rpx; }
+.preset-personal { position: absolute; bottom: 6rpx; left: 6rpx; padding: 3rpx 10rpx; border-radius: 12rpx; font-size: 20rpx; color: #8c5442; background: #fff4e9ed; }
+.preset-hint { margin-top: 12rpx; text-align: center; }
+.preview-mask { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24rpx; background: rgba(35, 24, 20, .72); }
+.preview-panel { display: flex; flex-direction: column; width: 100%; max-width: 680rpx; height: 90vh; padding: 28rpx; border-radius: 32rpx; background: var(--surface); text-align: center; }
+.preview-panel > view { flex-shrink: 0; }
+.preview-body { flex: 1; min-height: 0; height: 0; width: 100%; }
+.preview-header { margin-bottom: 18rpx; }
+.preview-heading { font-size: 32rpx; font-weight: 600; }
+.preview-picture { display: block; width: 100%; height: 43vh; max-height: 720rpx; border-radius: 20rpx; overflow: hidden; background: var(--surface-warm); }
+.preview-image { width: 100%; height: 100%; }
+.preview-navigation { display: flex; justify-content: space-between; gap: 18rpx; margin-top: 18rpx; }
+.preview-navigation .soft-button { flex: 1; }
+.preview-achievement { margin-top: 16rpx; font-size: 26rpx; color: #9c6200; }
+.preview-question { margin-top: 22rpx; font-size: 30rpx; font-weight: 600; }
+.preview-actions { display: flex; gap: 18rpx; margin-top: 24rpx; }
+.preview-actions .soft-button, .preview-actions .action { flex: 1; min-width: 0; min-height: 80rpx; margin: 0; }
+.preview-actions .action[disabled] { background: #eee5df; color: #9e9189; }
 

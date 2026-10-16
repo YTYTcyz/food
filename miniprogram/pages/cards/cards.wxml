@@ -1,2 +1,54 @@
-<view class="screen"><view class="heading">我的微光收藏</view><view class="subtitle">7次成功，点亮一张完整拼图。</view><view wx:if="{{status === 'error'}}" class="error-box" bindtap="retry">收藏暂时没有加载 · 重试</view><view wx:if="{{!items.length && status !== 'error'}}" class="section empty"><view>{{status === 'loading' ? '正在整理收藏…' : '第一次挑战成功后，会开始你的第一张拼图。'}}</view><button wx:if="{{status === 'ready'}}" class="soft-button stack" bindtap="start">去首页开始</button></view><view class="section" wx:for="{{items}}" wx:key="_id" data-id="{{item._id}}" bindtap="open"><view class="row"><view><view class="section-title">{{item.title}}</view><view class="muted">{{item.label}}</view></view><text class="link">查看 ›</text></view></view><button wx:if="{{hasMore}}" class="soft-button" loading="{{status === 'loading'}}" disabled="{{status === 'loading'}}" bindtap="more">查看更多</button></view>
+<view class="screen">
+  <view class="heading">我的微光收藏</view>
+  <view class="subtitle">7次成功，点亮一张完整拼图。每一张，都是你坚持的见证。</view>
+  <button wx:if="{{items.length}}" class="soft-button browse-button" bindtap="browseCompleted">★ 浏览已点亮图片</button>
+  <view wx:if="{{status === 'error'}}" class="error-box" bindtap="retry">收藏暂时没有加载 · 重试</view>
+  <view wx:if="{{!items.length && status !== 'error'}}" class="section empty">
+    <view>{{status === 'loading' ? '正在整理收藏…' : '第一次挑战成功后，会开始你的第一张拼图。'}}</view>
+    <button wx:if="{{status === 'ready'}}" class="soft-button stack" bindtap="start">去首页开始</button>
+  </view>
+  <view class="section collection-card {{item.status === 'completed' ? 'collection-completed' : ''}}" wx:for="{{items}}" wx:key="_id" data-id="{{item._id}}" bindtap="open">
+    <view wx:if="{{item.status === 'completed'}}" class="collection-image-wrap">
+      <cloud-image class="collection-image" src="{{item.fileID}}" mode="aspectFit" compact />
+      <text class="collection-star">★ 已点亮</text>
+    </view>
+    <view wx:else class="collection-progress"><text class="progress-star">✦</text><text>{{item.currentStep}} / 7</text></view>
+    <view class="collection-info">
+      <view class="section-title">{{item.title}}</view>
+      <view class="muted">{{item.label}}</view>
+      <view wx:if="{{item.status === 'completed'}}" class="collection-achievement">7次成功，留下一束微光</view>
+      <view class="collection-links">
+        <text wx:if="{{item.status === 'completed'}}" class="link">放大浏览</text>
+        <text class="link" data-id="{{item._id}}" catchtap="detail">查看详情 ›</text>
+      </view>
+    </view>
+  </view>
+  <button wx:if="{{hasMore}}" class="soft-button" loading="{{status === 'loading'}}" disabled="{{status === 'loading'}}" bindtap="more">查看更多</button>
+</view>
+
+<view wx:if="{{galleryOpen}}" class="gallery-backdrop" catchtouchmove="stopGalleryScroll">
+  <view class="gallery-panel" role="dialog" aria-label="已点亮图片浏览">
+    <view class="gallery-header">
+      <view><view class="gallery-heading">我的点亮时刻</view><view class="muted">{{galleryCard ? (galleryIndex + 1) + ' / ' + galleryTotal + ' 张' : '每一次完成，都值得珍藏'}}</view></view>
+      <button class="gallery-close" bindtap="closeGallery" aria-label="关闭图片浏览">关闭</button>
+    </view>
+    <scroll-view class="gallery-content" scroll-y>
+    <view class="gallery-picture" bindtouchstart="galleryTouchStart" bindtouchend="galleryTouchEnd" bindtouchcancel="galleryTouchCancel">
+      <cloud-image wx:if="{{galleryCard}}" class="gallery-image" src="{{galleryCard.fileID}}" mode="aspectFit" />
+      <view wx:else class="gallery-placeholder">{{galleryStatus === 'loading' ? '正在打开你的点亮时刻…' : galleryStatus === 'error' ? '收藏暂时没有加载' : '还没有已点亮的图片，继续积累你的微光。'}}</view>
+    </view>
+    <block wx:if="{{galleryCard}}">
+      <view class="gallery-caption"><view class="gallery-title">★ {{galleryCard.title}}</view><view class="muted">{{galleryCard.completedDate}} 点亮 · 7次成功</view></view>
+      <view class="gallery-hint">左右滑动，回看每一次完成</view>
+    </block>
+    <view wx:if="{{galleryStatus === 'error'}}" class="gallery-error" bindtap="retryGallery">暂时没有加载成功 · 点击重试</view>
+    <view wx:elif="{{galleryStatus === 'loading'}}" class="gallery-hint">正在整理收藏…</view>
+    <view wx:if="{{galleryCard}}" class="gallery-navigation">
+      <button class="soft-button" disabled="{{galleryStatus === 'loading' || galleryIndex === 0}}" bindtap="previousImage">‹ 上一张</button>
+      <button class="soft-button" disabled="{{galleryStatus === 'loading' || (!galleryHasMore && galleryIndex + 1 >= galleryCards.length)}}" bindtap="nextImage">下一张 ›</button>
+    </view>
+    <button wx:if="{{galleryCard}}" class="gallery-detail" bindtap="galleryDetail">查看这次完成的详情 ›</button>
+    </scroll-view>
+  </view>
+</view>
 

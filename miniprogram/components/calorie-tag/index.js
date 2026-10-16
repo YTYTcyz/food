@@ -1,5 +1,5 @@
-// 菜品热量 + 米饭等值展示组件
-// 统一文案「约 N kcal · ≈ X.X 碗饭」;热量缺失显示「暂无热量估算」,不显示 0 碗。
+const { runningMeters } = require('../../utils/nutrition-display');
+// 热量、米饭和跑步距离使用同一份菜品热量；缺失时不生成虚构的换算值。
 Component({
   properties: {
     kcal: { type: null, value: null }, // number | null
@@ -9,19 +9,22 @@ Component({
   data: {
     _text: "",
     _hasKcal: false,
+    _runningText: '',
   },
   observers: {
-    "kcal, equivalent": function (kcal, equivalent) {
-      const hasKcal = kcal !== null && kcal !== undefined;
+    "kcal, equivalent, compact": function (kcal, equivalent, compact) {
+      const hasKcal = typeof kcal === 'number' && Number.isFinite(kcal) && kcal > 0;
+      const hasRice = typeof equivalent === 'number' && Number.isFinite(equivalent) && equivalent >= 0;
       let text;
       if (!hasKcal) {
         text = "暂无热量估算";
-      } else if (this.data.compact) {
-        text = `${kcal} kcal · ≈${equivalent}碗饭`;
+      } else if (compact) {
+        text = `${kcal} kcal` + (hasRice ? ` · ≈${equivalent}碗饭` : '');
       } else {
-        text = `约 ${kcal} kcal · ≈ ${equivalent} 碗饭`;
+        text = `约 ${kcal} kcal` + (hasRice ? ` · ≈ ${equivalent} 碗饭` : '');
       }
-      this.setData({ _text: text, _hasKcal: hasKcal });
+      const meters = runningMeters(kcal);
+      this.setData({ _text: text, _hasKcal: hasKcal, _runningText: meters === null ? '' : `≈ 跑步 ${meters} 米` });
     },
   },
 });

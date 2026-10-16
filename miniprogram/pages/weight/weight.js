@@ -1,6 +1,7 @@
+const { instrumentPage, feature } = require('../../utils/analytics-page');
 const api = require('../../utils/personal');
 const mutation = require('../../utils/pending-mutation');
-Page({
+Page(instrumentPage({
   data: { status: 'loading', info: null, weight: '', target: '', saving: false, pendingWeight: false, pendingGoal: false, points: [], days: 7, history: [], moreHistory: false, page: 0, historyStatus: 'loading' },
   onShow() { this.visible = true; this.setData({ saving: !!this.mutationBusy }); return this.saveOutcome ? this.finishSave() : this.load(); },
   onHide() { this.visible = false; this.loadVersion = (this.loadVersion || 0) + 1; this.historyVersion = (this.historyVersion || 0) + 1; this.historyBusy = false; },
@@ -43,10 +44,13 @@ Page({
   },
   async save(action, value, flag) {
     if (this.mutationBusy || this.data.status !== 'ready') return;
+    feature(this, 'weight', action, { phase: 'attempt' });
     this.mutationBusy = true; this.setData({ saving: true });
     this.loadVersion = (this.loadVersion || 0) + 1;
     let result;
     try { result = await mutation.submit(action, value); } catch (_) { result = { success: false, error: 'LOCAL_STORAGE_ERROR' }; }
+    feature(this, 'weight', action, { phase: 'result', success: !!result.success,
+      first_checkin: !!(result.success && result.data && result.data.checkin && !result.data.checkin.already) });
     this.mutationBusy = false; this.saveOutcome = { result, action, flag };
     if (this.visible !== false) return this.finishSave();
   },
@@ -54,7 +58,15 @@ Page({
     const { result, action, flag } = this.saveOutcome; this.saveOutcome = null;
     this.setData({ saving: false, [flag]: !!mutation.pending(action) });
     if (!result.success) { api.toast(result); return; }
-    wx.showToast({ title: '已记录', icon: 'success' }); this.setData(action === 'weight.add' ? { weight: '' } : { target: '' });
+    let title = '已记录';
+    if (action === 'weight.add') {
+      const data = result.data || {};
+      // 只根据服务端实际打卡日期提示，跨日重试旧请求不能冒充今天已打卡。
+      title = data.checkin && data.checkin.date === data.today
+        ? (data.checkin.already ? '体重已更新' : '已记录并打卡')
+        : data.today ? '此前记录已确认' : '体重已记录';
+    }
+    wx.showToast({ title, icon: 'success' }); this.setData(action === 'weight.add' ? { weight: '' } : { target: '' });
     return this.load();
   }
-});
+}, 'weight'));

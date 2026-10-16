@@ -1,6 +1,7 @@
 // app.js
 const { ENV_ID } = require("./config");
 const { callFn } = require("./utils/cloud");
+const analytics = require("./utils/analytics");
 
 App({
   globalData: {
@@ -8,7 +9,8 @@ App({
     userId: "",
   },
 
-  onLaunch: function () {
+  onLaunch: function (options = {}) {
+    analytics.init(options);
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
       return;
@@ -25,19 +27,23 @@ App({
     this.ensureLogin();
     wx.onNetworkStatusChange((r) => {
       if (r.isConnected) {
+        analytics.flush();
         require("./utils/challenge").reconcile(this);
         require("./utils/woodfish").flush(this);
       }
     });
   },
 
-  onShow() {
+  onShow(options = {}) {
+    analytics.appShow(options);
     if (this.globalData.env) {
       // 首次生命周期中 getApp() 可能尚未返回实例，显式传递当前 App。
       require("./utils/challenge").reconcile(this);
       require("./utils/woodfish").flush(this);
     }
   },
+
+  onHide() { analytics.appHide(); },
 
   // 用微信 OPENID 换取内部 userId(身份分离,业务一律用内部 userId)
   ensureLogin: function () {
@@ -49,6 +55,7 @@ App({
       if (r.success && r.data && r.data.userId) {
         this.globalData.userId = r.data.userId;
         try { wx.setStorageSync("userId", r.data.userId); } catch (_) {}
+        analytics.identify(r.data.userId);
         return r.data.userId;
       }
       this._loginPromise = null;

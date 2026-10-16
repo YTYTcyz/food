@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "card-01",
+    "name": "微光一号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-01.jpg",
+    "sortOrder": 1,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-01.jpg",
+    "width": 690,
+    "height": 1036
+  },
+  {
+    "_id": "card-02",
+    "name": "微光二号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-02.jpg",
+    "sortOrder": 2,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-02.jpg",
+    "width": 1080,
+    "height": 1944
+  },
+  {
+    "_id": "card-03",
+    "name": "微光三号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-03.jpg",
+    "sortOrder": 3,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-03.jpg",
+    "width": 889,
+    "height": 500
+  },
+  {
+    "_id": "card-04",
+    "name": "微光四号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-04.jpg",
+    "sortOrder": 4,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-04.jpg",
+    "width": 889,
+    "height": 500
+  },
+  {
+    "_id": "card-05",
+    "name": "微光五号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-05.jpg",
+    "sortOrder": 5,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-05.jpg",
+    "width": 889,
+    "height": 500
+  },
+  {
+    "_id": "card-06",
+    "name": "微光六号",
+    "fileID": "cloud://cloud1-d8g64k9vi2f9daa44.636c-cloud1-d8g64k9vi2f9daa44-1482521831/memorial-presets/v1/card-06.jpg",
+    "sortOrder": 6,
+    "isActive": true,
+    "cloudPath": "memorial-presets/v1/card-06.jpg",
+    "width": 1422,
+    "height": 800
+  }
+]

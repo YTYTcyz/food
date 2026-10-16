@@ -1,0 +1,15 @@
+{
+  "name": "setupEnvironment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "新环境一次性初始化：集合、索引、权限和公共基础数据",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16.13.0"
+  },
+  "dependencies": {
+    "@cloudbase/manager-node": "4.2.0",
+    "typescript": "4.9.5",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

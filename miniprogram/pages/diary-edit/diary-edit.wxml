@@ -1,3 +1,50 @@
-<view class="screen"><challenge-banner order-id="{{orderId}}" bind:leave="leave" /><view class="heading">{{existing ? '我的心情记录' : '写给此刻的自己'}}</view><view class="subtitle">无需写得漂亮，你的感受就值得记录。</view><view wx:if="{{hint}}" class="error-box">{{hint}}</view><view wx:if="{{status !== 'ready'}}" class="empty">{{status === 'error' ? '暂时无法打开' : '正在打开…'}}<button wx:if="{{status === 'error'}}" class="soft-button stack" bindtap="load">重试打开</button></view><block wx:else><view class="moods"><view wx:for="{{moods}}" wx:key="*this" class="mood {{mood === item ? 'selected' : ''}}" data-mood="{{item}}" bindtap="mood">{{item}}</view></view><view class="section"><textarea disabled="{{saving}}" class="editor" value="{{body}}" maxlength="4000" placeholder="此刻发生了什么？你有什么感受？" bindinput="onInput" /><view class="muted counter">{{count}} / 2000</view></view><view wx:if="{{encouragement}}" class="encouragement"><view class="section-title">陪伴小语</view><text>{{encouragement}}</text></view><button class="action" loading="{{saving}}" disabled="{{saving || !body}}" bindtap="save">保存日记</button><view class="row stack"><button class="soft-button" bindtap="leave">返回</button><button wx:if="{{existing}}" class="soft-button" disabled="{{saving}}" bindtap="remove">删除记录</button></view><view class="muted stack">草稿仅保存在当前设备，保存后才计入日记。</view></block></view>
-
-
+<view class="screen">
+  <challenge-banner order-id="{{orderId}}" bind:leave="leave" />
+  <view class="heading">{{existing ? '我的心情记录' : '写给此刻的自己'}}</view>
+  <view class="subtitle">无需写得漂亮，你的感受就值得记录。</view>
+  <view wx:if="{{hint}}" class="error-box">{{hint}}</view>
+  <view wx:if="{{status !== 'ready'}}" class="empty">
+    {{status === 'error' ? '暂时无法打开' : '正在打开…'}}
+    <button wx:if="{{status === 'error'}}" class="soft-button stack" bindtap="load">重试打开</button>
+  </view>
+  <block wx:else>
+    <view class="moods"><view wx:for="{{moods}}" wx:key="*this" class="mood {{mood === item ? 'selected' : ''}}" data-mood="{{item}}" bindtap="mood">{{item}}</view></view>
+    <view class="section">
+      <textarea disabled="{{saving}}" class="editor" value="{{body}}" maxlength="4000" placeholder="此刻发生了什么？你有什么感受？" bindinput="onInput" />
+      <view class="muted counter">{{count}} / 2000</view>
+    </view>
+    <view class="voice-panel">
+      <!-- 保持同一个触摸节点，状态变化时不替换按钮，确保能收到松手事件。 -->
+      <button class="voice-hold {{voicePressed ? 'voice-holding' : ''}} {{voiceCancel ? 'voice-cancelling' : ''}}"
+        hover-class="none" aria-label="按住说话，松开转文字，上滑取消"
+        disabled="{{saving || voiceOverflow || (count >= 2000 && !voicePressed) || voiceState === 'privacy'}}"
+        catchtouchstart="voiceTouchStart" catchtouchmove="voiceTouchMove" catchtouchend="voiceTouchEnd" catchtouchcancel="voiceTouchCancel">
+        <view class="voice-mic" aria-hidden="true"><view class="voice-mic-head" /><view class="voice-mic-base" /></view>
+        <text>{{voiceCancel ? '松开取消' : voiceState === 'recording' ? '松开转文字' : voiceState === 'starting' ? '正在启动…' : voiceState === 'stopping' ? '正在转文字…' : voiceState === 'authorizing' ? '正在授权…' : '按住说话'}}</text>
+        <view wx:if="{{voiceState === 'recording'}}" class="voice-waves" aria-hidden="true"><view /><view /><view /></view>
+      </button>
+      <view class="muted voice-caption">{{voiceCancel ? '手指下移可继续录音' : voiceState === 'recording' ? '正在收音 · 上滑取消' : voiceState === 'starting' ? '正在准备麦克风…' : voiceState === 'authorizing' ? '授权完成后，请按住说话' : voiceState === 'stopping' ? '正在识别，请稍候…' : '松开自动加入正文 · 每段最多60秒'}}</view>
+      <view wx:if="{{voiceState === 'privacy'}}" class="voice-notice">
+        <view class="muted">语音输入需要麦克风权限，请先阅读并同意隐私保护指引。</view>
+        <button class="soft-button stack" bindtap="voiceOpenPrivacy">阅读隐私保护指引</button>
+        <button id="diary-voice-agree" class="soft-button stack" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="voiceAgreePrivacy">同意并授权</button>
+        <button class="soft-button stack" bindtap="voiceDiscard">暂不使用</button>
+      </view>
+      <view wx:if="{{voiceHint}}" class="muted voice-caption">{{voiceHint}}</view>
+      <button wx:if="{{voiceSettings}}" class="soft-button stack" bindtap="voiceOpenSettings">开启麦克风权限</button>
+      <view wx:if="{{voiceOverflow}}" class="voice-notice">
+        <view class="muted">超出正文容量的文字已保留</view>
+        <text class="voice-overflow-text" user-select="true">{{voiceText}}</text>
+        <view class="voice-actions stack">
+          <button class="soft-button" bindtap="voiceAppendRemaining">加入剩余文字</button>
+          <button class="soft-button" bindtap="voiceCopyRemaining">复制剩余文字</button>
+          <button class="soft-button" bindtap="voiceDiscard">放弃剩余文字</button>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{encouragement}}" class="encouragement"><view class="section-title">陪伴小语</view><text>{{encouragement}}</text></view>
+    <button class="action" loading="{{saving}}" disabled="{{saving || !body || voiceOverflow || voiceState === 'privacy' || voiceState === 'authorizing' || voiceState === 'starting' || voiceState === 'recording' || voiceState === 'stopping'}}" bindtap="save">保存日记</button>
+    <view class="row stack"><button class="soft-button" bindtap="leave">返回</button><button wx:if="{{existing}}" class="soft-button" disabled="{{saving}}" bindtap="remove">删除记录</button></view>
+    <view class="muted stack">草稿仅保存在当前设备，保存后才计入日记。</view>
+  </block>
+</view>

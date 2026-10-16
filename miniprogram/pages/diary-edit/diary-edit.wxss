@@ -1,3 +1,24 @@
 @import '../../styles/personal.wxss';
+.voice-panel { margin-bottom: 32rpx; }
+.voice-hold { display: flex; align-items: center; justify-content: center; gap: 18rpx; width: 100%; min-height: 96rpx; padding: 22rpx 28rpx; box-sizing: border-box; border-radius: 24rpx; background: #ffebe2; color: #a64c30; font-size: 30rpx; font-weight: 600; line-height: 1.5; user-select: none; }
+.voice-hold::after { border: 0; }
+.voice-hold[disabled] { background: #f1ebe7; color: #aaa09b; }
+.voice-holding { background: #f9d4c3; }
+.voice-cancelling { background: #fce1e5; color: #ac3953; }
+.voice-caption { margin-top: 14rpx; text-align: center; font-size: 24rpx; }
+.voice-mic { position: relative; width: 28rpx; height: 38rpx; flex-shrink: 0; }
+.voice-mic-head { position: absolute; left: 7rpx; top: 0; width: 14rpx; height: 24rpx; box-sizing: border-box; border: 3rpx solid currentColor; border-radius: 9rpx; }
+.voice-mic-base { position: absolute; left: 1rpx; top: 14rpx; width: 26rpx; height: 18rpx; box-sizing: border-box; border: 3rpx solid currentColor; border-top: 0; border-radius: 0 0 15rpx 15rpx; }
+.voice-mic::after { content: ''; position: absolute; left: 12rpx; bottom: 0; width: 4rpx; height: 8rpx; border-radius: 2rpx; background: currentColor; }
+.voice-waves { display: flex; align-items: center; gap: 5rpx; height: 32rpx; }
+.voice-waves view { width: 4rpx; height: 24rpx; border-radius: 4rpx; background: currentColor; animation: voice-pulse 800ms ease-in-out infinite alternate; }
+.voice-waves view:nth-child(2) { animation-delay: -300ms; }
+.voice-waves view:nth-child(3) { animation-delay: -600ms; }
+@keyframes voice-pulse { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
+.voice-notice { margin-top: 20rpx; padding: 24rpx; background: #fff; border-radius: 24rpx; }
+.voice-overflow-text { display: block; margin-top: 16rpx; font-size: 28rpx; line-height: 1.7; white-space: pre-wrap; }
+.voice-actions { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.voice-actions .soft-button { flex: 1; min-width: 180rpx; margin: 0; }
+.voice-panel .muted { line-height: 1.7; }
 .moods { display: flex; flex-wrap: wrap; gap: 16rpx; margin-bottom: 28rpx; }.mood { padding: 14rpx 24rpx; border-radius: 30rpx; background: #fff; color: #777178; font-size: 26rpx; }.selected { color: #b34861; background: #ffe1e9; }.editor { width: 100%; min-height: 480rpx; font-size: 32rpx; line-height: 1.9; }.counter { text-align: right; }.encouragement { margin: 28rpx 0; padding: 32rpx; border-radius: 28rpx; background: #fce8ed; color: #a65069; line-height: 1.8; }
 

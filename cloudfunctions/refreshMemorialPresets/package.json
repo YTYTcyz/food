@@ -1,0 +1,9 @@
+{
+  "name": "refresh-memorial-presets",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一次性替换系统图库，保留拼图进度和私人数据",
+  "main": "index.js",
+  "engines": { "node": ">=16.13.0" },
+  "dependencies": { "wx-server-sdk": "~2.6.3" }
+}

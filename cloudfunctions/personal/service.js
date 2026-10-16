@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const rules = require('./lib/product');
 const domain = require('./lib/personal');
 const puzzle = require('./lib/puzzle');
+const { attribution } = require('./lib/analytics-context');
 const fail = code => { throw new Error(code); };
 const validId = id => typeof id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(id);
 const grams = value => Number.isInteger(value) && value >= 10000 && value <= 500000;
@@ -13,6 +14,16 @@ function createService(db, now = Date.now, options = {}) {
   function put(tx, collection, id, value) {
     const { _id, ...data } = value;
     return tx.collection(collection).doc(id).set({ data });
+  }
+  async function checkin(tx, userId, state, date, timestamp, analytics) {
+    const id = `${userId}_${date}`;
+    if (await read(tx, 'daily_checkins', id)) return { date, already: true };
+    await put(tx, 'daily_checkins', id, { userId, date, createdAt: new Date(timestamp), ...(analytics ? { analytics } : {}) });
+    state.checkinDays++;
+    const badge = rules.BADGES.find(b => b.code === 'seven_checkins');
+    if (state.checkinDays >= badge.threshold && !await read(tx, 'user_achievements', `${userId}_${badge.code}`))
+      await put(tx, 'user_achievements', `${userId}_${badge.code}`, { userId, code: badge.code, name: badge.name, unlockedAt: new Date(timestamp) });
+    return { date, already: false };
   }
   async function owned(source, collection, id, userId) {
     if (!validId(id)) fail('INVALID_ID');
@@ -30,6 +41,25 @@ function createService(db, now = Date.now, options = {}) {
       if (r.data.length < 100) return items;
       after = r.data[r.data.length - 1]._id;
     }
+  }
+  async function uploadedCardImages(userId) {
+    // media.prepare 的资源 ID 固定为 userId_requestId；只用内建 _id 索引读取该前缀。
+    // userId 可能互为前缀，仍须逐条核验 ownerUserId，不能把前缀当作归属证明。
+    const prefix = userId + '_', items = [];
+    let after = prefix;
+    for (;;) {
+      const result = await db.collection('media_assets').where({ _id: db.command.gt(after) }).orderBy('_id', 'asc').limit(100).get();
+      for (const asset of result.data) {
+        if (!asset._id.startsWith(prefix)) return items;
+        if (asset.ownerUserId === userId && cardAssetReady(asset)) items.push(asset);
+      }
+      if (result.data.length < 100) return items;
+      after = result.data[result.data.length - 1]._id;
+    }
+  }
+  function completionCount(cards, sourceType, fileID, assetId) {
+    return cards.reduce((count, card) => count + (card.status === 'completed' && card.sourceType === sourceType &&
+      (card.backgroundFileID ? card.backgroundFileID === fileID : sourceType === 'personal' && !!assetId && card.backgroundAssetId === assetId) ? 1 : 0), 0);
   }
   const byRecent = field => (a, b) => +new Date(b[field]) - +new Date(a[field]) || (b.sequence || 0) - (a.sequence || 0) || b._id.localeCompare(a._id);
   function page(items, event) {
@@ -95,9 +125,46 @@ function createService(db, now = Date.now, options = {}) {
       return entry;
     }
     if (action === 'woodfish.get') return { ...(await read(db, 'woodfish_daily', `${userId}_${date}`) || { count: 0 }), date, serverNow: timestamp };
-    if (action === 'presets') return (await all('memorial_presets', { isActive: true })).filter(p => presetReady(p)).sort((a, b) => a.sortOrder - b.sortOrder);
+    if (action === 'presets') {
+      const [presets, completedCards] = await Promise.all([
+        all('memorial_presets', { isActive: true }),
+        all('memorial_cards', { userId })
+      ]);
+      // 依据完成时绑定的真实图片统计，避免同一预设换图后给新图片误标星。
+      const counts = new Map();
+      completedCards.forEach(card => {
+        if (card.sourceType === 'system' && card.status === 'completed' && card.backgroundFileID)
+          counts.set(card.backgroundFileID, (counts.get(card.backgroundFileID) || 0) + 1);
+      });
+      return presets.filter(p => presetReady(p)).sort((a, b) => a.sortOrder - b.sortOrder).map(p => {
+        const completedCount = counts.get(p.fileID) || 0;
+        return { ...p, completed: completedCount > 0, completedCount };
+      });
+    }
+    if (action === 'card.images') {
+      const [presets, assets, cards] = await Promise.all([
+        all('memorial_presets', { isActive: true }), uploadedCardImages(userId), all('memorial_cards', { userId })
+      ]);
+      const system = presets.filter(presetReady).sort((a, b) => a.sortOrder - b.sortOrder || a._id.localeCompare(b._id))
+        .map(preset => {
+          const completedCount = completionCount(cards, 'system', preset.fileID);
+          return { _id: preset._id, key: 'system:' + preset._id, sourceType: 'system', presetId: preset._id,
+            name: preset.name || '系统图片', fileID: preset.fileID, width: preset.width, height: preset.height,
+            completed: completedCount > 0, completedCount };
+        });
+      const personal = assets.sort((a, b) => +new Date(a.createdAt) - +new Date(b.createdAt) || a._id.localeCompare(b._id))
+        .map((asset, index) => {
+          const completedCount = completionCount(cards, 'personal', asset.fileID, asset._id);
+          return { _id: asset._id, key: 'personal:' + asset._id, sourceType: 'personal', assetId: asset._id,
+            name: '我的图片 ' + (index + 1), fileID: asset.fileID, width: asset.width, height: asset.height,
+            completed: completedCount > 0, completedCount };
+        });
+      return [...system, ...personal];
+    }
     if (action === 'cards.list') {
-      const cards = (await all('memorial_cards', { userId })).sort(byRecent('createdAt'));
+      if (event.status !== undefined && event.status !== 'completed') fail('INVALID_CARD_STATUS');
+      const cards = (await all('memorial_cards', { userId }))
+        .filter(card => event.status !== 'completed' || card.status === 'completed').sort(byRecent('createdAt'));
       const result = page(cards, event);
       return { ...result, items: await Promise.all(result.items.map(c => cardView(c, userId))) };
     }
@@ -111,15 +178,9 @@ function createService(db, now = Date.now, options = {}) {
     return db.runTransaction(async tx => {
       const state = await read(tx, 'user_state', userId) || domain.initialState(userId);
       if (action === 'checkin') {
-        const id = `${userId}_${date}`;
-        if (await read(tx, 'daily_checkins', id)) return { date, already: true };
-        await put(tx, 'daily_checkins', id, { userId, date, createdAt: new Date(timestamp) });
-        state.checkinDays++;
-        await put(tx, 'user_state', userId, state);
-        const badge = rules.BADGES.find(b => b.code === 'seven_checkins');
-        if (state.checkinDays >= badge.threshold && !await read(tx, 'user_achievements', `${userId}_${badge.code}`))
-          await put(tx, 'user_achievements', `${userId}_${badge.code}`, { userId, code: badge.code, name: badge.name, unlockedAt: new Date(timestamp) });
-        return { date, already: false };
+        const result = await checkin(tx, userId, state, date, timestamp, attribution(event.analytics));
+        if (!result.already) await put(tx, 'user_state', userId, state);
+        return result;
       }
       if (action === 'profile.save') {
         if (typeof event.nickname !== 'string' || !event.nickname.trim() || Array.from(event.nickname.trim()).length > 20) fail('INVALID_NICKNAME');
@@ -151,12 +212,22 @@ function createService(db, now = Date.now, options = {}) {
       if (action === 'weight.add') {
         if (!validId(event.requestId) || !grams(event.grams)) fail('INVALID_WEIGHT');
         const id = `${userId}_${event.requestId}`;
-        const duplicate = await read(tx, 'weight_records', id); if (duplicate) return duplicate;
+        const duplicate = await read(tx, 'weight_records', id);
+        if (duplicate) {
+          // 重试只确认原记录，不能跨日打卡，也不给迁移前的体重记录补签。
+          const recordedDate = rules.dayKey(duplicate.recordedAt);
+          const checked = await read(tx, 'daily_checkins', `${userId}_${recordedDate}`);
+          return { ...duplicate, today: date, checkin: checked ? { date: recordedDate, already: true } : null };
+        }
         state.weightSequence = (state.weightSequence || 0) + 1;
         const record = { userId, grams: event.grams, stageId: state.activeGoalId || '', sequence: state.weightSequence, recordedAt: new Date(timestamp) };
+        const analytics = attribution(event.analytics);
+        if (analytics) record.analytics = analytics;
         state.currentWeightGrams = event.grams; state.currentWeightAt = record.recordedAt;
-        await put(tx, 'weight_records', id, record); await put(tx, 'user_state', userId, state);
-        return { ...record, _id: id };
+        await put(tx, 'weight_records', id, record);
+        const checked = await checkin(tx, userId, state, date, timestamp, analytics);
+        await put(tx, 'user_state', userId, state);
+        return { ...record, _id: id, today: date, checkin: checked };
       }
       if (action === 'goal.save') {
         if (!validId(event.requestId) || !grams(event.targetGrams)) fail('INVALID_WEIGHT');
@@ -212,18 +283,25 @@ function createService(db, now = Date.now, options = {}) {
       if (action === 'card.background') {
         const card = await owned(tx, 'memorial_cards', event.id, userId);
         if (card.status !== 'active') fail('CARD_LOCKED');
+        let image, sourceType;
         if (event.presetId) {
           if (!validId(event.presetId)) fail('INVALID_MEDIA');
           const preset = await read(tx, 'memorial_presets', event.presetId);
           if (!presetReady(preset)) fail('PRESET_NOT_READY');
-          Object.assign(card, { sourceType: 'system', backgroundPresetId: preset._id, backgroundAssetId: '', backgroundFileID: preset.fileID });
-          puzzle.applyImage(card, preset.width, preset.height);
+          image = preset; sourceType = 'system';
         } else {
           const asset = await owned(tx, 'media_assets', event.assetId, userId);
-          if (asset.status !== 'ready' || asset.purpose !== 'card') fail('INVALID_MEDIA');
-          Object.assign(card, { sourceType: 'personal', backgroundAssetId: asset._id, backgroundPresetId: '', backgroundFileID: asset.fileID });
-          puzzle.applyImage(card, asset.width, asset.height);
+          if (!cardAssetReady(asset)) fail('INVALID_MEDIA');
+          image = asset; sourceType = 'personal';
         }
+        // SDK 事务只使用 doc。先读取事务内 user_state，再查询最新完成卡，成功时原样写回
+        // 同一状态作为互斥点：并发挑战完成会造成冲突并重跑此检查，不能用事务外缓存放行。
+        const completedCards = await all('memorial_cards', { userId });
+        if (completionCount(completedCards, sourceType, image.fileID, sourceType === 'personal' ? image._id : '')) fail('IMAGE_ALREADY_COMPLETED');
+        Object.assign(card, { sourceType, backgroundPresetId: sourceType === 'system' ? image._id : '',
+          backgroundAssetId: sourceType === 'personal' ? image._id : '', backgroundFileID: image.fileID });
+        puzzle.applyImage(card, image.width, image.height);
+        await put(tx, 'user_state', userId, state);
         await put(tx, 'memorial_cards', card._id, card); return card;
       }
       if (action === 'background.set') {
@@ -257,6 +335,12 @@ function createService(db, now = Date.now, options = {}) {
   return { execute };
 }
 function presetReady(preset) {
-  return preset?.isActive && /^cloud:\/\//.test(preset.fileID || '') && Number.isInteger(preset.width) && preset.width > 0 && Number.isInteger(preset.height) && preset.height > 0;
+  return preset?.isActive && imageReady(preset);
+}
+function imageReady(image) {
+  return !!image && /^cloud:\/\//.test(image.fileID || '') && Number.isInteger(image.width) && image.width > 0 && Number.isInteger(image.height) && image.height > 0;
+}
+function cardAssetReady(asset) {
+  return asset?.status === 'ready' && asset.purpose === 'card' && imageReady(asset);
 }
 module.exports = { createService };

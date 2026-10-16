@@ -1,0 +1,12 @@
+{
+  "name": "setup-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "engines": { "node": ">=16.13.0" },
+  "dependencies": {
+    "@cloudbase/manager-node": "4.2.0",
+    "typescript": "4.9.5",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

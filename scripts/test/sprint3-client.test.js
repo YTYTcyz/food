@@ -114,6 +114,7 @@ test('旧预览错误不能使新选图片失效，当前预览错误禁止上�
 function cardFixture(options = {}) {
   const f = fixture('card', { ...options, query: { id: 'card1' } });
   f.p.visible = true; f.p.data.card = { _id: 'card1', status: 'active' }; f.p.data.status = 'ready';
+  f.p.data.presets = ['first', 'second', 'preset1'].map(_id => ({ _id, fileID: 'cloud://env/' + _id + '.jpg' }));
   f.p.load = async () => { f.loads = (f.loads || 0) + 1; };
   return f;
 }
@@ -129,12 +130,177 @@ test('图片上传回传后等待父页前台应用，应用失败保留同一as
 
 test('换图提交串行，卸载后的响应不更新页面；并发完成的卡片不再重试换图', async () => {
   const result = deferred(), f = cardFixture({ call: () => result.promise });
-  const request = f.p.change({ currentTarget: { dataset: { id: 'first' } } });
-  await f.p.change({ currentTarget: { dataset: { id: 'second' } } }); assert.equal(f.calls.length, 1);
+  f.p.change({ currentTarget: { dataset: { id: 'first' } } });
+  const request = f.p.confirmPresetChange();
+  await f.p.confirmPresetChange();
+  f.p.change({ currentTarget: { dataset: { id: 'second' } } }); assert.equal(f.calls.length, 1);
+  assert.equal(f.calls[0].data.presetId, 'first'); assert.equal(f.p.data.previewPreset, null);
   f.p.onUnload(); const changes = f.changes.length; result.resolve(ok({})); await request; assert.equal(f.changes.length, changes);
   const g = cardFixture({ call: async () => ({ success: false, error: 'CARD_LOCKED' }) });
-  await g.p.change({ currentTarget: { dataset: { id: 'preset1' } } }); await g.p.retryImage();
+  g.p.change({ currentTarget: { dataset: { id: 'preset1' } } }); await g.p.confirmPresetChange(); await g.p.retryImage();
   assert.equal(g.calls.length, 1); assert.equal(g.p.pendingImage, null); assert.equal(g.loads, 1); assert.match(g.p.data.imageError, /锁定/);
+});
+
+test('系统图片先预览，取消不提交；确认只更换当前卡且不传进度', async () => {
+  const f = cardFixture();
+  f.p.change({ currentTarget: { dataset: { id: 'first' } } });
+  assert.equal(f.p.data.previewPreset.fileID, 'cloud://env/first.jpg');
+  assert.equal(f.calls.length, 0); assert.equal(f.p.pendingImage, undefined);
+  f.p.closePreview(); await f.p.confirmPresetChange(); assert.equal(f.calls.length, 0);
+  f.p.change({ currentTarget: { dataset: { id: 'second' } } }); await f.p.confirmPresetChange();
+  assert.deepEqual(f.calls, [{ action: 'card.background', data: { id: 'card1', presetId: 'second' } }]);
+  assert.equal(f.p.data.previewPreset, null); assert.equal(f.p.pendingImage, null); assert.equal(f.loads, 1);
+});
+
+test('隐藏页面、卡片切换或已完成后，旧预览确认不能改图', async () => {
+  for (const invalidate of [f => f.p.onHide(), f => { f.p.cardId = 'card2'; }, f => { f.p.data.card.status = 'completed'; }]) {
+    const f = cardFixture(); f.p.change({ currentTarget: { dataset: { id: 'first' } } });
+    invalidate(f); await f.p.confirmPresetChange();
+    assert.equal(f.calls.length, 0); assert.equal(f.p.data.previewPreset, null);
+  }
+});
+
+test('失败换图可重试同一选择，预览另一张再取消不覆盖待重试图片', async () => {
+  let attempts = 0;
+  const f = cardFixture({ call: async () => ++attempts === 1 ? failed : ok({}) });
+  f.p.change({ currentTarget: { dataset: { id: 'first' } } }); await f.p.confirmPresetChange();
+  assert.equal(f.p.pendingImage.presetId, 'first'); assert.match(f.p.data.imageError, /重试/);
+  f.p.change({ currentTarget: { dataset: { id: 'second' } } }); f.p.closePreview();
+  await f.p.retryImage(); assert.equal(f.calls.length, 2); assert.deepEqual(f.calls[1].data, f.calls[0].data);
+  assert.equal(f.p.pendingImage, null);
+});
+
+test('无效图片和完成卡不能打开换图预览', () => {
+  const f = cardFixture();
+  f.p.change({ currentTarget: { dataset: { id: 'missing' } } }); assert.equal(f.p.data.previewPreset, null);
+  f.p.data.card.status = 'completed';
+  f.p.change({ currentTarget: { dataset: { id: 'first' } } }); assert.equal(f.p.data.previewPreset, null);
+  assert.equal(f.calls.length, 0);
+});
+
+function pickerImages() {
+  return [
+    { _id: 'shared', key: 'system:shared', sourceType: 'system', presetId: 'shared', name: '系统一', fileID: 'cloud://env/system-first.jpg', completed: false, completedCount: 0 },
+    { _id: 'done', key: 'system:done', sourceType: 'system', presetId: 'done', name: '系统二', fileID: 'cloud://env/system-done.jpg', completed: true, completedCount: 1 },
+    { _id: 'shared', key: 'personal:shared', sourceType: 'personal', assetId: 'shared', name: '我的图片一', fileID: 'cloud://env/private/u1/first.jpg', completed: false, completedCount: 0 },
+    { _id: 'private-done', key: 'personal:private-done', sourceType: 'personal', assetId: 'private-done', name: '我的图片二', fileID: 'cloud://env/private/u1/done.jpg', completed: true, completedCount: 2 }
+  ];
+}
+function pickerFixture(options = {}) {
+  const f = cardFixture(options); f.p.data.presets = pickerImages(); return f;
+}
+function openPicker(f, key) { f.p.change({ currentTarget: { dataset: { key } } }); }
+function swipePicker(f, from, to) {
+  f.p.previewTouchStart({ touches: [{ clientX: from[0], clientY: from[1] }] });
+  f.p.previewTouchEnd({ changedTouches: [{ clientX: to[0], clientY: to[1] }] });
+}
+function currentCard() {
+  return { _id: 'card1', status: 'active', currentStep: 0, imageWidth: 100, imageHeight: 100, gridColumns: 6, gridRows: 6, tileCount: 36, revealedTileIndexes: [] };
+}
+
+test('混合图库使用来源键区分同名ID，确认个人图只提交assetId', async () => {
+  const f = pickerFixture();
+  openPicker(f, 'personal:shared');
+  assert.equal(f.p.data.previewPreset.fileID, 'cloud://env/private/u1/first.jpg');
+  assert.equal(f.p.data.previewIndex, 2); assert.equal(f.calls.length, 0);
+  await f.p.confirmPresetChange();
+  assert.deepEqual(f.calls, [{ action: 'card.background', data: { id: 'card1', assetId: 'shared' } }]);
+  assert.equal(f.p.pendingImage, null); assert.equal(f.loads, 1);
+});
+
+test('放大选图按系统图和个人图顺序左右浏览，两端不会循环', () => {
+  const f = pickerFixture(); openPicker(f, 'system:shared');
+  f.p.previousPreset(); assert.equal(f.p.data.previewIndex, 0);
+  swipePicker(f, [20, 20], [100, 22]); assert.equal(f.p.data.previewIndex, 0);
+  swipePicker(f, [200, 20], [100, 22]); assert.equal(f.p.data.previewPreset.key, 'system:done');
+  f.p.nextPreset(); assert.equal(f.p.data.previewPreset.key, 'personal:shared');
+  swipePicker(f, [200, 20], [100, 22]); assert.equal(f.p.data.previewPreset.key, 'personal:private-done');
+  f.p.nextPreset(); swipePicker(f, [200, 20], [100, 22]); assert.equal(f.p.data.previewIndex, 3);
+  f.p.previousPreset(); swipePicker(f, [20, 20], [120, 22]); assert.equal(f.p.data.previewPreset.key, 'system:done');
+  assert.equal(f.calls.length, 0);
+});
+
+test('短滑、纵向滑动、多指和取消手势不会误切换预览图片', () => {
+  const f = pickerFixture(); openPicker(f, 'system:shared');
+  swipePicker(f, [200, 20], [170, 20]);
+  swipePicker(f, [200, 20], [140, 140]);
+  f.p.previewTouchStart({ touches: [{ clientX: 200, clientY: 20 }, { clientX: 220, clientY: 40 }] });
+  f.p.previewTouchEnd({ changedTouches: [{ clientX: 100, clientY: 20 }] });
+  f.p.previewTouchStart({ touches: [{ clientX: 200, clientY: 20 }] }); f.p.previewTouchCancel();
+  f.p.previewTouchEnd({ changedTouches: [{ clientX: 100, clientY: 20 }] });
+  assert.equal(f.p.data.previewIndex, 0); assert.equal(f.calls.length, 0);
+});
+
+test('已经集齐的系统图和个人图都可以预览但不能确认，可滑向未集齐图继续选择', async () => {
+  const f = pickerFixture(); openPicker(f, 'system:done');
+  await f.p.confirmPresetChange();
+  assert.equal(f.calls.length, 0); assert.equal(f.p.data.previewPreset.key, 'system:done');
+  openPicker(f, 'personal:private-done'); await f.p.confirmPresetChange();
+  assert.equal(f.calls.length, 0); assert.equal(f.p.data.previewPreset.key, 'personal:private-done');
+  f.p.previousPreset(); await f.p.confirmPresetChange();
+  assert.deepEqual(f.calls[0].data, { id: 'card1', assetId: 'shared' }); assert.equal(f.calls.length, 1);
+});
+
+test('服务端发现选中图刚被集齐时清除待提交内容并刷新，重试不会再次发送拒绝图片', async () => {
+  let completed = false;
+  const f = fixture('card', { query: { id: 'card1' }, call: async action => {
+    if (action === 'card.background') { completed = true; return { success: false, error: 'IMAGE_ALREADY_COMPLETED' }; }
+    if (action === 'card.get') return ok(currentCard());
+    if (action === 'summary') return ok({});
+    assert.equal(action, 'card.images');
+    return ok(pickerImages().map(item => item.key === 'system:shared' ? { ...item, completed, completedCount: completed ? 1 : 0 } : item));
+  } });
+  await f.p.onShow(); openPicker(f, 'system:shared'); await f.p.confirmPresetChange();
+  assert.equal(f.p.pendingImage, null); assert.match(f.p.data.imageError, /这张图片已经集齐，请选择其他图片/);
+  assert.equal(f.p.data.presets[0].completed, true);
+  const before = f.calls.length; await f.p.retryImage(); assert.equal(f.calls.length, before);
+  openPicker(f, 'system:shared'); await f.p.confirmPresetChange();
+  assert.equal(f.calls.filter(call => call.action === 'card.background').length, 1);
+});
+
+test('图库读取保留服务端的系统后个人顺序，隐藏前请求的迟到数据不能覆盖新图库', async () => {
+  const first = deferred(), second = deferred(); let images = 0;
+  const f = fixture('card', { query: { id: 'card1' }, call: async action => {
+    if (action === 'card.get') return ok(currentCard());
+    if (action === 'summary') return ok({});
+    assert.equal(action, 'card.images'); return ++images === 1 ? first.promise : second.promise;
+  } });
+  const oldLoad = f.p.onShow(); f.p.onHide(); const newLoad = f.p.onShow();
+  second.resolve(ok(pickerImages())); await newLoad;
+  assert.deepEqual(Array.from(f.p.data.presets, item => item.key), pickerImages().map(item => item.key));
+  first.resolve(ok([{ _id: 'stale', key: 'system:stale', fileID: 'cloud://env/stale.jpg' }])); await oldLoad;
+  assert.equal(f.p.data.presets.length, 4); assert.equal(f.p.data.presets[3].sourceType, 'personal');
+});
+
+test('上传个人图片应用成功后重新读取图库，新图片显示在末尾', async () => {
+  let uploaded = false;
+  const f = fixture('card', { query: { id: 'card1' }, call: async (action, data) => {
+    if (action === 'card.background') { assert.deepEqual(structuredClone(data), { id: 'card1', assetId: 'new-asset' }); uploaded = true; return ok({}); }
+    if (action === 'card.get') return ok(currentCard());
+    if (action === 'summary') return ok({});
+    assert.equal(action, 'card.images');
+    return ok([...pickerImages(), ...(uploaded ? [{ _id: 'new-asset', key: 'personal:new-asset', sourceType: 'personal', assetId: 'new-asset', fileID: 'cloud://env/private/u1/new.jpg' }] : [])]);
+  } });
+  await f.p.onShow(); f.p.upload(); f.p.onHide(); f.events[0].uploaded({ _id: 'new-asset' });
+  assert.equal(f.calls.filter(call => call.action === 'card.background').length, 0);
+  await f.p.onShow();
+  assert.equal(f.p.data.presets.length, 5); assert.equal(f.p.data.presets[4].key, 'personal:new-asset');
+  assert.equal(f.p.pendingImage, null);
+});
+
+test('后台完成更换时不启动图库读取，返回前台才刷新；卸载后迟到图库不更新', async () => {
+  const response = deferred(), f = pickerFixture({ call: () => response.promise });
+  openPicker(f, 'personal:shared'); const changing = f.p.confirmPresetChange(); f.p.onHide();
+  response.resolve(ok({})); await changing;
+  assert.equal(f.loads || 0, 0); assert.equal(f.p.pendingImage, null); assert.equal(f.p.data.previewPreset, null);
+  await f.p.onShow(); assert.equal(f.loads, 1);
+  const images = deferred(), g = fixture('card', { query: { id: 'card1' }, call: async action => {
+    if (action === 'card.get') return ok(currentCard());
+    if (action === 'summary') return ok({});
+    assert.equal(action, 'card.images'); return images.promise;
+  } });
+  const loading = g.p.onShow(); g.p.onUnload(); const changes = g.changes.length;
+  images.resolve(ok(pickerImages())); await loading; assert.equal(g.changes.length, changes);
 });
 
 function moduleFixture(file, wx, mocks = {}) {

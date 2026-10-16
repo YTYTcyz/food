@@ -1,5 +1,6 @@
+const { instrumentPage, feature } = require('../../utils/analytics-page');
 const api = require('../../utils/personal');
-Page({
+Page(instrumentPage({
   data: { nickname: '', avatar: '', assetId: '', status: 'loading', saving: false },
   onLoad() { this.visible = true; return this.load(); },
   onShow() { this.visible = true; if (this.saveOutcome) this.finishSave(); },
@@ -20,8 +21,10 @@ Page({
   },
   async save() {
     if (this.data.saving || this.data.status !== 'ready') return;
+    feature(this, 'profile', 'save', { phase: 'attempt' });
     this.setData({ saving: true });
     const r = await api.call('profile.save', { nickname: this.data.nickname, avatarAssetId: this.data.assetId });
+    feature(this, 'profile', 'save', { phase: 'result', success: !!r.success });
     if (this.unloaded) return;
     this.saveOutcome = r;
     if (this.visible) this.finishSave();
@@ -31,4 +34,4 @@ Page({
     if (!r.success) { api.toast(r); return; }
     wx.showToast({ title: '已保存' }); wx.navigateBack();
   }
-});
+}, 'profile'));

@@ -1,5 +1,6 @@
 node_modules/
 tmp/
+/.cursor/
 
 # Local credentials and per-developer WeChat settings.
 .env
@@ -8,6 +9,10 @@ tmp/
 project.private.config.json
 *.log
 __pycache__/
+
+# Keep local only; stop tracking on remote after unstage.
+/docs/
+/CYZ_do_list/
 
 # Large merchant originals stay in local assets and Cloud Storage.
 # The image mapping and small system preset images are versioned.

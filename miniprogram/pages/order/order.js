@@ -1,7 +1,9 @@
+const { instrumentPage, context: analyticsContext } = require('../../utils/analytics-page');
+const analytics = require('../../utils/analytics');
 const challenge = require("../../utils/challenge");
 const cart = require("../../utils/cart");
 const rules = require("../../domain/product");
-Page({
+Page(instrumentPage({
   data: { status: "empty", merchantName: "", items: [], goodsYuan: "0.00", totalYuan: "0.00", kcal: 0,
     deliveryYuan: (rules.DELIVERY_FEE_CENTS / 100).toFixed(2), virtualAddress: rules.VIRTUAL_ADDRESS,
     paymentOptions: rules.PAYMENT_OPTIONS, paymentMethod: rules.PAYMENT_OPTIONS[0],
@@ -25,6 +27,7 @@ Page({
   isCurrent(view) { return this.visible && this.viewVersion === view; },
   refresh() {
     const c = cart.getForMerchant(this.merchantId);
+    this.analyticsFlowId = c && c.flowId || '';
     const s = cart.summary(c);
     this.setData({ status: c ? "ready" : "empty", merchantName: c ? c.merchantName : "",
       items: Object.values(c ? c.items : {}).map((i) => ({ ...i, priceYuan: (i.priceCents / 100).toFixed(2) })),
@@ -54,6 +57,7 @@ Page({
   },
   async startWait() {
     if (this.data.submitting) return;
+    analytics.track('brl_order_submit_click', { retry: !!this.draft }, analyticsContext(this));
     const view = this.viewVersion;
     const uid = await getApp().ensureLogin();
     if (!this.isCurrent(view)) return;
@@ -63,7 +67,8 @@ Page({
     if (!c || !Object.keys(c.items).length) return;
     this.draftKey = `orderDraft:${getApp().globalData.userId}:${this.merchantId}`;
     this.draft = { merchantId: this.merchantId, items: cart.toOrderItems(c), note: this.data.note,
-      paymentMethod: this.data.paymentMethod, idempotencyKey: `submit_${Date.now()}_${Math.random().toString(36).slice(2)}` };
+      paymentMethod: this.data.paymentMethod, idempotencyKey: `submit_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+      analytics: analytics.getContext({ flowId: c.flowId }) };
     wx.setStorageSync(this.draftKey, this.draft);
     this.setData({ submitting: true, pending: true });
     await this.send();
@@ -105,4 +110,4 @@ Page({
     wx.showModal({ title: "模拟订单提交成功", content: "5 分钟模拟配送已开始，成功后计入成就钱包。不会真实支付或配送。",
       showCancel: false, confirmText: "进入等待", success: go });
   },
-});
+}, 'order'));

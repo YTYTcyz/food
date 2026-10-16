@@ -1,1 +1,4 @@
-<view class="calorie-tag {{_hasKcal ? '' : 'calorie-tag--muted'}}">{{_text}}</view>
+<view class="calorie-tags">
+  <view class="calorie-tag {{_hasKcal ? '' : 'calorie-tag--muted'}}">{{_text}}</view>
+  <view wx:if="{{_runningText}}" class="calorie-tag calorie-tag--running">{{_runningText}}</view>
+</view>

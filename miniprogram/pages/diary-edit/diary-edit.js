@@ -1,8 +1,12 @@
+const { instrumentPage, engage, feature } = require('../../utils/analytics-page');
+const analytics = require('../../utils/analytics');
 const api = require('../../utils/personal');
 const { pick } = require('../../utils/encouragement');
 const { MOODS } = require('../../domain/personal');
-Page({
-  data: { id: '', orderId: '', body: '', mood: '', moods: MOODS.slice(1), count: 0, status: 'loading', saving: false, hint: '', encouragement: '', version: 0, existing: false },
+const voice = require('../../utils/diary-voice');
+Page(instrumentPage({
+  data: { id: '', orderId: '', body: '', mood: '', moods: MOODS.slice(1), count: 0, status: 'loading', saving: false, hint: '', encouragement: '', version: 0, existing: false, ...voice.data },
+  ...voice.methods,
   async onLoad(q) {
     this.query = q; this.visible = true;
     return this.load();
@@ -24,15 +28,18 @@ Page({
     }
     const draft = wx.getStorageSync(this.draftKey);
     if (draft) {
-      const { id, body, mood, version } = draft;
+      feature(this, 'diary', 'draft', { phase: 'restore' });
+      const { id, body, mood, version, voiceText = '' } = draft;
       // 草稿恢复内容与版本；返回目的地以本次入口为准。
-      this.setData({ id, body, mood, version, count: Array.from(body).length, hint: '已恢复本机草稿' }); this.dirty = true; this.protect();
+      this.setData({ id, body, mood, version, voiceText, voiceState: 'idle', count: Array.from(body).length, hint: '已恢复本机草稿' }); this.dirty = true; this.protect();
     }
     this.setData({ status: 'ready' });
+    if (this.data.voiceText) this.voiceAppend(this.data.voiceText, '已将上次识别的文字恢复到正文。');
   },
   onInput(e) {
     if (this.data.saving || this.data.status !== 'ready') return;
     const body = Array.from(e.detail.value).slice(0, 2000).join('');
+    if (body.trim()) engage(this);
     this.setData({ body, count: Array.from(body).length }); this.changed();
     clearTimeout(this.encourageTimer);
     if (body.trim() && !this.data.encouragement) this.encourageTimer = setTimeout(() => this.setData({ encouragement: pick(this.data.mood) }), 1500);
@@ -42,16 +49,19 @@ Page({
   protect() { if (wx.enableAlertBeforeUnload) wx.enableAlertBeforeUnload({ message: '日记尚未保存，确定离开编辑页面吗？' }); },
   storeDraft() {
     if (!this.draftKey || !this.dirty) return !this.dirty;
-    try { const { id, body, mood, version, orderId } = this.data; wx.setStorageSync(this.draftKey, { id, body, mood, version, orderId }); return true; }
+    try { const { id, body, mood, version, orderId, voiceText } = this.data; wx.setStorageSync(this.draftKey, { id, body, mood, version, orderId, voiceText }); return true; }
     catch (_) { this.setData({ hint: '本机存储空间不足，请先保存日记再离开' }); return false; }
   },
-  onHide() { this.visible = false; this.storeDraft(); clearTimeout(this.encourageTimer); },
-  onUnload() { this.storeDraft(); this.unloaded = true; this.visible = false; this.loadGeneration = (this.loadGeneration || 0) + 1; clearTimeout(this.encourageTimer); this.finishMutation(); },
+  onHide() { this.visible = false; voice.suspend(this); this.storeDraft(); clearTimeout(this.encourageTimer); },
+  onUnload() { voice.suspend(this, true); this.storeDraft(); this.unloaded = true; this.visible = false; this.loadGeneration = (this.loadGeneration || 0) + 1; clearTimeout(this.encourageTimer); this.finishMutation(); },
   async save() {
     if (this.data.saving || this.data.status !== 'ready' || !this.data.body.trim()) return;
+    if (this.voicePending()) { this.setData({ hint: this.data.voiceOverflow ? '请先处理下方超出字数的语音文字。' : '请先结束语音输入并等待文字生成。' }); return; }
     this.setData({ saving: true, hint: '' }); this.storeDraft();
+    feature(this, 'diary', 'save', { phase: 'attempt' });
     const { id, body, mood, version, orderId } = this.data;
     const r = await api.call('diary.save', { id, body, mood, version, challengeOrderId: orderId });
+    feature(this, 'diary', 'save', { phase: 'result', success: !!r.success, ...(r.success ? {} : { error_code: analytics.errorCode(r.error) }) });
     this.mutationResult = { result: r, snapshot: { id, body, mood, version } };
     this.finishMutation();
   },
@@ -61,7 +71,7 @@ Page({
     if (result.success) {
       this.dirty = false;
       const latest = wx.getStorageSync(this.draftKey);
-      if (latest && latest.id === snapshot.id && latest.body === snapshot.body && latest.mood === snapshot.mood && latest.version === snapshot.version) wx.removeStorageSync(this.draftKey);
+      if (latest && !latest.voiceText && latest.id === snapshot.id && latest.body === snapshot.body && latest.mood === snapshot.mood && latest.version === snapshot.version) wx.removeStorageSync(this.draftKey);
     }
     if (this.unloaded) return;
     this.setData({ saving: false });
@@ -72,6 +82,7 @@ Page({
   returnToOrigin() { if (this.data.orderId) wx.redirectTo({ url: '/pages/wait/wait?orderId=' + this.data.orderId }); else wx.navigateBack(); },
   leave(e) {
     if (this.data.saving) return;
+    voice.suspend(this);
     const url = e && e.detail && e.detail.url;
     const go = () => url ? wx.navigateTo({ url }) : wx.navigateBack();
     if (!this.dirty) { go(); return; }
@@ -82,6 +93,7 @@ Page({
   },
   remove() {
     if (!this.data.existing || this.data.saving) return;
+    if (this.voicePending()) { this.setData({ hint: this.data.voiceOverflow ? '请先处理下方超出字数的语音文字。' : '请先结束语音输入并等待文字生成。' }); return; }
     wx.showModal({ title: '删除这篇日记？', content: '删除后正文和字数统计会一并移除。', confirmText: '删除', success: async r => {
       if (!r.confirm || this.data.saving || this.unloaded || this.visible === false) return;
       const { id, body, mood, version } = this.data;
@@ -89,5 +101,5 @@ Page({
       this.mutationResult = { result, snapshot: { id, body, mood, version } }; this.finishMutation();
     } });
   }
-});
+}, 'diary-edit'));
 

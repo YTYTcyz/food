@@ -1,9 +1,10 @@
+const { instrumentPage, feature } = require('../../utils/analytics-page');
 const api = require('../../utils/personal');
 const helper = require('../../utils/canvas');
 const puzzle = require('../../domain/puzzle');
 const { prepareImage } = require('../../utils/image-upload');
 const { PRIVATE_MEDIA_READY } = require('../../config');
-Page({
+Page(instrumentPage({
   data: { mediaReady: PRIVATE_MEDIA_READY, purpose: 'card', ready: false, zoom: 1, progress: 0, uploading: false, selecting: false, hint: '', preview: '', previewStyle: '', selectionVersion: 0, processingNote: '' },
   onLoad(q) { this.visible = true; this.setData({ purpose: q.purpose === 'avatar' ? 'avatar' : 'card' }); },
   onReady() { if (PRIVATE_MEDIA_READY) this.choose(); else this.setData({ hint: '图片上传正在准备中，请稍后再来。' }); },
@@ -59,6 +60,7 @@ Page({
   async upload() {
     if (!PRIVATE_MEDIA_READY || this.unloaded || !this.data.ready || this.data.uploading || this.data.selecting || this.finishing) return;
     if (this.uploadResult) { this.finishUpload(); return; }
+    feature(this, 'photo', 'upload', { phase: 'attempt' });
     const transfer = this.transfer || (this.transfer = { requestId: this.uploadId });
     this.setData({ uploading: true, progress: transfer.uploaded ? 100 : 0, hint: '' });
     let failureHint = '';
@@ -97,8 +99,9 @@ Page({
         this.uploadResult = committed.data;
       }
       if (this.unloaded) return;
+      feature(this, 'photo', 'upload', { phase: 'result', success: true });
       this.finishUpload();
-    } catch (e) { if (!this.unloaded) this.setData({ hint: failureHint || (transfer.uploaded ? '图片已传完，确认暂未完成，请重试' : '图片上传暂未完成，请重试；原图未改变') }); }
+    } catch (e) { feature(this, 'photo', 'upload', { phase: 'result', success: false }); if (!this.unloaded) this.setData({ hint: failureHint || (transfer.uploaded ? '图片已传完，确认暂未完成，请重试' : '图片上传暂未完成，请重试；原图未改变') }); }
     finally { if (!this.unloaded) this.setData({ uploading: false }); }
   }
-});
+}, 'photo'));

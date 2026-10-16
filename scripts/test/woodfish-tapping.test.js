@@ -13,7 +13,7 @@ async function setup() {
   let now = 0, sequence = 0, definition;
   const timers = new Map(), storage = new Map(), calls = [], patches = [], callbacks = [], styles = [], sounds = new Set();
   const metrics = { reads: 0, writes: 0, plays: 0, stops: 0, vibrations: 0, maximumVoices: 0 };
-  const controls = { writeFails: false, playFails: false, vibrateFails: false, holdCallback: false, upload: null, offline: false };
+  const controls = { writeFails: false, playFails: false, vibrateFails: false, holdCallback: false, upload: null, offline: false, random: 0 };
   const date = '2026-09-11', server = {};
   const clock = {
     setTimeout(fn, delay) { const id = ++sequence; timers.set(id, { fn, at: now + delay }); return id; },
@@ -59,7 +59,8 @@ async function setup() {
   };
   function load(relative, requireModule = () => api) {
     const module = { exports: {} };
-    vm.runInNewContext(fs.readFileSync(path.join(root, relative), 'utf8'), { module, require: requireModule, wx, getApp: () => app, ...clock });
+    vm.runInNewContext(fs.readFileSync(path.join(root, relative), 'utf8'), { module, require: requireModule, wx, getApp: () => app, ...clock,
+      Math: Object.assign(Object.create(Math), { random: () => controls.random }) });
     return module.exports;
   }
   const counter = load('miniprogram/utils/woodfish.js'), audio = load('miniprogram/utils/woodfish-audio.js');
@@ -98,11 +99,12 @@ async function setup() {
 
 test('千次触摸全部计数且即时请求音效；数字只传一帧、存储只写一批', async () => {
   const f = await setup(), before = { ...f.metrics }, patchCount = f.patches.length;
-  for (let i = 0; i < 1000; i++) f.touch();
+  for (let i = 0; i < 1000; i++) { f.controls.random = (i % 4) / 4; f.touch(); }
   assert.equal(f.counter.read().totals[f.date], 1000);
   assert.equal(f.metrics.reads - before.reads, 0); assert.equal(f.metrics.writes - before.writes, 0);
   assert.equal(f.patches.length, patchCount); assert.equal(f.metrics.plays, 1000);
-  assert.equal(f.styles.length, 2000); assert.notEqual(f.styles[0].animation, f.styles[2].animation);
+  const animations = f.styles.filter(style => style.animation);
+  assert.equal(animations.length, 2000); assert.notEqual(animations[0].animation, animations[2].animation);
   assert.equal(f.metrics.maximumVoices, 8); assert.equal(f.metrics.vibrations, 1); assert.ok(f.timers.size <= 12);
   await f.advance(16);
   assert.equal(f.p.data.count, 1000); assert.equal(f.p.data.pending, 1000);
@@ -141,7 +143,7 @@ test('慢渲染不锁点击或积压setData，已收到的新计数在下一帧�
 test('新触点逐一记录，动画不等逻辑层，旧页面桥消息不计入重进页面', async () => {
   const f = await setup();
   const messages = []; f.owner.callMethod = (name, args) => messages.push({ name, args });
-  f.touch(2); assert.equal(f.styles.length, 2); assert.equal(f.counter.pending(f.date), 0);
+  f.touch(2); assert.equal(f.styles.filter(style => style.animation).length, 2); assert.equal(f.counter.pending(f.date), 0);
   f.p.tap(messages[0].args); await f.advance(16);
   assert.equal(f.p.data.count, 2); assert.equal(f.metrics.plays, 2);
   f.touch(0); assert.equal(messages.length, 1);
@@ -160,6 +162,21 @@ test('视图前后台切换取消旧动画，不触发敲击和音效', async ()
   f.feedback.reset(true, false, f.owner);
   assert.equal(f.metrics.plays, 1); assert.equal(f.counter.pending(f.date), 1);
   f.touch(); assert.equal(f.metrics.plays, 2); assert.notEqual(f.styles.at(-1).animation, 'none'); f.p.onUnload();
+});
+
+test('四种飘字在视图层随机切换，同一时刻只显示一种，连击不增加setData', async () => {
+  const f = await setup(), visible = new Set(), patches = f.patches.length;
+  for (const [random, index] of [[0, 0], [.25, 1], [.5, 2], [.999, 3], [.8, 3], [.01, 0]]) {
+    f.controls.random = random;
+    const offset = f.styles.length; f.touch();
+    for (const style of f.styles.slice(offset)) {
+      if (style.visibility === 'visible') visible.add(style.id);
+      if (style.visibility === 'hidden') visible.delete(style.id);
+    }
+    assert.deepEqual([...visible], ['#woodfish-word-' + index]);
+  }
+  assert.equal(f.metrics.plays, 6); assert.equal(f.counter.pending(f.date), 6);
+  assert.equal(f.patches.length, patches); f.p.onUnload();
 });
 
 test('网络请求未结束和断网都不阻断敲击，恢复同步无遗漏或重复', async () => {

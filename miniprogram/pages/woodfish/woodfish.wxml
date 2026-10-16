@@ -7,7 +7,12 @@
   <view wx:if="{{hint}}" class="error-box" bindtap="refresh">{{hint}}</view>
   <view wx:if="{{audioHint}}" class="muted">{{audioHint}}</view>
   <view class="wood-space">
-    <view id="woodfish-word" class="floating">放下执念 +1</view>
+    <view id="woodfish-word" class="floating">
+      <text id="woodfish-word-0" class="floating-word">健康+1</text>
+      <text id="woodfish-word-1" class="floating-word">变瘦+1</text>
+      <text id="woodfish-word-2" class="floating-word">变美+1</text>
+      <text id="woodfish-word-3" class="floating-word">暴富+1</text>
+    </view>
     <image id="woodfish-feedback" class="woodfish" src="/images/woodfish/woodfish.png" mode="aspectFit"
       data-enabled="{{ready && active}}" data-view-version="{{viewVersion}}" bindtouchstart="{{feedback.start}}"
       feedbackactive="{{active}}" change:feedbackactive="{{feedback.reset}}" />
